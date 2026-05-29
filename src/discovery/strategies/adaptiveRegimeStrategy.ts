@@ -29,6 +29,8 @@ const DEFAULTS: Record<string, number | string> = {
   riskPct: 0.5,
   leverage: 3,
   riskMultTrend: 1,
+  riskMultTrendMax: 1.8,
+  trendStrengthRiskBoost: 0.8,
   riskMultRange: 0.7,
   riskMultHighVol: 0,
   riskMultCompression: 0,
@@ -47,6 +49,7 @@ const DEFAULTS: Record<string, number | string> = {
   trendTrailStart: 0.2,
   trendTrailGap: 0.35,
   trendBreakEvenPct: 0.2,
+  minTrendStrengthToTrade: 0.25,
   maxPortfolioDrawdownPct: 5,
   maxDailyLossPct: 2,
   maxTradesPerDay: 20,
@@ -142,7 +145,10 @@ const tryRegimeEntry = (
   const bbU = bb.upper[i]!;
   const bbL = bb.lower[i]!;
 
-  const risk = baseRisk * regimeRiskMultiplier(regime, p);
+  const minVolRatio = num(p, "minVolumeMult", 0);
+  if (minVolRatio > 0 && snap.diagnostics.volumeRatio < minVolRatio) return;
+
+  const risk = baseRisk * regimeRiskMultiplier(regime, p, snap.diagnostics);
   if (risk <= 0.05) return;
 
   let dir: "long" | "short" | null = null;
@@ -151,6 +157,7 @@ const tryRegimeEntry = (
   if (regime === "HIGH_VOLATILITY") return;
 
   if (regime === "TREND_UP") {
+    if (snap.diagnostics.trendStrength < num(p, "minTrendStrengthToTrade", 0.25)) return;
     const pull = num(p, "pullbackPct", 0.2) / 100;
     const ext = num(p, "maxTrendExtensionPct", 1.5) / 100;
     if (emaS > 0 && (close - emaS) / emaS > ext) return;
@@ -162,6 +169,7 @@ const tryRegimeEntry = (
       stop = close - atr * atrM;
     }
   } else if (regime === "TREND_DOWN") {
+    if (snap.diagnostics.trendStrength < num(p, "minTrendStrengthToTrade", 0.25)) return;
     const pull = num(p, "pullbackPct", 0.2) / 100;
     const ext = num(p, "maxTrendExtensionPct", 1.5) / 100;
     if (emaS > 0 && (emaS - close) / emaS > ext) return;

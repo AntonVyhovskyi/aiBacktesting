@@ -22,6 +22,7 @@ export type RegimeDiagnostics = {
   emaFast: number;
   emaSlow: number;
   emaSlopePct: number;
+  trendStrength: number;
   rsi: number;
   volumeRatio: number;
   close: number;

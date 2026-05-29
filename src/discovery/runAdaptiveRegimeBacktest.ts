@@ -47,12 +47,12 @@ const DEFAULT_SYMBOLS = "SOLUSDT,ETHUSDT";
 type ParamSet = Record<string, number | string>;
 
 const OPTIMIZER_GRID: ParamSet[] = [
-  { adxTrendMin: 25, adxRangeMax: 20, atrHighPct: 1.2, riskPct: 0.5, atrMult: 1, tradeCompression: 0, tradeHighVol: 0, minRegimeConfidence: 0.5 },
-  { adxTrendMin: 25, adxRangeMax: 18, atrHighPct: 1.0, riskPct: 0.5, atrMult: 0.9, tradeCompression: 0, rangeTpPct: 0.4, trendTrailStart: 0.25 },
-  { adxTrendMin: 28, adxRangeMax: 20, atrHighPct: 1.3, riskPct: 0.4, atrMult: 1, tradeCompression: 0, maxTradesPerDay: 15 },
-  { adxTrendMin: 22, adxRangeMax: 22, atrHighPct: 1.1, riskPct: 0.5, atrMult: 1, tradeCompression: 0, tradeRange: 1, tradeTrend: 1 },
-  { adxTrendMin: 25, adxRangeMax: 20, atrHighPct: 1.2, riskPct: 0.35, atrMult: 0.85, tradeCompression: 0, maxTrendExtensionPct: 1.2 },
-  { adxTrendMin: 25, adxRangeMax: 20, atrHighPct: 1.0, riskPct: 0.5, atrMult: 1, tradeCompression: 0, tradeTransition: 0, rangeVwapDistPct: 0.2 },
+  { adxTrendMin: 25, adxRangeMax: 20, atrHighPct: 1.2, riskPct: 0.35, atrMult: 1, tradeCompression: 0, tradeHighVol: 0, minRegimeConfidence: 0.5, minMoveVsFeeMult: 4, minVolumeMult: 1.1, riskMultTrendMax: 1.6, trendStrengthRiskBoost: 0.7 },
+  { adxTrendMin: 25, adxRangeMax: 18, atrHighPct: 1.0, riskPct: 0.35, atrMult: 0.9, tradeCompression: 0, rangeTpPct: 0.4, trendTrailStart: 0.25, minMoveVsFeeMult: 5, minVolumeMult: 1.2, minTrendStrengthToTrade: 0.3 },
+  { adxTrendMin: 28, adxRangeMax: 20, atrHighPct: 1.3, riskPct: 0.3, atrMult: 1, tradeCompression: 0, maxTradesPerDay: 15, minMoveVsFeeMult: 6, minVolumeMult: 1.2, riskMultTrendMax: 1.8 },
+  { adxTrendMin: 22, adxRangeMax: 22, atrHighPct: 1.1, riskPct: 0.35, atrMult: 1, tradeCompression: 0, tradeRange: 1, tradeTrend: 1, minMoveVsFeeMult: 5, minVolumeMult: 1.1 },
+  { adxTrendMin: 25, adxRangeMax: 20, atrHighPct: 1.2, riskPct: 0.25, atrMult: 0.85, tradeCompression: 0, maxTrendExtensionPct: 1.2, minMoveVsFeeMult: 6, minVolumeMult: 1.5, maxTradesPerDay: 12 },
+  { adxTrendMin: 25, adxRangeMax: 20, atrHighPct: 1.0, riskPct: 0.3, atrMult: 1, tradeCompression: 0, tradeTransition: 0, rangeVwapDistPct: 0.2, minMoveVsFeeMult: 5, minVolumeMult: 1.2 },
 ];
 
 type RunConfig = {
@@ -113,11 +113,12 @@ type CandidateResult = {
   fullPeriod?: PeriodReport;
 };
 
-const loadConfig = async (symbol: string, months: number, timeframe: string): Promise<RunConfig> => {
+const loadConfig = async (symbol: string, months: number, timeframe: string, endTimeMs: number): Promise<RunConfig> => {
   const cacheDir = path.resolve(process.env.BACKTEST_CACHE_DIR ?? "data/cache");
   const load = await loadBinanceFuturesCandles(symbol, {
     cacheDir,
     months,
+    endTimeMs,
     minCoveragePct: MIN_COVERAGE_PCT,
   });
   const candles = resolveStrategyCandles(load.candles, timeframe);
@@ -154,6 +155,7 @@ const main = async () => {
   const startBalance = num(process.env.BACKTEST_INITIAL_BALANCE, 100);
   const feeRate = num(process.env.BACKTEST_FEE_RATE, 0.00035);
   const entryMode = process.env.BACKTEST_ENTRY_MODE === "close" ? "close" : "nextOpen";
+  const endTimeMs = num(process.env.BACKTEST_END_TIME_MS, Date.now());
 
   fs.mkdirSync(outputDir, { recursive: true });
 
@@ -181,7 +183,7 @@ const main = async () => {
       console.log(`\n========== ${symbol} ${timeframe} (${BINANCE_FUTURES_SOURCE}) ==========\n`);
       let cfg: RunConfig;
       try {
-        cfg = await loadConfig(symbol, months, timeframe);
+        cfg = await loadConfig(symbol, months, timeframe, endTimeMs);
       } catch (e) {
         if (e instanceof BinanceCacheMissingError) {
           console.error(e.message);
