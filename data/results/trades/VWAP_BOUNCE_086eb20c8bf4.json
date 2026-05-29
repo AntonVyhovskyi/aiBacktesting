@@ -1,0 +1,30 @@
+[
+  {
+    "direction": "long",
+    "entryTime": 1778774880000,
+    "entryPrice": 93.31,
+    "exitTime": 1778774880000,
+    "exitPrice": 93.31,
+    "qty": 53.58482478,
+    "grossPnL": 0,
+    "fees": 3.5,
+    "netPnL": -3.5,
+    "balanceAfter": 996.5,
+    "exitReason": "exit",
+    "durationCandles": 1
+  },
+  {
+    "direction": "long",
+    "entryTime": 1778778000000,
+    "entryPrice": 93.27,
+    "exitTime": 1778778060000,
+    "exitPrice": 93.1216213424411,
+    "qty": 53.42017798,
+    "grossPnL": -7.9264143,
+    "fees": 3.48497576,
+    "netPnL": -11.41139006,
+    "balanceAfter": 985.08860994,
+    "exitReason": "stop",
+    "durationCandles": 2
+  }
+]

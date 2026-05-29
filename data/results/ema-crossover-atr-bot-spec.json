@@ -1,0 +1,412 @@
+{
+  "meta": {
+    "specVersion": "1.0.0",
+    "generatedAt": "2026-05-17T18:36:49.286Z",
+    "sourceResultFile": "C:\\Users\\vygov\\OneDrive\\Desktop\\aiBacktesting\\data\\results\\max-monthly-volume-10dd-search-final.json",
+    "sourceResultGeneratedAt": "2026-05-17T17:45:19.581Z",
+    "winnerRankKey": "rankings.topMaxMonthlyVolumeUnder10DD[0]",
+    "strategyName": "EMA_CROSSOVER_ATR",
+    "symbol": "SOLUSD",
+    "marketId": 2,
+    "optimizationObjective": "max_monthly_notional_under_10pct_max_drawdown"
+  },
+  "validationMetrics": {
+    "fromSearchResult": {
+      "totalMonthlyNotionalVolume": 88431.406106,
+      "averageWeeklyNotionalVolume": 21625.321601,
+      "averageDailyNotionalVolume": 2947.713537,
+      "totalNotionalVolume": 87606.45572,
+      "endBalance": 91.444509,
+      "netPnL": -8.555491,
+      "netPnLPct": -8.555491,
+      "maxDrawdownPct": 9.603529,
+      "totalFees": 30.662259,
+      "grossPnL": 22.106769,
+      "tradesCount": 156,
+      "tradesPerDay": 5.248966,
+      "winRate": 16.666667,
+      "profitFactor": 0.823868,
+      "feesToVolumeRatio": 0.062139
+    },
+    "revalidatedOnCache": {
+      "totalMonthlyNotionalVolume": 88447.967669,
+      "averageWeeklyNotionalVolume": 21591.585041,
+      "averageDailyNotionalVolume": 2948.265589,
+      "totalNotionalVolume": 87477.496913,
+      "endBalance": 91.939925,
+      "netPnL": -8.060075,
+      "netPnLPct": -8.060075,
+      "maxDrawdownPct": 9.113791,
+      "totalFees": 30.617124,
+      "grossPnL": 22.557049,
+      "tradesCount": 155,
+      "tradesPerDay": 5.223985,
+      "winRate": 16.774194,
+      "profitFactor": 0.83311,
+      "feesToVolumeRatio": 0.062137
+    }
+  },
+  "backtestConfig": {
+    "symbol": "SOLUSD",
+    "marketId": 2,
+    "timeframe": "1m",
+    "backtestDays": 30,
+    "initialBalance": 100,
+    "entryMode": "nextOpen",
+    "feeRate": 0.00035,
+    "BACKTEST_FORCE_REFRESH": false
+  },
+  "parameters": {
+    "atrPeriod": 14,
+    "atrMult": 0.8,
+    "trailStart": 0.1,
+    "trailGap": 0.4,
+    "takeProfitPct": 0,
+    "breakEvenPct": 0.3,
+    "maxHoldCandles": 0,
+    "exitOnOppositeSignal": 0,
+    "cooldownCandles": 3,
+    "minAtrFilter": 0,
+    "minEmaDistancePct": 0,
+    "minMoveVsFeeMult": 2,
+    "minVolumeMult": 1.2,
+    "maxTradesPerDay": 999,
+    "emaShort": 12,
+    "emaLong": 21,
+    "riskPct": 0.5,
+    "leverage": 3,
+    "minAtrPct": 0
+  },
+  "parametersInactiveForThisStrategy": [
+    {
+      "key": "minVolumeMult",
+      "value": 1.2,
+      "reason": "Not referenced in src/discovery/strategies/emaCrossoverAtr.ts"
+    },
+    {
+      "key": "minAtrPct",
+      "value": 0,
+      "reason": "Not referenced in src/discovery/strategies/emaCrossoverAtr.ts"
+    },
+    {
+      "key": "exitOnOppositeSignal",
+      "value": 0,
+      "reason": "Not referenced in src/discovery/strategies/emaCrossoverAtr.ts"
+    },
+    {
+      "key": "minEmaDistancePct",
+      "value": 0,
+      "reason": "Not referenced in src/discovery/strategies/emaCrossoverAtr.ts"
+    }
+  ],
+  "strategyOverview": {
+    "family": "EMA crossover with ATR-based initial stop, break-even, and trailing stop",
+    "style": "Trend-following on EMA(12)/EMA(21) cross; exits via stop/trail only (no opposite-signal exit in code)",
+    "barsEvaluated": "Each closed 1m candle index i (loop starts at i=1)",
+    "singlePosition": true,
+    "profitNotRequired": true
+  },
+  "indicators": {
+    "emaShort": {
+      "period": 12,
+      "library": "technicalindicators.EMA",
+      "input": "close"
+    },
+    "emaLong": {
+      "period": 21,
+      "library": "technicalindicators.EMA",
+      "input": "close"
+    },
+    "atr": {
+      "period": 14,
+      "library": "technicalindicators.ATR",
+      "inputs": [
+        "high",
+        "low",
+        "close"
+      ]
+    },
+    "warmup": "First (period-1) bars padded with NaN; signals require finite EMA/ATR at bar i"
+  },
+  "candleTimeframe": "1m",
+  "entryExecution": {
+    "mode": "nextOpen",
+    "description": "Signal on bar i close; open at bar i+1 open with stop frozen from signal bar",
+    "defaultInSearch": "nextOpen"
+  },
+  "entryLogic": [
+    "Skip if position open",
+    "passVolatilityFilter: minAtrFilter must be >0 to apply (winner=0 → always pass)",
+    "Read EMA short/long at i-1 and i; read ATR at i",
+    "Detect bullish or bearish crossover (see long/short conditions)",
+    "Compute initial stop = close ± ATR*atrMult",
+    "passMinMoveVsFee: |entry-stop| >= close * feeRate * minMoveVsFeeMult",
+    "Queue or open position via signal()"
+  ],
+  "longEntryConditions": {
+    "crossover": "emaShort[i-1] <= emaLong[i-1] AND emaShort[i] > emaLong[i]",
+    "initialStop": "stop = close[i] - atr[i] * atrMult",
+    "filters": [
+      "Finite emaShort[i-1], emaShort[i], atr[i]",
+      "passMinMoveVsFee(close, stop)",
+      "canEnter: index >= cooldownUntil; maxTradesPerDay if <999",
+      "No open position"
+    ]
+  },
+  "shortEntryConditions": {
+    "crossover": "emaShort[i-1] >= emaLong[i-1] AND emaShort[i] < emaLong[i]",
+    "initialStop": "stop = close[i] + atr[i] * atrMult",
+    "filters": "Same as long"
+  },
+  "stopLoss": {
+    "initial": {
+      "long": "entryReference - atr[signalBar] * atrMult (0.8)",
+      "short": "entryReference + atr[signalBar] * atrMult",
+      "note": "entryReference is signal bar close (nextOpen) or same-bar close (close mode)"
+    },
+    "intrabar": {
+      "long": "Exit if candle.low <= stopLoss (fill at stopLoss price)",
+      "short": "Exit if candle.high >= stopLoss (fill at stopLoss price)"
+    },
+    "breakEvenOverride": "When break-even activates, stopLoss := entryPrice",
+    "trailingOverride": "Trailing may ratchet stop only in favorable direction"
+  },
+  "positionSize": {
+    "formula": "qty = (balance * riskPct/100) / |entry - stop|; cap: (qty*entry)/leverage <= balance → qty = balance*leverage/entry",
+    "riskPct": 0.5,
+    "leverage": 3,
+    "rounding": "8 decimal places",
+    "rejectIf": "qty <= 0 or |entry-stop| <= 0"
+  },
+  "riskLogic": {
+    "riskPerTradePctOfBalance": 0.5,
+    "maxDrawdownConstraintFromSearch": "10% (selection criterion, not enforced in-strategy)",
+    "minEndBalanceConstraintFromSearch": "90 USDC on 100 start"
+  },
+  "leverageLogic": {
+    "paramLeverage": 3,
+    "usage": "Caps notional: max position notional = balance * leverage",
+    "note": "Does not multiply PnL; only sizing cap in calcQty"
+  },
+  "breakEvenLogic": {
+    "enabled": true,
+    "triggerPct": 0.3,
+    "rule": "If unrealized profit % >= breakEvenPct, set stopLoss = entryPrice and breakEvenActive=true",
+    "profitPctLong": "((close - entry) / entry) * 100",
+    "profitPctShort": "((entry - close) / entry) * 100"
+  },
+  "trailingStopLogic": {
+    "trailStartPct": 0.1,
+    "trailGapPct": 0.4,
+    "activate": "When profit % >= trailStart, trailingActive=true",
+    "updateLong": "candidate = close * (1 - trailGap/100); stop = max(stop, candidate)",
+    "updateShort": "candidate = close * (1 + trailGap/100); stop = min(stop, candidate)",
+    "exitReason": "trail if trailingActive else stop"
+  },
+  "exitLogic": {
+    "takeProfitPct": 0,
+    "takeProfitActive": false,
+    "maxHoldCandles": 0,
+    "maxHoldActive": false,
+    "oppositeSignalExit": false,
+    "endOfBacktest": "Force close at last candle close if still open",
+    "priorityOrder": [
+      "max_hold",
+      "take_profit",
+      "break_even_update",
+      "trailing_update",
+      "stop_hit"
+    ]
+  },
+  "maxTradesPerDay": {
+    "param": 999,
+    "behavior": "If maxTradesPerDay < 999, count entries per UTC day key YYYY-MM-DD; skip when count >= limit",
+    "winnerEffective": "Unlimited (999 disables cap in canEnter)"
+  },
+  "cooldownReentry": {
+    "cooldownCandles": 3,
+    "rule": "After exit at index x, block new entries until index >= x + cooldownCandles"
+  },
+  "feeAssumptions": {
+    "feeRatePerSide": 0.00035,
+    "feeRateBps": 3.5,
+    "entryFee": "entryPrice * qty * feeRate",
+    "exitFee": "exitPrice * qty * feeRate",
+    "netPnL": "grossPnL - entryFee - exitFee"
+  },
+  "liveBotState": {
+    "balance": "USDC wallet / account equity for sizing",
+    "position": "null | { direction, entryTime, entryPrice, qty, stopLoss, trailingActive, breakEvenActive, entryFee }",
+    "pendingSignal": "null | { direction, signalBarTime, stopLoss } for next-open execution",
+    "cooldownUntilBarIndex": "integer bar index or timestamp of allowed next entry",
+    "tradesTodayByUtcDate": "Map<YYYY-MM-DD, count> if enforcing maxTradesPerDay < 999",
+    "lastProcessedCandleOpenTime": "for incremental 1m feed",
+    "diagnostics": "counters optional: signals, crossovers, skippedByFilter, etc."
+  },
+  "cacheAndStoredData": {
+    "rollingCandles": "At least max(emaLong, atrPeriod) + 2 closed 1m bars for SOLUSD",
+    "computedSeries": "EMA(12), EMA(21), ATR(14) aligned to candle index",
+    "persistOptional": "Last 500-1000 1m OHLCV for restart; last indicator values; open position snapshot",
+    "doNotPersist": "Full trade history required only for analytics"
+  },
+  "pseudocode": "onEachClosedBar(i):\n  runBar()  // fill pending at open, then manageExits\n  if position: return\n  if i < cooldownUntil: return\n  if !passVolatilityFilter(): return  // minAtrFilter=0 → pass\n  ps, pl = emaShort[i-1], emaLong[i-1]\n  cs, cl = emaShort[i], emaLong[i]\n  a = atr[i]\n  if not finite(ps,cs,a): return\n  bull = ps <= pl and cs > cl\n  bear = ps >= pl and cs < cl\n  if not bull and not bear: return\n  stop = close - a*atrMult if bull else close + a*atrMult\n  if abs(close-stop) < close*feeRate*minMoveVsFeeMult: return\n  signal(direction=bull?long:short, stop)\n  // nextOpen: pending fills at bar i+1 open\n\nmanageExits on each bar while position:\n  if maxHold exceeded: close at close\n  if takeProfitPct hit: close at close\n  if profit% >= breakEvenPct: stop = entry\n  if profit% >= trailStart: trailingActive = true\n  if trailingActive: ratchet stop by trailGap from close\n  if long and low <= stop: exit at stop\n  if short and high >= stop: exit at stop\n  on close: cooldownUntil = i + cooldownCandles",
+  "typescriptInterfaces": {
+    "EmaCrossoverAtrParams": {
+      "emaShort": "number",
+      "emaLong": "number",
+      "atrPeriod": "number",
+      "atrMult": "number",
+      "trailStart": "number",
+      "trailGap": "number",
+      "takeProfitPct": "number",
+      "breakEvenPct": "number",
+      "maxHoldCandles": "number",
+      "cooldownCandles": "number",
+      "minAtrFilter": "number",
+      "minMoveVsFeeMult": "number",
+      "maxTradesPerDay": "number",
+      "riskPct": "number",
+      "leverage": "number"
+    },
+    "LivePosition": {
+      "direction": "'long' | 'short'",
+      "entryTime": "number",
+      "entryPrice": "number",
+      "qty": "number",
+      "stopLoss": "number",
+      "trailingActive": "boolean",
+      "breakEvenActive": "boolean"
+    },
+    "PendingSignal": {
+      "direction": "'long' | 'short'",
+      "signalIndex": "number",
+      "stopLoss": "number"
+    },
+    "BotState": {
+      "balance": "number",
+      "position": "LivePosition | null",
+      "pending": "PendingSignal | null",
+      "cooldownUntilIndex": "number",
+      "tradesToday": "Map<string, number>"
+    }
+  },
+  "edgeCases": [
+    "EMA/ATR NaN during warmup → no signal",
+    "Signal on last bar with nextOpen → no fill (no i+1)",
+    "stop distance zero → skip entry (skippedInvalidStop)",
+    "qty capped by leverage may reduce risk below riskPct target",
+    "Same-bar: manageExits runs after pending fill on entry bar",
+    "Break-even and trailing both mutate stopLoss; stop check uses final stop",
+    "UTC day boundary for tradesToday uses candle.openTime ISO date slice"
+  ],
+  "safetyChecks": [
+    "Reject entry if qty <= 0 or stop invalid",
+    "Enforce max leverage notional cap before send order",
+    "Live: hard stop max account drawdown / daily loss outside strategy",
+    "Validate candle continuity (no duplicate/missing 1m timestamps)",
+    "Do not double-enter while position or pending exists",
+    "Round qty/price per O1 market lot size rules"
+  ],
+  "debugLogs": [
+    "BAR {time} emaS emaL atr close",
+    "CROSSOVER bull|bear at {time}",
+    "SIGNAL {dir} stop={stop} moveVsFee={ok}",
+    "ENTRY {dir} price qty stop fee",
+    "BE_ACTIVATED stop->entry",
+    "TRAIL_ON / TRAIL_UPDATE stop={stop}",
+    "EXIT {reason} price gross net fees balance",
+    "SKIP cooldown|maxTrades|margin|invalidStop"
+  ],
+  "liveVerification": {
+    "steps": [
+      "Replay same 30d SOLUSD_m2_1m.csv with entryMode=nextOpen, feeRate=0.00035, balance=100",
+      "Run emaCrossoverAtr with exact params; compare tradesCount, netPnL, maxDrawdownPct within tolerance",
+      "Match first/last 5 trades: direction, entry/exit times, prices, qty, exitReason",
+      "Compare weekly notional volume buckets",
+      "Shadow mode: log signals live without orders for 24h then replay"
+    ],
+    "tolerances": {
+      "tradesCount": 0,
+      "netPnLUsdc": 0.05,
+      "maxDrawdownPct": 0.1,
+      "totalNotionalUsdc": 50
+    }
+  },
+  "weeklyBreakdown": [
+    {
+      "weekIndex": 1,
+      "startTime": "2026-04-17T17:27:00.000Z",
+      "endTime": "2026-04-24T17:26:59.999Z",
+      "tradesCount": 46,
+      "notionalVolumeUsdc": 25651.587742,
+      "grossPnL": -0.107388,
+      "totalFees": 8.978056,
+      "netPnL": -9.085443,
+      "maxDrawdownPct": 9.603529,
+      "wins": 6,
+      "losses": 40,
+      "isFullWeek": true
+    },
+    {
+      "weekIndex": 2,
+      "startTime": "2026-04-24T17:27:00.000Z",
+      "endTime": "2026-05-01T17:26:59.999Z",
+      "tradesCount": 13,
+      "notionalVolumeUsdc": 7431.160865,
+      "grossPnL": 9.14412,
+      "totalFees": 2.600906,
+      "netPnL": 6.543214,
+      "maxDrawdownPct": 9.05402,
+      "wins": 5,
+      "losses": 8,
+      "isFullWeek": true
+    },
+    {
+      "weekIndex": 3,
+      "startTime": "2026-05-01T17:27:00.000Z",
+      "endTime": "2026-05-08T17:26:59.999Z",
+      "tradesCount": 37,
+      "notionalVolumeUsdc": 21296.117874,
+      "grossPnL": 6.914414,
+      "totalFees": 7.453641,
+      "netPnL": -0.539227,
+      "maxDrawdownPct": 7.748485,
+      "wins": 7,
+      "losses": 30,
+      "isFullWeek": true
+    },
+    {
+      "weekIndex": 4,
+      "startTime": "2026-05-08T17:27:00.000Z",
+      "endTime": "2026-05-15T17:26:59.999Z",
+      "tradesCount": 58,
+      "notionalVolumeUsdc": 32122.419922,
+      "grossPnL": 6.715369,
+      "totalFees": 11.242847,
+      "netPnL": -4.527478,
+      "maxDrawdownPct": 8.833219,
+      "wins": 8,
+      "losses": 50,
+      "isFullWeek": true
+    },
+    {
+      "weekIndex": 5,
+      "startTime": "2026-05-15T17:27:00.000Z",
+      "endTime": "2026-05-17T10:43:59.999Z",
+      "tradesCount": 2,
+      "notionalVolumeUsdc": 1105.169316,
+      "grossPnL": -0.559747,
+      "totalFees": 0.386809,
+      "netPnL": -0.946556,
+      "maxDrawdownPct": 8.555491,
+      "wins": 0,
+      "losses": 2,
+      "isFullWeek": false
+    }
+  ],
+  "implementationSourceFiles": [
+    "src/discovery/strategies/emaCrossoverAtr.ts",
+    "src/discovery/simulator.ts",
+    "src/discovery/strategies/strategyCommon.ts"
+  ]
+}

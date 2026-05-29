@@ -1,0 +1,2423 @@
+{
+  "source": "BINANCE_FUTURES",
+  "generatedAt": "2026-05-23T17:37:16.955Z",
+  "targetMet": false,
+  "targetMonthly": 10,
+  "targetMaxDd": 5,
+  "familyLeaderboard": [
+    {
+      "familyId": "vwap_pullback",
+      "familyLabel": "VWAP pullback",
+      "symbol": "ETHUSDT",
+      "timeframe": "3m",
+      "params": {
+        "deviationPct": 0.2,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -141.327396,
+        "avgOosMonthlyPct": -1.03707875,
+        "worstOosMonthPct": -1.502923,
+        "avgOosDdPct": 2.49122725,
+        "avgOosPf": 0.22542075,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 51,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -1.314474,
+          "valPct": -1.623858,
+          "oosPct": -3.005846,
+          "oosDd": 3.28645,
+          "oosTrades": 16,
+          "oosAvgMonth": -1.502923,
+          "oosWorstMonth": -3.005846,
+          "oosPf": 0.115096
+        },
+        {
+          "window": 2,
+          "trainPct": -5.343491,
+          "valPct": -8.278214,
+          "oosPct": -1.473347,
+          "oosDd": 1.473347,
+          "oosTrades": 5,
+          "oosAvgMonth": -0.736673,
+          "oosWorstMonth": -1.473347,
+          "oosPf": 0
+        },
+        {
+          "window": 3,
+          "trainPct": -7.303525,
+          "valPct": -3.614471,
+          "oosPct": -0.903383,
+          "oosDd": 2.177239,
+          "oosTrades": 13,
+          "oosAvgMonth": -0.451691,
+          "oosWorstMonth": -0.903383,
+          "oosPf": 0.607754
+        },
+        {
+          "window": 4,
+          "trainPct": -7.419087,
+          "valPct": -3.838626,
+          "oosPct": -2.902397,
+          "oosDd": 3.027873,
+          "oosTrades": 17,
+          "oosAvgMonth": -1.457028,
+          "oosWorstMonth": -2.435325,
+          "oosPf": 0.178833
+        }
+      ]
+    },
+    {
+      "familyId": "vwap_pullback",
+      "familyLabel": "VWAP pullback",
+      "symbol": "ETHUSDT",
+      "timeframe": "1m",
+      "params": {
+        "deviationPct": 0.15,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -143.214893,
+        "avgOosMonthlyPct": -1.1674675,
+        "worstOosMonthPct": -1.62612,
+        "avgOosDdPct": 2.4356982499999997,
+        "avgOosPf": 0.11931125000000001,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 49,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -4.788647,
+          "valPct": 1.241037,
+          "oosPct": -1.217286,
+          "oosDd": 1.46065,
+          "oosTrades": 10,
+          "oosAvgMonth": -0.608643,
+          "oosWorstMonth": -1.217286,
+          "oosPf": 0.174553
+        },
+        {
+          "window": 2,
+          "trainPct": -10.81094,
+          "valPct": -9.774347,
+          "oosPct": -1.975527,
+          "oosDd": 1.975527,
+          "oosTrades": 6,
+          "oosAvgMonth": -0.987763,
+          "oosWorstMonth": -1.975527,
+          "oosPf": 0.052597
+        },
+        {
+          "window": 3,
+          "trainPct": -6.973475,
+          "valPct": -3.552994,
+          "oosPct": -2.894689,
+          "oosDd": 3.06911,
+          "oosTrades": 17,
+          "oosAvgMonth": -1.447344,
+          "oosWorstMonth": -2.894689,
+          "oosPf": 0.169232
+        },
+        {
+          "window": 4,
+          "trainPct": -16.588854,
+          "valPct": -2.991352,
+          "oosPct": -3.237506,
+          "oosDd": 3.237506,
+          "oosTrades": 16,
+          "oosAvgMonth": -1.62612,
+          "oosWorstMonth": -2.708161,
+          "oosPf": 0.080863
+        }
+      ]
+    },
+    {
+      "familyId": "vwap_pullback",
+      "familyLabel": "VWAP pullback",
+      "symbol": "SOLUSDT",
+      "timeframe": "3m",
+      "params": {
+        "deviationPct": 0.2,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -153.302823,
+        "avgOosMonthlyPct": -1.43822475,
+        "worstOosMonthPct": -2.851907,
+        "avgOosDdPct": 3.0208175,
+        "avgOosPf": 0.20559850000000002,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 71,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -2.152273,
+          "valPct": -5.979881,
+          "oosPct": -5.665514,
+          "oosDd": 5.88991,
+          "oosTrades": 38,
+          "oosAvgMonth": -2.851907,
+          "oosWorstMonth": -4.926329,
+          "oosPf": 0.206156
+        },
+        {
+          "window": 2,
+          "trainPct": -4.812163,
+          "valPct": -1.938084,
+          "oosPct": -2.350441,
+          "oosDd": 2.350441,
+          "oosTrades": 11,
+          "oosAvgMonth": -1.17522,
+          "oosWorstMonth": -2.350441,
+          "oosPf": 0.190093
+        },
+        {
+          "window": 3,
+          "trainPct": -5.502668,
+          "valPct": -2.847482,
+          "oosPct": -0.986071,
+          "oosDd": 1.388214,
+          "oosTrades": 9,
+          "oosAvgMonth": -0.493035,
+          "oosWorstMonth": -0.986071,
+          "oosPf": 0.411513
+        },
+        {
+          "window": 4,
+          "trainPct": -8.048307,
+          "valPct": -6.913078,
+          "oosPct": -2.454705,
+          "oosDd": 2.454705,
+          "oosTrades": 13,
+          "oosAvgMonth": -1.232737,
+          "oosWorstMonth": -1.898133,
+          "oosPf": 0.014632
+        }
+      ]
+    },
+    {
+      "familyId": "vwap_pullback",
+      "familyLabel": "VWAP pullback",
+      "symbol": "SOLUSDT",
+      "timeframe": "1m",
+      "params": {
+        "deviationPct": 0.15,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -156.252,
+        "avgOosMonthlyPct": -1.6515995,
+        "worstOosMonthPct": -2.895195,
+        "avgOosDdPct": 3.3757175,
+        "avgOosPf": 0.15355475,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 65,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -6.522037,
+          "valPct": -2.053301,
+          "oosPct": -5.742952,
+          "oosDd": 5.78813,
+          "oosTrades": 34,
+          "oosAvgMonth": -2.895195,
+          "oosWorstMonth": -4.802635,
+          "oosPf": 0.161102
+        },
+        {
+          "window": 2,
+          "trainPct": -5.998585,
+          "valPct": -6.760408,
+          "oosPct": -2.112815,
+          "oosDd": 2.288281,
+          "oosTrades": 10,
+          "oosAvgMonth": -1.056407,
+          "oosWorstMonth": -2.112815,
+          "oosPf": 0.109128
+        },
+        {
+          "window": 3,
+          "trainPct": -8.743688,
+          "valPct": -1.333809,
+          "oosPct": -1.416861,
+          "oosDd": 1.569963,
+          "oosTrades": 7,
+          "oosAvgMonth": -0.70843,
+          "oosWorstMonth": -1.416861,
+          "oosPf": 0.343647
+        },
+        {
+          "window": 4,
+          "trainPct": -5.973691,
+          "valPct": -4.049157,
+          "oosPct": -3.856496,
+          "oosDd": 3.856496,
+          "oosTrades": 14,
+          "oosAvgMonth": -1.946366,
+          "oosWorstMonth": -2.352466,
+          "oosPf": 0.000342
+        }
+      ]
+    },
+    {
+      "familyId": "rsi_mean_reversion",
+      "familyLabel": "RSI mean reversion",
+      "symbol": "ETHUSDT",
+      "timeframe": "3m",
+      "params": {
+        "rsiPeriod": 14,
+        "oversold": 25,
+        "overbought": 75,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -515.536912,
+        "avgOosMonthlyPct": -14.491435,
+        "worstOosMonthPct": -18.192889,
+        "avgOosDdPct": 27.92297,
+        "avgOosPf": 0.40975524999999996,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 595,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -25.708528,
+          "valPct": -7.889455,
+          "oosPct": -22.534758,
+          "oosDd": 24.610232,
+          "oosTrades": 143,
+          "oosAvgMonth": -11.548424,
+          "oosWorstMonth": -20.332337,
+          "oosPf": 0.509992
+        },
+        {
+          "window": 2,
+          "trainPct": -24.231874,
+          "valPct": -20.132979,
+          "oosPct": -33.657832,
+          "oosDd": 33.744026,
+          "oosTrades": 158,
+          "oosAvgMonth": -18.192889,
+          "oosWorstMonth": -25.820899,
+          "oosPf": 0.305453
+        },
+        {
+          "window": 3,
+          "trainPct": -30.065569,
+          "valPct": -6.282478,
+          "oosPct": -23.271138,
+          "oosDd": 23.271138,
+          "oosTrades": 151,
+          "oosAvgMonth": -12.323177,
+          "oosWorstMonth": -16.109875,
+          "oosPf": 0.441477
+        },
+        {
+          "window": 4,
+          "trainPct": -32.452668,
+          "valPct": -4.01179,
+          "oosPct": -29.423006,
+          "oosDd": 30.066484,
+          "oosTrades": 143,
+          "oosAvgMonth": -15.90125,
+          "oosWorstMonth": -19.761333,
+          "oosPf": 0.382099
+        }
+      ]
+    },
+    {
+      "familyId": "rsi_mean_reversion",
+      "familyLabel": "RSI mean reversion",
+      "symbol": "SOLUSDT",
+      "timeframe": "3m",
+      "params": {
+        "rsiPeriod": 14,
+        "oversold": 25,
+        "overbought": 75,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -520.594053,
+        "avgOosMonthlyPct": -15.344548249999999,
+        "worstOosMonthPct": -17.63265,
+        "avgOosDdPct": 29.1043195,
+        "avgOosPf": 0.37466475,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 598,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -35.85797,
+          "valPct": -15.400563,
+          "oosPct": -30.879066,
+          "oosDd": 30.879066,
+          "oosTrades": 150,
+          "oosAvgMonth": -16.278959,
+          "oosWorstMonth": -26.133873,
+          "oosPf": 0.363298
+        },
+        {
+          "window": 2,
+          "trainPct": -36.802633,
+          "valPct": -13.995085,
+          "oosPct": -24.647877,
+          "oosDd": 24.85106,
+          "oosTrades": 148,
+          "oosAvgMonth": -13.187677,
+          "oosWorstMonth": -14.267993,
+          "oosPf": 0.407671
+        },
+        {
+          "window": 3,
+          "trainPct": -32.172972,
+          "valPct": -4.725852,
+          "oosPct": -27.175164,
+          "oosDd": 27.175164,
+          "oosTrades": 158,
+          "oosAvgMonth": -14.278907,
+          "oosWorstMonth": -22.379654,
+          "oosPf": 0.392268
+        },
+        {
+          "window": 4,
+          "trainPct": -41.277556,
+          "valPct": -5.903274,
+          "oosPct": -32.428057,
+          "oosDd": 33.511988,
+          "oosTrades": 142,
+          "oosAvgMonth": -17.63265,
+          "oosWorstMonth": -22.846664,
+          "oosPf": 0.335422
+        }
+      ]
+    },
+    {
+      "familyId": "atr_volatility_breakout",
+      "familyLabel": "ATR volatility breakout",
+      "symbol": "SOLUSDT",
+      "timeframe": "3m",
+      "params": {
+        "lookback": 30,
+        "breakoutMult": 1,
+        "stopMult": 1.2
+      },
+      "score": {
+        "composite": -572.096092,
+        "avgOosMonthlyPct": -17.94198,
+        "worstOosMonthPct": -21.010615,
+        "avgOosDdPct": 34.3264485,
+        "avgOosPf": 0.380164,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 663,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -40.950568,
+          "valPct": -8.771151,
+          "oosPct": -34.823577,
+          "oosDd": 35.029852,
+          "oosTrades": 166,
+          "oosAvgMonth": -18.172121,
+          "oosWorstMonth": -31.519754,
+          "oosPf": 0.383345
+        },
+        {
+          "window": 2,
+          "trainPct": -38.226369,
+          "valPct": -10.884809,
+          "oosPct": -26.613967,
+          "oosDd": 26.613967,
+          "oosTrades": 165,
+          "oosAvgMonth": -14.205413,
+          "oosWorstMonth": -18.907307,
+          "oosPf": 0.46299
+        },
+        {
+          "window": 3,
+          "trainPct": -39.853853,
+          "valPct": -3.412606,
+          "oosPct": -37.928619,
+          "oosDd": 37.986412,
+          "oosTrades": 185,
+          "oosAvgMonth": -21.010615,
+          "oosWorstMonth": -26.683783,
+          "oosPf": 0.294878
+        },
+        {
+          "window": 4,
+          "trainPct": -49.208732,
+          "valPct": -18.180463,
+          "oosPct": -33.785369,
+          "oosDd": 37.675563,
+          "oosTrades": 147,
+          "oosAvgMonth": -18.379771,
+          "oosWorstMonth": -24.735769,
+          "oosPf": 0.379443
+        }
+      ]
+    },
+    {
+      "familyId": "atr_volatility_breakout",
+      "familyLabel": "ATR volatility breakout",
+      "symbol": "ETHUSDT",
+      "timeframe": "3m",
+      "params": {
+        "lookback": 30,
+        "breakoutMult": 1,
+        "stopMult": 1.2
+      },
+      "score": {
+        "composite": -618.459815,
+        "avgOosMonthlyPct": -20.351350250000003,
+        "worstOosMonthPct": -24.371935,
+        "avgOosDdPct": 38.4079935,
+        "avgOosPf": 0.35114625,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 686,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -53.952774,
+          "valPct": -21.547368,
+          "oosPct": -42.818565,
+          "oosDd": 42.856826,
+          "oosTrades": 184,
+          "oosAvgMonth": -23.295129,
+          "oosWorstMonth": -36.159563,
+          "oosPf": 0.275521
+        },
+        {
+          "window": 2,
+          "trainPct": -53.302639,
+          "valPct": -23.624906,
+          "oosPct": -30.072303,
+          "oosDd": 30.121531,
+          "oosTrades": 162,
+          "oosAvgMonth": -16.30386,
+          "oosWorstMonth": -19.807306,
+          "oosPf": 0.448247
+        },
+        {
+          "window": 3,
+          "trainPct": -52.539461,
+          "valPct": -19.804917,
+          "oosPct": -44.362212,
+          "oosDd": 44.362212,
+          "oosTrades": 187,
+          "oosAvgMonth": -24.371935,
+          "oosWorstMonth": -36.854939,
+          "oosPf": 0.25933
+        },
+        {
+          "window": 4,
+          "trainPct": -43.019229,
+          "valPct": -30.681654,
+          "oosPct": -33.228421,
+          "oosDd": 36.291405,
+          "oosTrades": 153,
+          "oosAvgMonth": -17.434477,
+          "oosWorstMonth": -29.262732,
+          "oosPf": 0.421487
+        }
+      ]
+    },
+    {
+      "familyId": "rsi_mean_reversion",
+      "familyLabel": "RSI mean reversion",
+      "symbol": "SOLUSDT",
+      "timeframe": "1m",
+      "params": {
+        "rsiPeriod": 14,
+        "oversold": 25,
+        "overbought": 75,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -776.15748,
+        "avgOosMonthlyPct": -29.9133085,
+        "worstOosMonthPct": -34.936813,
+        "avgOosDdPct": 52.7357325,
+        "avgOosPf": 0.5074452500000001,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 1702,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -81.372728,
+          "valPct": -30.399567,
+          "oosPct": -49.571786,
+          "oosDd": 50.54133,
+          "oosTrades": 415,
+          "oosAvgMonth": -27.146385,
+          "oosWorstMonth": -43.419918,
+          "oosPf": 0.547239
+        },
+        {
+          "window": 2,
+          "trainPct": -72.405946,
+          "valPct": -33.714998,
+          "oosPct": -59.161923,
+          "oosDd": 60.254032,
+          "oosTrades": 467,
+          "oosAvgMonth": -34.936813,
+          "oosWorstMonth": -47.160172,
+          "oosPf": 0.496213
+        },
+        {
+          "window": 3,
+          "trainPct": -69.819223,
+          "valPct": -29.437524,
+          "oosPct": -49.909752,
+          "oosDd": 50.681787,
+          "oosTrades": 402,
+          "oosAvgMonth": -29.210961,
+          "oosWorstMonth": -30.64735,
+          "oosPf": 0.5116
+        },
+        {
+          "window": 4,
+          "trainPct": -65.207371,
+          "valPct": -26.489073,
+          "oosPct": -49.465781,
+          "oosDd": 49.465781,
+          "oosTrades": 418,
+          "oosAvgMonth": -28.359075,
+          "oosWorstMonth": -37.247287,
+          "oosPf": 0.474729
+        }
+      ]
+    },
+    {
+      "familyId": "rsi_mean_reversion",
+      "familyLabel": "RSI mean reversion",
+      "symbol": "ETHUSDT",
+      "timeframe": "1m",
+      "params": {
+        "rsiPeriod": 14,
+        "oversold": 25,
+        "overbought": 75,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -854.839736,
+        "avgOosMonthlyPct": -34.35658375,
+        "worstOosMonthPct": -40.807938,
+        "avgOosDdPct": 59.04433175,
+        "avgOosPf": 0.45144425,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 1792,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -69.362399,
+          "valPct": -26.364877,
+          "oosPct": -48.683108,
+          "oosDd": 49.353758,
+          "oosTrades": 412,
+          "oosAvgMonth": -26.466831,
+          "oosWorstMonth": -43.063148,
+          "oosPf": 0.577267
+        },
+        {
+          "window": 2,
+          "trainPct": -68.260549,
+          "valPct": -29.656227,
+          "oosPct": -68.059324,
+          "oosDd": 68.809872,
+          "oosTrades": 480,
+          "oosAvgMonth": -40.807938,
+          "oosWorstMonth": -58.404317,
+          "oosPf": 0.420645
+        },
+        {
+          "window": 3,
+          "trainPct": -67.086683,
+          "valPct": -30.694017,
+          "oosPct": -60.760748,
+          "oosDd": 61.572603,
+          "oosTrades": 471,
+          "oosAvgMonth": -36.779729,
+          "oosWorstMonth": -45.316555,
+          "oosPf": 0.432595
+        },
+        {
+          "window": 4,
+          "trainPct": -74.918517,
+          "valPct": -23.516953,
+          "oosPct": -56.300998,
+          "oosDd": 56.441094,
+          "oosTrades": 429,
+          "oosAvgMonth": -33.371837,
+          "oosWorstMonth": -41.703217,
+          "oosPf": 0.37527
+        }
+      ]
+    },
+    {
+      "familyId": "atr_volatility_breakout",
+      "familyLabel": "ATR volatility breakout",
+      "symbol": "SOLUSDT",
+      "timeframe": "1m",
+      "params": {
+        "lookback": 30,
+        "breakoutMult": 1,
+        "stopMult": 1.2
+      },
+      "score": {
+        "composite": -1020.105517,
+        "avgOosMonthlyPct": -44.04611975,
+        "worstOosMonthPct": -52.920662,
+        "avgOosDdPct": 72.421985,
+        "avgOosPf": 0.41135925,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 2024,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -82.627193,
+          "valPct": -38.351399,
+          "oosPct": -75.954518,
+          "oosDd": 76.353503,
+          "oosTrades": 533,
+          "oosAvgMonth": -41.956507,
+          "oosWorstMonth": -73.012888,
+          "oosPf": 0.467584
+        },
+        {
+          "window": 2,
+          "trainPct": -77.498519,
+          "valPct": -42.70156,
+          "oosPct": -60.145119,
+          "oosDd": 61.678366,
+          "oosTrades": 501,
+          "oosAvgMonth": -35.464201,
+          "oosWorstMonth": -48.857529,
+          "oosPf": 0.555647
+        },
+        {
+          "window": 3,
+          "trainPct": -80.830024,
+          "valPct": -43.670932,
+          "oosPct": -78.291056,
+          "oosDd": 78.291056,
+          "oosTrades": 528,
+          "oosAvgMonth": -52.920662,
+          "oosWorstMonth": -59.671192,
+          "oosPf": 0.305206
+        },
+        {
+          "window": 4,
+          "trainPct": -85.11396,
+          "valPct": -45.4283,
+          "oosPct": -73.17333,
+          "oosDd": 73.365015,
+          "oosTrades": 462,
+          "oosAvgMonth": -45.843109,
+          "oosWorstMonth": -61.664039,
+          "oosPf": 0.317
+        }
+      ]
+    },
+    {
+      "familyId": "donchian_breakout",
+      "familyLabel": "Donchian breakout",
+      "symbol": "ETHUSDT",
+      "timeframe": "3m",
+      "params": {
+        "channelPeriod": 30,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1070.504131,
+        "avgOosMonthlyPct": -49.35753475,
+        "worstOosMonthPct": -52.761341,
+        "avgOosDdPct": 79.8832065,
+        "avgOosPf": 0.37836000000000003,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 2449,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -89.392506,
+          "valPct": -53.457722,
+          "oosPct": -82.508582,
+          "oosDd": 82.508582,
+          "oosTrades": 640,
+          "oosAvgMonth": -50.908914,
+          "oosWorstMonth": -76.614807,
+          "oosPf": 0.38548
+        },
+        {
+          "window": 2,
+          "trainPct": -88.006677,
+          "valPct": -50.363069,
+          "oosPct": -79.352468,
+          "oosDd": 79.530079,
+          "oosTrades": 671,
+          "oosAvgMonth": -48.918233,
+          "oosWorstMonth": -72.254764,
+          "oosPf": 0.402227
+        },
+        {
+          "window": 3,
+          "trainPct": -90.908493,
+          "valPct": -51.712048,
+          "oosPct": -82.784924,
+          "oosDd": 83.032904,
+          "oosTrades": 657,
+          "oosAvgMonth": -52.761341,
+          "oosWorstMonth": -75.34415,
+          "oosPf": 0.329827
+        },
+        {
+          "window": 4,
+          "trainPct": -89.451919,
+          "valPct": -56.822335,
+          "oosPct": -73.841722,
+          "oosDd": 74.461261,
+          "oosTrades": 481,
+          "oosAvgMonth": -44.841651,
+          "oosWorstMonth": -65.496327,
+          "oosPf": 0.395906
+        }
+      ]
+    },
+    {
+      "familyId": "atr_volatility_breakout",
+      "familyLabel": "ATR volatility breakout",
+      "symbol": "ETHUSDT",
+      "timeframe": "1m",
+      "params": {
+        "lookback": 30,
+        "breakoutMult": 1,
+        "stopMult": 1.2
+      },
+      "score": {
+        "composite": -1076.369863,
+        "avgOosMonthlyPct": -49.534364749999995,
+        "worstOosMonthPct": -54.740432,
+        "avgOosDdPct": 78.12948349999999,
+        "avgOosPf": 0.34101525,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 2214,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -90.759527,
+          "valPct": -56.439927,
+          "oosPct": -82.777608,
+          "oosDd": 82.984798,
+          "oosTrades": 548,
+          "oosAvgMonth": -50.442467,
+          "oosWorstMonth": -77.529547,
+          "oosPf": 0.334802
+        },
+        {
+          "window": 2,
+          "trainPct": -84.003431,
+          "valPct": -46.15768,
+          "oosPct": -72.018962,
+          "oosDd": 72.823861,
+          "oosTrades": 548,
+          "oosAvgMonth": -44.755662,
+          "oosWorstMonth": -60.6878,
+          "oosPf": 0.421776
+        },
+        {
+          "window": 3,
+          "trainPct": -90.257415,
+          "valPct": -46.352725,
+          "oosPct": -81.318263,
+          "oosDd": 81.887728,
+          "oosTrades": 594,
+          "oosAvgMonth": -54.740432,
+          "oosWorstMonth": -68.166333,
+          "oosPf": 0.319777
+        },
+        {
+          "window": 4,
+          "trainPct": -87.153576,
+          "valPct": -53.725515,
+          "oosPct": -74.321855,
+          "oosDd": 74.821547,
+          "oosTrades": 524,
+          "oosAvgMonth": -48.198898,
+          "oosWorstMonth": -58.947835,
+          "oosPf": 0.287706
+        }
+      ]
+    },
+    {
+      "familyId": "donchian_breakout",
+      "familyLabel": "Donchian breakout",
+      "symbol": "SOLUSDT",
+      "timeframe": "3m",
+      "params": {
+        "channelPeriod": 30,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1115.29515,
+        "avgOosMonthlyPct": -51.663427999999996,
+        "worstOosMonthPct": -57.734975,
+        "avgOosDdPct": 81.2755875,
+        "avgOosPf": 0.35884525000000006,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 2618,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -85.27552,
+          "valPct": -50.735191,
+          "oosPct": -83.749917,
+          "oosDd": 83.995651,
+          "oosTrades": 717,
+          "oosAvgMonth": -51.423471,
+          "oosWorstMonth": -78.528285,
+          "oosPf": 0.363217
+        },
+        {
+          "window": 2,
+          "trainPct": -88.548828,
+          "valPct": -48.026243,
+          "oosPct": -77.345462,
+          "oosDd": 77.345462,
+          "oosTrades": 708,
+          "oosAvgMonth": -48.239264,
+          "oosWorstMonth": -68.579371,
+          "oosPf": 0.43505
+        },
+        {
+          "window": 3,
+          "trainPct": -92.282184,
+          "valPct": -47.770794,
+          "oosPct": -84.43662,
+          "oosDd": 84.43662,
+          "oosTrades": 691,
+          "oosAvgMonth": -57.734975,
+          "oosWorstMonth": -72.900539,
+          "oosPf": 0.276463
+        },
+        {
+          "window": 4,
+          "trainPct": -91.629149,
+          "valPct": -56.362922,
+          "oosPct": -77.540475,
+          "oosDd": 79.324617,
+          "oosTrades": 502,
+          "oosAvgMonth": -49.256002,
+          "oosWorstMonth": -67.394383,
+          "oosPf": 0.360651
+        }
+      ]
+    },
+    {
+      "familyId": "bollinger_mean_reversion",
+      "familyLabel": "Bollinger mean reversion",
+      "symbol": "SOLUSDT",
+      "timeframe": "3m",
+      "params": {
+        "bbPeriod": 20,
+        "bbStdDev": 2,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1117.372863,
+        "avgOosMonthlyPct": -53.777166,
+        "worstOosMonthPct": -56.576796,
+        "avgOosDdPct": 81.67105125,
+        "avgOosPf": 0.48509775,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 3766,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -93.05246,
+          "valPct": -57.188424,
+          "oosPct": -79.230929,
+          "oosDd": 79.297247,
+          "oosTrades": 943,
+          "oosAvgMonth": -50.210489,
+          "oosWorstMonth": -70.262626,
+          "oosPf": 0.522829
+        },
+        {
+          "window": 2,
+          "trainPct": -92.040013,
+          "valPct": -49.13112,
+          "oosPct": -84.479213,
+          "oosDd": 84.564355,
+          "oosTrades": 955,
+          "oosAvgMonth": -56.576796,
+          "oosWorstMonth": -74.838666,
+          "oosPf": 0.444557
+        },
+        {
+          "window": 3,
+          "trainPct": -93.555152,
+          "valPct": -35.847216,
+          "oosPct": -80.356896,
+          "oosDd": 80.536007,
+          "oosTrades": 946,
+          "oosAvgMonth": -52.276893,
+          "oosWorstMonth": -69.973912,
+          "oosPf": 0.500301
+        },
+        {
+          "window": 4,
+          "trainPct": -88.455452,
+          "valPct": -51.844772,
+          "oosPct": -82.011263,
+          "oosDd": 82.286596,
+          "oosTrades": 922,
+          "oosAvgMonth": -56.044486,
+          "oosWorstMonth": -67.586301,
+          "oosPf": 0.472704
+        }
+      ]
+    },
+    {
+      "familyId": "trend_btc_filter",
+      "familyLabel": "Trend + BTC filter",
+      "symbol": "ETHUSDT",
+      "timeframe": "3m",
+      "params": {
+        "emaFast": 12,
+        "emaSlow": 34,
+        "btcEmaFast": 12,
+        "btcEmaSlow": 34,
+        "pullbackPct": 0.2,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1130.6842819999997,
+        "avgOosMonthlyPct": -54.290983999999995,
+        "worstOosMonthPct": -57.260942,
+        "avgOosDdPct": 83.27468499999999,
+        "avgOosPf": 0.39300575,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 2972,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -95.722458,
+          "valPct": -55.301146,
+          "oosPct": -85.222303,
+          "oosDd": 85.245903,
+          "oosTrades": 762,
+          "oosAvgMonth": -54.065675,
+          "oosWorstMonth": -79.209114,
+          "oosPf": 0.406286
+        },
+        {
+          "window": 2,
+          "trainPct": -90.410091,
+          "valPct": -44.171074,
+          "oosPct": -86.211599,
+          "oosDd": 86.476681,
+          "oosTrades": 786,
+          "oosAvgMonth": -57.040327,
+          "oosWorstMonth": -78.643415,
+          "oosPf": 0.364136
+        },
+        {
+          "window": 3,
+          "trainPct": -93.782379,
+          "valPct": -45.217417,
+          "oosPct": -85.67596,
+          "oosDd": 85.689327,
+          "oosTrades": 853,
+          "oosAvgMonth": -57.260942,
+          "oosWorstMonth": -77.115995,
+          "oosPf": 0.370782
+        },
+        {
+          "window": 4,
+          "trainPct": -93.743887,
+          "valPct": -54.838995,
+          "oosPct": -74.441717,
+          "oosDd": 75.686829,
+          "oosTrades": 571,
+          "oosAvgMonth": -48.796992,
+          "oosWorstMonth": -56.916089,
+          "oosPf": 0.430819
+        }
+      ]
+    },
+    {
+      "familyId": "session_opening_range",
+      "familyLabel": "Opening-range / session breakout",
+      "symbol": "ETHUSDT",
+      "timeframe": "3m",
+      "params": {
+        "rangeMinutes": 90,
+        "sessionBlockHours": 8,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1147.732876,
+        "avgOosMonthlyPct": -52.41262975,
+        "worstOosMonthPct": -61.865935,
+        "avgOosDdPct": 82.52569725000001,
+        "avgOosPf": 0.40200525000000004,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 3232,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -92.006773,
+          "valPct": -63.716292,
+          "oosPct": -81.229285,
+          "oosDd": 81.229285,
+          "oosTrades": 877,
+          "oosAvgMonth": -48.734284,
+          "oosWorstMonth": -76.140527,
+          "oosPf": 0.492034
+        },
+        {
+          "window": 2,
+          "trainPct": -90.380518,
+          "valPct": -48.887621,
+          "oosPct": -83.922151,
+          "oosDd": 84.022992,
+          "oosTrades": 887,
+          "oosAvgMonth": -53.771632,
+          "oosWorstMonth": -76.777656,
+          "oosPf": 0.434261
+        },
+        {
+          "window": 3,
+          "trainPct": -91.948091,
+          "valPct": -51.791105,
+          "oosPct": -90.042503,
+          "oosDd": 90.140511,
+          "oosTrades": 972,
+          "oosAvgMonth": -61.865935,
+          "oosWorstMonth": -83.277548,
+          "oosPf": 0.317706
+        },
+        {
+          "window": 4,
+          "trainPct": -94.298511,
+          "valPct": -55.875262,
+          "oosPct": -73.722838,
+          "oosDd": 74.710001,
+          "oosTrades": 496,
+          "oosAvgMonth": -45.278668,
+          "oosWorstMonth": -64.428288,
+          "oosPf": 0.36402
+        }
+      ]
+    },
+    {
+      "familyId": "trend_btc_filter",
+      "familyLabel": "Trend + BTC filter",
+      "symbol": "SOLUSDT",
+      "timeframe": "3m",
+      "params": {
+        "emaFast": 12,
+        "emaSlow": 34,
+        "btcEmaFast": 12,
+        "btcEmaSlow": 34,
+        "pullbackPct": 0.2,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1166.1441640000003,
+        "avgOosMonthlyPct": -55.565590750000005,
+        "worstOosMonthPct": -61.319,
+        "avgOosDdPct": 84.75007125,
+        "avgOosPf": 0.3790605,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 3181,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -92.272155,
+          "valPct": -56.133401,
+          "oosPct": -86.525708,
+          "oosDd": 86.681175,
+          "oosTrades": 817,
+          "oosAvgMonth": -52.747428,
+          "oosWorstMonth": -82.502702,
+          "oosPf": 0.390003
+        },
+        {
+          "window": 2,
+          "trainPct": -89.983064,
+          "valPct": -48.861792,
+          "oosPct": -89.627684,
+          "oosDd": 89.65471,
+          "oosTrades": 913,
+          "oosAvgMonth": -61.319,
+          "oosWorstMonth": -82.743009,
+          "oosPf": 0.363761
+        },
+        {
+          "window": 3,
+          "trainPct": -94.38971,
+          "valPct": -51.308287,
+          "oosPct": -86.034618,
+          "oosDd": 86.046901,
+          "oosTrades": 877,
+          "oosAvgMonth": -59.494615,
+          "oosWorstMonth": -75.119854,
+          "oosPf": 0.348277
+        },
+        {
+          "window": 4,
+          "trainPct": -93.871186,
+          "valPct": -56.420446,
+          "oosPct": -74.382416,
+          "oosDd": 76.617499,
+          "oosTrades": 574,
+          "oosAvgMonth": -48.70132,
+          "oosWorstMonth": -57.055726,
+          "oosPf": 0.414201
+        }
+      ]
+    },
+    {
+      "familyId": "bollinger_mean_reversion",
+      "familyLabel": "Bollinger mean reversion",
+      "symbol": "ETHUSDT",
+      "timeframe": "3m",
+      "params": {
+        "bbPeriod": 20,
+        "bbStdDev": 2,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1185.199064,
+        "avgOosMonthlyPct": -58.38526775,
+        "worstOosMonthPct": -61.745692,
+        "avgOosDdPct": 86.21521075,
+        "avgOosPf": 0.45962525000000004,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 4046,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -92.770369,
+          "valPct": -47.888837,
+          "oosPct": -86.159293,
+          "oosDd": 86.288189,
+          "oosTrades": 966,
+          "oosAvgMonth": -55.928278,
+          "oosWorstMonth": -79.555508,
+          "oosPf": 0.456289
+        },
+        {
+          "window": 2,
+          "trainPct": -90.546783,
+          "valPct": -56.870749,
+          "oosPct": -88.009338,
+          "oosDd": 88.216117,
+          "oosTrades": 1046,
+          "oosAvgMonth": -61.745692,
+          "oosWorstMonth": -78.003795,
+          "oosPf": 0.445973
+        },
+        {
+          "window": 3,
+          "trainPct": -93.947148,
+          "valPct": -50.827901,
+          "oosPct": -83.16403,
+          "oosDd": 83.251667,
+          "oosTrades": 1049,
+          "oosAvgMonth": -57.383139,
+          "oosWorstMonth": -68.898337,
+          "oosPf": 0.489387
+        },
+        {
+          "window": 4,
+          "trainPct": -95.624939,
+          "valPct": -56.185841,
+          "oosPct": -86.804432,
+          "oosDd": 87.10487,
+          "oosTrades": 985,
+          "oosAvgMonth": -58.483962,
+          "oosWorstMonth": -78.584325,
+          "oosPf": 0.446852
+        }
+      ]
+    },
+    {
+      "familyId": "session_opening_range",
+      "familyLabel": "Opening-range / session breakout",
+      "symbol": "SOLUSDT",
+      "timeframe": "3m",
+      "params": {
+        "rangeMinutes": 90,
+        "sessionBlockHours": 8,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1228.6195900000002,
+        "avgOosMonthlyPct": -59.01144450000001,
+        "worstOosMonthPct": -67.550762,
+        "avgOosDdPct": 87.4894935,
+        "avgOosPf": 0.33609175,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 3673,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -90.815138,
+          "valPct": -63.025055,
+          "oosPct": -91.68083,
+          "oosDd": 91.786247,
+          "oosTrades": 1037,
+          "oosAvgMonth": -61.006084,
+          "oosWorstMonth": -87.247435,
+          "oosPf": 0.315377
+        },
+        {
+          "window": 2,
+          "trainPct": -90.259601,
+          "valPct": -58.404489,
+          "oosPct": -88.443364,
+          "oosDd": 88.443364,
+          "oosTrades": 1063,
+          "oosAvgMonth": -58.626927,
+          "oosWorstMonth": -82.208011,
+          "oosPf": 0.396651
+        },
+        {
+          "window": 3,
+          "trainPct": -94.939929,
+          "valPct": -45.197111,
+          "oosPct": -91.839116,
+          "oosDd": 91.921576,
+          "oosTrades": 1015,
+          "oosAvgMonth": -67.550762,
+          "oosWorstMonth": -82.941169,
+          "oosPf": 0.251914
+        },
+        {
+          "window": 4,
+          "trainPct": -95.68881,
+          "valPct": -56.069104,
+          "oosPct": -75.657153,
+          "oosDd": 77.806787,
+          "oosTrades": 558,
+          "oosAvgMonth": -48.862005,
+          "oosWorstMonth": -62.30856,
+          "oosPf": 0.380425
+        }
+      ]
+    },
+    {
+      "familyId": "ema_trend",
+      "familyLabel": "EMA trend continuation",
+      "symbol": "ETHUSDT",
+      "timeframe": "3m",
+      "params": {
+        "emaFast": 12,
+        "emaSlow": 34,
+        "pullbackPct": 0.2,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1327.1962099999998,
+        "avgOosMonthlyPct": -67.93151925,
+        "worstOosMonthPct": -74.030817,
+        "avgOosDdPct": 93.65104874999999,
+        "avgOosPf": 0.4148705,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 5020,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -97.915805,
+          "valPct": -74.962644,
+          "oosPct": -93.84001,
+          "oosDd": 93.851465,
+          "oosTrades": 1319,
+          "oosAvgMonth": -66.442787,
+          "oosWorstMonth": -89.027904,
+          "oosPf": 0.457975
+        },
+        {
+          "window": 2,
+          "trainPct": -97.016503,
+          "valPct": -68.266274,
+          "oosPct": -95.046799,
+          "oosDd": 95.158758,
+          "oosTrades": 1408,
+          "oosAvgMonth": -66.493348,
+          "oosWorstMonth": -91.540815,
+          "oosPf": 0.438073
+        },
+        {
+          "window": 3,
+          "trainPct": -98.859146,
+          "valPct": -63.628448,
+          "oosPct": -96.672296,
+          "oosDd": 96.675401,
+          "oosTrades": 1448,
+          "oosAvgMonth": -74.030817,
+          "oosWorstMonth": -92.513999,
+          "oosPf": 0.361807
+        },
+        {
+          "window": 4,
+          "trainPct": -98.831452,
+          "valPct": -72.580886,
+          "oosPct": -88.4355,
+          "oosDd": 88.918571,
+          "oosTrades": 845,
+          "oosAvgMonth": -64.759125,
+          "oosWorstMonth": -74.004082,
+          "oosPf": 0.401627
+        }
+      ]
+    },
+    {
+      "familyId": "ema_trend",
+      "familyLabel": "EMA trend continuation",
+      "symbol": "SOLUSDT",
+      "timeframe": "3m",
+      "params": {
+        "emaFast": 12,
+        "emaSlow": 26,
+        "pullbackPct": 0.2,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1353.8030119999999,
+        "avgOosMonthlyPct": -68.61629099999999,
+        "worstOosMonthPct": -76.920575,
+        "avgOosDdPct": 95.27856550000001,
+        "avgOosPf": 0.41248300000000004,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 5579,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -96.822442,
+          "valPct": -77.339503,
+          "oosPct": -95.807853,
+          "oosDd": 95.881369,
+          "oosTrades": 1483,
+          "oosAvgMonth": -64.978947,
+          "oosWorstMonth": -93.391259,
+          "oosPf": 0.440485
+        },
+        {
+          "window": 2,
+          "trainPct": -98.35985,
+          "valPct": -77.978237,
+          "oosPct": -97.321905,
+          "oosDd": 97.363177,
+          "oosTrades": 1642,
+          "oosAvgMonth": -68.213237,
+          "oosWorstMonth": -95.463718,
+          "oosPf": 0.454841
+        },
+        {
+          "window": 3,
+          "trainPct": -98.936025,
+          "valPct": -76.070551,
+          "oosPct": -97.32125,
+          "oosDd": 97.321251,
+          "oosTrades": 1525,
+          "oosAvgMonth": -76.920575,
+          "oosWorstMonth": -93.192788,
+          "oosPf": 0.323561
+        },
+        {
+          "window": 4,
+          "trainPct": -99.215694,
+          "valPct": -76.270559,
+          "oosPct": -89.729617,
+          "oosDd": 90.548465,
+          "oosTrades": 929,
+          "oosAvgMonth": -64.352405,
+          "oosWorstMonth": -79.963708,
+          "oosPf": 0.431045
+        }
+      ]
+    },
+    {
+      "familyId": "session_opening_range",
+      "familyLabel": "Opening-range / session breakout",
+      "symbol": "ETHUSDT",
+      "timeframe": "1m",
+      "params": {
+        "rangeMinutes": 90,
+        "sessionBlockHours": 8,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1381.559327,
+        "avgOosMonthlyPct": -70.43648974999999,
+        "worstOosMonthPct": -80.328077,
+        "avgOosDdPct": 95.27225150000001,
+        "avgOosPf": 0.40551250000000005,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 5638,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -97.040874,
+          "valPct": -83.371785,
+          "oosPct": -95.623761,
+          "oosDd": 95.623761,
+          "oosTrades": 1493,
+          "oosAvgMonth": -64.821093,
+          "oosWorstMonth": -93.104156,
+          "oosPf": 0.484727
+        },
+        {
+          "window": 2,
+          "trainPct": -96.580539,
+          "valPct": -57.91816,
+          "oosPct": -95.243473,
+          "oosDd": 95.291776,
+          "oosTrades": 1460,
+          "oosAvgMonth": -70.815301,
+          "oosWorstMonth": -90.208443,
+          "oosPf": 0.472974
+        },
+        {
+          "window": 3,
+          "trainPct": -97.80601,
+          "valPct": -70.27207,
+          "oosPct": -98.956529,
+          "oosDd": 98.976071,
+          "oosTrades": 1740,
+          "oosAvgMonth": -80.328077,
+          "oosWorstMonth": -97.139901,
+          "oosPf": 0.345864
+        },
+        {
+          "window": 4,
+          "trainPct": -98.777435,
+          "valPct": -76.944349,
+          "oosPct": -90.818913,
+          "oosDd": 91.197398,
+          "oosTrades": 945,
+          "oosAvgMonth": -65.781488,
+          "oosWorstMonth": -81.681104,
+          "oosPf": 0.318485
+        }
+      ]
+    },
+    {
+      "familyId": "session_opening_range",
+      "familyLabel": "Opening-range / session breakout",
+      "symbol": "SOLUSDT",
+      "timeframe": "1m",
+      "params": {
+        "rangeMinutes": 90,
+        "sessionBlockHours": 8,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1402.5009320000001,
+        "avgOosMonthlyPct": -71.09040075,
+        "worstOosMonthPct": -83.255685,
+        "avgOosDdPct": 95.48429825,
+        "avgOosPf": 0.41649674999999997,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 6006,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -97.590708,
+          "valPct": -78.476146,
+          "oosPct": -96.883764,
+          "oosDd": 96.996065,
+          "oosTrades": 1618,
+          "oosAvgMonth": -67.37039,
+          "oosWorstMonth": -94.812471,
+          "oosPf": 0.488119
+        },
+        {
+          "window": 2,
+          "trainPct": -97.850394,
+          "valPct": -79.501103,
+          "oosPct": -96.212764,
+          "oosDd": 96.232491,
+          "oosTrades": 1699,
+          "oosAvgMonth": -69.499882,
+          "oosWorstMonth": -92.984635,
+          "oosPf": 0.529312
+        },
+        {
+          "window": 3,
+          "trainPct": -98.721446,
+          "valPct": -65.841559,
+          "oosPct": -98.715583,
+          "oosDd": 98.75219,
+          "oosTrades": 1736,
+          "oosAvgMonth": -83.255685,
+          "oosWorstMonth": -95.581689,
+          "oosPf": 0.298772
+        },
+        {
+          "window": 4,
+          "trainPct": -99.113114,
+          "valPct": -72.431587,
+          "oosPct": -89.386914,
+          "oosDd": 89.956447,
+          "oosTrades": 953,
+          "oosAvgMonth": -64.235646,
+          "oosWorstMonth": -78.993032,
+          "oosPf": 0.349784
+        }
+      ]
+    },
+    {
+      "familyId": "trend_btc_filter",
+      "familyLabel": "Trend + BTC filter",
+      "symbol": "ETHUSDT",
+      "timeframe": "1m",
+      "params": {
+        "emaFast": 12,
+        "emaSlow": 34,
+        "btcEmaFast": 12,
+        "btcEmaSlow": 34,
+        "pullbackPct": 0.2,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1426.8494930000002,
+        "avgOosMonthlyPct": -76.950556,
+        "worstOosMonthPct": -82.102945,
+        "avgOosDdPct": 97.40708925000001,
+        "avgOosPf": 0.39984474999999997,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 6625,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -99.847191,
+          "valPct": -80.210619,
+          "oosPct": -98.419483,
+          "oosDd": 98.433049,
+          "oosTrades": 1741,
+          "oosAvgMonth": -76.706355,
+          "oosWorstMonth": -96.316103,
+          "oosPf": 0.432383
+        },
+        {
+          "window": 2,
+          "trainPct": -99.34249,
+          "valPct": -80.537664,
+          "oosPct": -98.331348,
+          "oosDd": 98.352587,
+          "oosTrades": 1794,
+          "oosAvgMonth": -79.597028,
+          "oosWorstMonth": -95.389938,
+          "oosPf": 0.405645
+        },
+        {
+          "window": 3,
+          "trainPct": -99.723317,
+          "valPct": -72.223544,
+          "oosPct": -99.206225,
+          "oosDd": 99.208547,
+          "oosTrades": 1872,
+          "oosAvgMonth": -82.102945,
+          "oosWorstMonth": -97.624771,
+          "oosPf": 0.369151
+        },
+        {
+          "window": 4,
+          "trainPct": -99.662174,
+          "valPct": -77.111065,
+          "oosPct": -93.634174,
+          "oosDd": 93.634174,
+          "oosTrades": 1218,
+          "oosAvgMonth": -69.395896,
+          "oosWorstMonth": -86.717228,
+          "oosPf": 0.3922
+        }
+      ]
+    },
+    {
+      "familyId": "trend_btc_filter",
+      "familyLabel": "Trend + BTC filter",
+      "symbol": "SOLUSDT",
+      "timeframe": "1m",
+      "params": {
+        "emaFast": 12,
+        "emaSlow": 34,
+        "btcEmaFast": 12,
+        "btcEmaSlow": 34,
+        "pullbackPct": 0.2,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1433.344648,
+        "avgOosMonthlyPct": -77.33478475000001,
+        "worstOosMonthPct": -82.854173,
+        "avgOosDdPct": 97.58382975,
+        "avgOosPf": 0.431856,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 6931,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -99.809065,
+          "valPct": -86.913268,
+          "oosPct": -97.80821,
+          "oosDd": 97.883362,
+          "oosTrades": 1800,
+          "oosAvgMonth": -77.79639,
+          "oosWorstMonth": -94.343938,
+          "oosPf": 0.462008
+        },
+        {
+          "window": 2,
+          "trainPct": -99.366384,
+          "valPct": -87.310203,
+          "oosPct": -98.759257,
+          "oosDd": 98.759257,
+          "oosTrades": 1942,
+          "oosAvgMonth": -78.118637,
+          "oosWorstMonth": -96.952642,
+          "oosPf": 0.492474
+        },
+        {
+          "window": 3,
+          "trainPct": -99.650216,
+          "valPct": -79.076792,
+          "oosPct": -99.150366,
+          "oosDd": 99.155049,
+          "oosTrades": 1945,
+          "oosAvgMonth": -82.854173,
+          "oosWorstMonth": -97.311558,
+          "oosPf": 0.37271
+        },
+        {
+          "window": 4,
+          "trainPct": -99.787135,
+          "valPct": -83.094534,
+          "oosPct": -94.258293,
+          "oosDd": 94.537651,
+          "oosTrades": 1244,
+          "oosAvgMonth": -70.569939,
+          "oosWorstMonth": -87.656712,
+          "oosPf": 0.400232
+        }
+      ]
+    },
+    {
+      "familyId": "donchian_breakout",
+      "familyLabel": "Donchian breakout",
+      "symbol": "SOLUSDT",
+      "timeframe": "1m",
+      "params": {
+        "channelPeriod": 30,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1439.6048050000002,
+        "avgOosMonthlyPct": -76.17319574999999,
+        "worstOosMonthPct": -84.685094,
+        "avgOosDdPct": 97.5080245,
+        "avgOosPf": 0.40383,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 6184,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -98.367991,
+          "valPct": -78.949233,
+          "oosPct": -98.378768,
+          "oosDd": 98.400116,
+          "oosTrades": 1649,
+          "oosAvgMonth": -72.188655,
+          "oosWorstMonth": -96.914102,
+          "oosPf": 0.471362
+        },
+        {
+          "window": 2,
+          "trainPct": -99.40362,
+          "valPct": -85.655552,
+          "oosPct": -95.759399,
+          "oosDd": 95.874264,
+          "oosTrades": 1583,
+          "oosAvgMonth": -71.094088,
+          "oosWorstMonth": -91.379344,
+          "oosPf": 0.530658
+        },
+        {
+          "window": 3,
+          "trainPct": -99.132619,
+          "valPct": -82.101933,
+          "oosPct": -99.065568,
+          "oosDd": 99.065569,
+          "oosTrades": 1674,
+          "oosAvgMonth": -84.685094,
+          "oosWorstMonth": -96.563781,
+          "oosPf": 0.311201
+        },
+        {
+          "window": 4,
+          "trainPct": -99.719428,
+          "valPct": -78.942902,
+          "oosPct": -96.633733,
+          "oosDd": 96.692149,
+          "oosTrades": 1278,
+          "oosAvgMonth": -76.724946,
+          "oosWorstMonth": -91.046307,
+          "oosPf": 0.302099
+        }
+      ]
+    },
+    {
+      "familyId": "donchian_breakout",
+      "familyLabel": "Donchian breakout",
+      "symbol": "ETHUSDT",
+      "timeframe": "1m",
+      "params": {
+        "channelPeriod": 30,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1442.164035,
+        "avgOosMonthlyPct": -77.2239375,
+        "worstOosMonthPct": -84.584337,
+        "avgOosDdPct": 97.15932525,
+        "avgOosPf": 0.35937974999999994,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 6115,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -99.440942,
+          "valPct": -85.501158,
+          "oosPct": -98.592195,
+          "oosDd": 98.611412,
+          "oosTrades": 1597,
+          "oosAvgMonth": -74.936177,
+          "oosWorstMonth": -97.013648,
+          "oosPf": 0.392601
+        },
+        {
+          "window": 2,
+          "trainPct": -99.49751,
+          "valPct": -81.148078,
+          "oosPct": -95.76473,
+          "oosDd": 95.927031,
+          "oosTrades": 1535,
+          "oosAvgMonth": -75.11925,
+          "oosWorstMonth": -89.102265,
+          "oosPf": 0.42102
+        },
+        {
+          "window": 3,
+          "trainPct": -99.697674,
+          "valPct": -78.538715,
+          "oosPct": -99.09565,
+          "oosDd": 99.115685,
+          "oosTrades": 1670,
+          "oosAvgMonth": -84.584337,
+          "oosWorstMonth": -96.717252,
+          "oosPf": 0.305036
+        },
+        {
+          "window": 4,
+          "trainPct": -99.59823,
+          "valPct": -79.231506,
+          "oosPct": -94.930469,
+          "oosDd": 94.983173,
+          "oosTrades": 1313,
+          "oosAvgMonth": -74.255986,
+          "oosWorstMonth": -86.738016,
+          "oosPf": 0.318862
+        }
+      ]
+    },
+    {
+      "familyId": "bollinger_mean_reversion",
+      "familyLabel": "Bollinger mean reversion",
+      "symbol": "SOLUSDT",
+      "timeframe": "1m",
+      "params": {
+        "bbPeriod": 20,
+        "bbStdDev": 2,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1481.587716,
+        "avgOosMonthlyPct": -82.71752275,
+        "worstOosMonthPct": -86.320215,
+        "avgOosDdPct": 99.10796325000001,
+        "avgOosPf": 0.45443975000000003,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 10773,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -99.926546,
+          "valPct": -87.758401,
+          "oosPct": -98.598249,
+          "oosDd": 98.610245,
+          "oosTrades": 2642,
+          "oosAvgMonth": -74.832552,
+          "oosWorstMonth": -97.04123,
+          "oosPf": 0.536499
+        },
+        {
+          "window": 2,
+          "trainPct": -99.967228,
+          "valPct": -89.073299,
+          "oosPct": -99.434427,
+          "oosDd": 99.43859,
+          "oosTrades": 2737,
+          "oosAvgMonth": -84.156934,
+          "oosWorstMonth": -98.101306,
+          "oosPf": 0.473107
+        },
+        {
+          "window": 3,
+          "trainPct": -99.914278,
+          "valPct": -90.432907,
+          "oosPct": -99.247864,
+          "oosDd": 99.259538,
+          "oosTrades": 2744,
+          "oosAvgMonth": -85.56039,
+          "oosWorstMonth": -97.105462,
+          "oosPf": 0.464188
+        },
+        {
+          "window": 4,
+          "trainPct": -99.938325,
+          "valPct": -88.477548,
+          "oosPct": -99.111161,
+          "oosDd": 99.12348,
+          "oosTrades": 2650,
+          "oosAvgMonth": -86.320215,
+          "oosWorstMonth": -96.23246,
+          "oosPf": 0.343965
+        }
+      ]
+    },
+    {
+      "familyId": "ema_trend",
+      "familyLabel": "EMA trend continuation",
+      "symbol": "ETHUSDT",
+      "timeframe": "1m",
+      "params": {
+        "emaFast": 12,
+        "emaSlow": 34,
+        "pullbackPct": 0.2,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1503.2346779999998,
+        "avgOosMonthlyPct": -83.58471575,
+        "worstOosMonthPct": -89.253576,
+        "avgOosDdPct": 99.22410024999999,
+        "avgOosPf": 0.44025525,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 9788,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -99.91257,
+          "valPct": -92.79547,
+          "oosPct": -99.608469,
+          "oosDd": 99.613267,
+          "oosTrades": 2551,
+          "oosAvgMonth": -82.05177,
+          "oosWorstMonth": -98.873955,
+          "oosPf": 0.476008
+        },
+        {
+          "window": 2,
+          "trainPct": -99.857846,
+          "valPct": -91.847513,
+          "oosPct": -99.656128,
+          "oosDd": 99.662004,
+          "oosTrades": 2661,
+          "oosAvgMonth": -83.988131,
+          "oosWorstMonth": -98.887552,
+          "oosPf": 0.470569
+        },
+        {
+          "window": 3,
+          "trainPct": -99.982219,
+          "valPct": -86.236467,
+          "oosPct": -99.93375,
+          "oosDd": 99.933944,
+          "oosTrades": 2936,
+          "oosAvgMonth": -89.253576,
+          "oosWorstMonth": -99.687204,
+          "oosPf": 0.427325
+        },
+        {
+          "window": 4,
+          "trainPct": -99.966932,
+          "valPct": -88.444453,
+          "oosPct": -97.682065,
+          "oosDd": 97.687186,
+          "oosTrades": 1640,
+          "oosAvgMonth": -79.045386,
+          "oosWorstMonth": -93.443386,
+          "oosPf": 0.387119
+        }
+      ]
+    },
+    {
+      "familyId": "ema_trend",
+      "familyLabel": "EMA trend continuation",
+      "symbol": "SOLUSDT",
+      "timeframe": "1m",
+      "params": {
+        "emaFast": 12,
+        "emaSlow": 34,
+        "pullbackPct": 0.2,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1522.756333,
+        "avgOosMonthlyPct": -84.96392075,
+        "worstOosMonthPct": -91.379324,
+        "avgOosDdPct": 99.537057,
+        "avgOosPf": 0.44044025000000003,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 10516,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -99.926116,
+          "valPct": -94.842762,
+          "oosPct": -99.725039,
+          "oosDd": 99.734467,
+          "oosTrades": 2764,
+          "oosAvgMonth": -82.997811,
+          "oosWorstMonth": -99.171196,
+          "oosPf": 0.501395
+        },
+        {
+          "window": 2,
+          "trainPct": -99.923193,
+          "valPct": -96.270461,
+          "oosPct": -99.826709,
+          "oosDd": 99.837779,
+          "oosTrades": 2968,
+          "oosAvgMonth": -84.334594,
+          "oosWorstMonth": -99.436775,
+          "oosPf": 0.539597
+        },
+        {
+          "window": 3,
+          "trainPct": -99.96143,
+          "valPct": -89.33973,
+          "oosPct": -99.939132,
+          "oosDd": 99.939132,
+          "oosTrades": 3029,
+          "oosAvgMonth": -91.379324,
+          "oosWorstMonth": -99.639425,
+          "oosPf": 0.356682
+        },
+        {
+          "window": 4,
+          "trainPct": -99.989952,
+          "valPct": -92.002265,
+          "oosPct": -98.586903,
+          "oosDd": 98.63685,
+          "oosTrades": 1755,
+          "oosAvgMonth": -81.143954,
+          "oosWorstMonth": -95.780919,
+          "oosPf": 0.364087
+        }
+      ]
+    },
+    {
+      "familyId": "bollinger_mean_reversion",
+      "familyLabel": "Bollinger mean reversion",
+      "symbol": "ETHUSDT",
+      "timeframe": "1m",
+      "params": {
+        "bbPeriod": 20,
+        "bbStdDev": 2,
+        "atrMult": 1.2
+      },
+      "score": {
+        "composite": -1527.663985,
+        "avgOosMonthlyPct": -86.48034125000001,
+        "worstOosMonthPct": -91.084642,
+        "avgOosDdPct": 99.5844075,
+        "avgOosPf": 0.38785775,
+        "oosWindowsPositive": 0,
+        "totalOosTrades": 11503,
+        "maxOneTradeDom": 0,
+        "maxOneMonthDom": 0,
+        "regimeBalanceScore": 0,
+        "rejected": true,
+        "rejectReasons": [
+          "insufficient_positive_oos_windows",
+          "oos_dd_high"
+        ]
+      },
+      "bucket": "rejected",
+      "oosWindows": [
+        {
+          "window": 1,
+          "trainPct": -99.933768,
+          "valPct": -90.117252,
+          "oosPct": -99.418866,
+          "oosDd": 99.426803,
+          "oosTrades": 2782,
+          "oosAvgMonth": -79.887775,
+          "oosWorstMonth": -98.499283,
+          "oosPf": 0.452859
+        },
+        {
+          "window": 2,
+          "trainPct": -99.964529,
+          "valPct": -90.57974,
+          "oosPct": -99.718763,
+          "oosDd": 99.720822,
+          "oosTrades": 2894,
+          "oosAvgMonth": -85.425401,
+          "oosWorstMonth": -99.000937,
+          "oosPf": 0.431369
+        },
+        {
+          "window": 3,
+          "trainPct": -99.961969,
+          "valPct": -90.766116,
+          "oosPct": -99.531276,
+          "oosDd": 99.53593,
+          "oosTrades": 2976,
+          "oosAvgMonth": -91.084642,
+          "oosWorstMonth": -96.79526,
+          "oosPf": 0.368743
+        },
+        {
+          "window": 4,
+          "trainPct": -99.972293,
+          "valPct": -91.257783,
+          "oosPct": -99.652689,
+          "oosDd": 99.654075,
+          "oosTrades": 2851,
+          "oosAvgMonth": -89.523547,
+          "oosWorstMonth": -98.185243,
+          "oosPf": 0.29846
+        }
+      ]
+    }
+  ],
+  "secondary": {
+    "stable": null,
+    "bestReturn": "vwap_pullback",
+    "bestDrawdown": "vwap_pullback",
+    "bestTrades": "bollinger_mean_reversion"
+  }
+}

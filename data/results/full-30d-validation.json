@@ -1,0 +1,156 @@
+{
+  "generatedAt": "2026-05-17T15:19:40.437Z",
+  "validationType": "full_30d",
+  "symbol": "SOLUSD",
+  "marketId": 2,
+  "timeframe": "1m",
+  "backtestDays": 30,
+  "candleCount": 30330,
+  "candleRange": {
+    "start": "2026-04-17T15:20:00.000Z",
+    "end": "2026-05-17T10:43:00.000Z"
+  },
+  "strategyName": "ATR_VOLATILITY_BREAKOUT",
+  "params": {
+    "atrPeriod": 14,
+    "atrMult": 0.8,
+    "trailStart": 0.1,
+    "trailGap": 0.5,
+    "takeProfitPct": 0.8,
+    "breakEvenPct": 0,
+    "maxHoldCandles": 0,
+    "exitOnOppositeSignal": 1,
+    "cooldownCandles": 2,
+    "minAtrFilter": 0,
+    "minEmaDistancePct": 0,
+    "minMoveVsFeeMult": 0,
+    "minVolumeMult": 0,
+    "maxTradesPerDay": 40,
+    "riskPct": 1.5
+  },
+  "execution": {
+    "initialBalance": 1000,
+    "entryMode": "nextOpen",
+    "feeRate": 0.00035,
+    "leverage": 5,
+    "riskPct": 1
+  },
+  "referenceSubset10k": {
+    "netPnL": 290.464555,
+    "maxDrawdownPct": 14.289542,
+    "tradesCount": 140
+  },
+  "metrics": {
+    "totalVolume": 14427.782828,
+    "grossPnL": 263.722563,
+    "totalFees": 877.16094,
+    "netPnL": -613.438376,
+    "netPnLPct": -61.343838,
+    "tradesCount": 489,
+    "wins": 77,
+    "losses": 412,
+    "winRate": 15.746421,
+    "profitFactor": 0.629373,
+    "maxDrawdownPct": 72.585605,
+    "averageTradeDurationCandles": 17.425358,
+    "tradesPerDay": 16.405191,
+    "averagePnLPerTrade": -1.254475,
+    "averageFeePerTrade": 1.793785,
+    "feesToVolumeRatio": 0.060797,
+    "longestWinningStreak": 4,
+    "longestLosingStreak": 25
+  },
+  "diagnostics": {
+    "signalCount": 537,
+    "crossoverCount": 0,
+    "entriesAllowed": 537,
+    "tradesOpened": 489,
+    "skippedByFilter": 48,
+    "skippedByRisk": 0,
+    "skippedByMargin": 0,
+    "skippedInvalidStop": 0,
+    "exitsByStopLoss": 296,
+    "exitsByTrailing": 143,
+    "exitsBySignal": 0,
+    "exitsByEndOfData": 0,
+    "exitsByTakeProfit": 50,
+    "exitsByMaxHold": 0
+  },
+  "weeklyConsistency": [
+    {
+      "weekIndex": 1,
+      "startTime": "2026-04-17T15:20:00.000Z",
+      "endTime": "2026-04-24T15:19:59.999Z",
+      "tradesCount": 131,
+      "totalVolume": 6243.495481,
+      "grossPnL": 20.545766,
+      "totalFees": 377.179763,
+      "netPnL": -356.633997,
+      "maxDrawdownPct": 35.663399724,
+      "wins": 19,
+      "losses": 112
+    },
+    {
+      "weekIndex": 2,
+      "startTime": "2026-04-24T15:20:00.000Z",
+      "endTime": "2026-05-01T15:19:59.999Z",
+      "tradesCount": 117,
+      "totalVolume": 3543.825754,
+      "grossPnL": -25.252503,
+      "totalFees": 210.583306,
+      "netPnL": -235.835809,
+      "maxDrawdownPct": 59.72960216300001,
+      "wins": 11,
+      "losses": 106
+    },
+    {
+      "weekIndex": 3,
+      "startTime": "2026-05-01T15:20:00.000Z",
+      "endTime": "2026-05-08T15:19:59.999Z",
+      "tradesCount": 106,
+      "totalVolume": 2121.365003,
+      "grossPnL": 15.952392,
+      "totalFees": 127.106502,
+      "netPnL": -111.15411,
+      "maxDrawdownPct": 71.00964404199999,
+      "wins": 14,
+      "losses": 92
+    },
+    {
+      "weekIndex": 4,
+      "startTime": "2026-05-08T15:20:00.000Z",
+      "endTime": "2026-05-15T15:19:59.999Z",
+      "tradesCount": 109,
+      "totalVolume": 1922.156421,
+      "grossPnL": 255.658846,
+      "totalFees": 125.598611,
+      "netPnL": 130.060235,
+      "maxDrawdownPct": 72.58560500599998,
+      "wins": 29,
+      "losses": 80
+    },
+    {
+      "weekIndex": 5,
+      "startTime": "2026-05-15T15:20:00.000Z",
+      "endTime": "2026-05-17T10:43:59.999Z",
+      "tradesCount": 26,
+      "totalVolume": 596.940169,
+      "grossPnL": -3.181938,
+      "totalFees": 36.692758,
+      "netPnL": -39.874696,
+      "maxDrawdownPct": 61.343837642,
+      "wins": 4,
+      "losses": 22
+    }
+  ],
+  "verdict": "FEE_DEATH",
+  "verdictReasons": [
+    "fees consume most or all gross profit"
+  ],
+  "stayedProfitable": false,
+  "drawdownVsSubset": {
+    "subsetMaxDrawdownPct": 14.289542,
+    "fullMaxDrawdownPct": 72.585605,
+    "increasedSignificantly": true
+  }
+}

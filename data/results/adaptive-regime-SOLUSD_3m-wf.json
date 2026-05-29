@@ -1,0 +1,3015 @@
+{
+  "symbol": "SOLUSD",
+  "timeframe": "3m",
+  "dataReliable": false,
+  "quality": {
+    "symbol": "SOLUSD",
+    "cachePath": "C:\\Users\\vygov\\OneDrive\\Desktop\\aiBacktesting\\data\\cache\\SOLUSD_market2_1m_12m.json",
+    "count": 120000,
+    "spanDays": 135.05972222222223,
+    "expectedCandles": 194487,
+    "coveragePct": 61.7,
+    "duplicateTimestamps": 0,
+    "gapCount": 30772,
+    "largestGapMinutes": 118,
+    "missingEstimate": 74487,
+    "unordered": false,
+    "ok": true,
+    "reliable": false,
+    "warnings": [
+      "gaps=30772 largestGapMin=118"
+    ],
+    "issues": [
+      "short_history=135d (need 150)",
+      "low_coverage=61.7% (need 85%)",
+      "too_many_gaps=30772",
+      "large_gap=118min"
+    ]
+  },
+  "best": {
+    "symbol": "SOLUSD",
+    "timeframe": "3m",
+    "params": {
+      "adxTrendMin": 25,
+      "adxRangeMax": 20,
+      "atrHighPct": 1.2,
+      "riskPct": 0.35,
+      "atrMult": 0.85,
+      "tradeCompression": 0,
+      "maxTrendExtensionPct": 1.2
+    },
+    "score": {
+      "composite": -124.130266,
+      "avgOosMonthlyPct": -0.19230975,
+      "worstOosMonthPct": -0.451428,
+      "avgOosDdPct": 0.69936525,
+      "avgOosPf": 0.26812525,
+      "oosWindowsPositive": 0,
+      "totalOosTrades": 24,
+      "maxOneTradeDom": 0,
+      "maxOneMonthDom": 0,
+      "regimeBalanceScore": 0,
+      "rejected": true,
+      "rejectReasons": [
+        "insufficient_positive_oos_windows"
+      ]
+    },
+    "bucket": "rejected",
+    "windows": [
+      {
+        "slice": {
+          "windowIndex": 1,
+          "trainStart": 1767882960000,
+          "trainEnd": 1769341635000,
+          "valEnd": 1769779237500,
+          "oosEnd": 1770800310000
+        },
+        "train": {
+          "label": "SOLUSD_w1_train",
+          "rangeStart": 1767882960000,
+          "rangeEnd": 1769341635000,
+          "metrics": {
+            "startBalance": 100,
+            "endBalance": 100.093824,
+            "grossPnL": 0.24213,
+            "totalFees": 0.148306,
+            "netPnL": 0.093824,
+            "netPnLPct": 0.093824,
+            "tradesCount": 2,
+            "wins": 1,
+            "losses": 1,
+            "winRate": 50,
+            "profitFactor": 1.24363,
+            "maxDrawdown": 0.383274,
+            "maxDrawdownPct": 0.383274,
+            "totalVolume": 1.479137,
+            "totalNotional": 423.731829,
+            "feesToVolumeRatio": 0.100265,
+            "netPnlToVolumeRatio": 0.063432,
+            "averageTradeDurationCandles": 10,
+            "tradesPerDay": 0.118464,
+            "averagePnLPerTrade": 0.046912,
+            "averageFeePerTrade": 0.074153,
+            "biggestWin": 0.478933,
+            "biggestLoss": -0.385109
+          },
+          "monthly": [
+            {
+              "monthIndex": 1,
+              "monthKey": "2026-01",
+              "startTime": "2026-01-08T14:36:00.000Z",
+              "endTime": "2026-01-25T11:47:14.999Z",
+              "startBalance": 100,
+              "endBalance": 100.093824,
+              "netPnL": 0.093824,
+              "netPnLPct": 0.093824,
+              "grossPnL": 0.24213,
+              "fees": 0.148306,
+              "tradesCount": 2,
+              "winRate": 50,
+              "profitFactor": 1.24363,
+              "maxDrawdownPct": 0.383274,
+              "volume": 423.731829,
+              "averageTradePnL": 0.046912,
+              "isFullMonth": false
+            }
+          ],
+          "averageMonthlyReturnPct": 0.093824,
+          "worstMonthReturnPct": 0.093824,
+          "bestMonthReturnPct": 0.093824,
+          "averageR": 0.136657,
+          "oneTradeDominancePct": 510.459467,
+          "byRegime": [
+            {
+              "regime": "TREND_UP",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TREND_DOWN",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "RANGE",
+              "trades": 2,
+              "netPnL": 0.093824,
+              "winRate": 50,
+              "profitFactor": 1.24363,
+              "averageR": 0.136657
+            },
+            {
+              "regime": "HIGH_VOLATILITY",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "LOW_VOLATILITY_COMPRESSION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TRANSITION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            }
+          ]
+        },
+        "validation": {
+          "label": "SOLUSD_w1_val",
+          "rangeStart": 1769341635000,
+          "rangeEnd": 1769779237500,
+          "metrics": {
+            "startBalance": 100,
+            "endBalance": 99.380792,
+            "grossPnL": -0.269047,
+            "totalFees": 0.350162,
+            "netPnL": -0.619208,
+            "netPnLPct": -0.619208,
+            "tradesCount": 5,
+            "wins": 1,
+            "losses": 4,
+            "winRate": 20,
+            "profitFactor": 0.006935,
+            "maxDrawdown": 0.623533,
+            "maxDrawdownPct": 0.623533,
+            "totalVolume": 4.107694,
+            "totalNotional": 1000.461481,
+            "feesToVolumeRatio": 0.085245,
+            "netPnlToVolumeRatio": -0.150744,
+            "averageTradeDurationCandles": 1.4,
+            "tradesPerDay": 0.987197,
+            "averagePnLPerTrade": -0.123842,
+            "averageFeePerTrade": 0.070032,
+            "biggestWin": 0.004324,
+            "biggestLoss": -0.311089
+          },
+          "monthly": [
+            {
+              "monthIndex": 1,
+              "monthKey": "2026-01",
+              "startTime": "2026-01-25T11:47:15.000Z",
+              "endTime": "2026-01-30T13:20:37.499Z",
+              "startBalance": 100,
+              "endBalance": 99.380792,
+              "netPnL": -0.619208,
+              "netPnLPct": -0.619208,
+              "grossPnL": -0.269047,
+              "fees": 0.350162,
+              "tradesCount": 5,
+              "winRate": 20,
+              "profitFactor": 0.006935,
+              "maxDrawdownPct": 0.623533,
+              "volume": 1000.461481,
+              "averageTradePnL": -0.123842,
+              "isFullMonth": false
+            }
+          ],
+          "averageMonthlyReturnPct": -0.619208,
+          "worstMonthReturnPct": -0.619208,
+          "bestMonthReturnPct": -0.619208,
+          "averageR": -0.354532,
+          "oneTradeDominancePct": 0,
+          "byRegime": [
+            {
+              "regime": "TREND_UP",
+              "trades": 1,
+              "netPnL": -0.311089,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": -0.888826
+            },
+            {
+              "regime": "TREND_DOWN",
+              "trades": 3,
+              "netPnL": -0.312444,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": -0.298756
+            },
+            {
+              "regime": "RANGE",
+              "trades": 1,
+              "netPnL": 0.004324,
+              "winRate": 100,
+              "profitFactor": 999,
+              "averageR": 0.012433
+            },
+            {
+              "regime": "HIGH_VOLATILITY",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "LOW_VOLATILITY_COMPRESSION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TRANSITION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            }
+          ]
+        },
+        "outOfSample": {
+          "label": "SOLUSD_w1_oos",
+          "rangeStart": 1769779237500,
+          "rangeEnd": 1770800310000,
+          "metrics": {
+            "startBalance": 100,
+            "endBalance": 99.09602,
+            "grossPnL": 0.353789,
+            "totalFees": 1.257769,
+            "netPnL": -0.90398,
+            "netPnLPct": -0.90398,
+            "tradesCount": 22,
+            "wins": 10,
+            "losses": 12,
+            "winRate": 45.454545,
+            "profitFactor": 0.775036,
+            "maxDrawdown": 2.345692,
+            "maxDrawdownPct": 2.345692,
+            "totalVolume": 19.162768,
+            "totalNotional": 3593.625044,
+            "feesToVolumeRatio": 0.065636,
+            "netPnlToVolumeRatio": -0.047174,
+            "averageTradeDurationCandles": 3.772727,
+            "tradesPerDay": 1.861572,
+            "averagePnLPerTrade": -0.04109,
+            "averageFeePerTrade": 0.057171,
+            "biggestWin": 0.518633,
+            "biggestLoss": -0.448032
+          },
+          "monthly": [
+            {
+              "monthIndex": 1,
+              "monthKey": "2026-01",
+              "startTime": "2026-01-30T13:20:37.500Z",
+              "endTime": "2026-01-31T23:59:59.999Z",
+              "startBalance": 100,
+              "endBalance": 100.11078,
+              "netPnL": 0.11078,
+              "netPnLPct": 0.11078,
+              "grossPnL": 0.118445,
+              "fees": 0.007665,
+              "tradesCount": 1,
+              "winRate": 100,
+              "profitFactor": 999,
+              "maxDrawdownPct": 0,
+              "volume": 21.900822,
+              "averageTradePnL": 0.11078,
+              "isFullMonth": false
+            },
+            {
+              "monthIndex": 2,
+              "monthKey": "2026-02",
+              "startTime": "2026-02-01T00:00:00.000Z",
+              "endTime": "2026-02-11T08:58:29.999Z",
+              "startBalance": 100.11078,
+              "endBalance": 99.09602,
+              "netPnL": -1.01476,
+              "netPnLPct": -1.013637,
+              "grossPnL": 0.235344,
+              "fees": 1.250103,
+              "tradesCount": 21,
+              "winRate": 42.857143,
+              "profitFactor": 0.747467,
+              "maxDrawdownPct": 2.345692,
+              "volume": 3571.724222,
+              "averageTradePnL": -0.048322,
+              "isFullMonth": false
+            }
+          ],
+          "averageMonthlyReturnPct": -0.451428,
+          "worstMonthReturnPct": -1.013637,
+          "bestMonthReturnPct": 0.11078,
+          "averageR": -0.216375,
+          "oneTradeDominancePct": 0,
+          "byRegime": [
+            {
+              "regime": "TREND_UP",
+              "trades": 4,
+              "netPnL": -0.480143,
+              "winRate": 25,
+              "profitFactor": 0.504416,
+              "averageR": -0.342786
+            },
+            {
+              "regime": "TREND_DOWN",
+              "trades": 8,
+              "netPnL": -0.366939,
+              "winRate": 50,
+              "profitFactor": 0.712128,
+              "averageR": -0.129579
+            },
+            {
+              "regime": "RANGE",
+              "trades": 10,
+              "netPnL": -0.056898,
+              "winRate": 50,
+              "profitFactor": 0.967941,
+              "averageR": -0.235247
+            },
+            {
+              "regime": "HIGH_VOLATILITY",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "LOW_VOLATILITY_COMPRESSION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TRANSITION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            }
+          ]
+        }
+      },
+      {
+        "slice": {
+          "windowIndex": 2,
+          "trainStart": 1770800310000,
+          "trainEnd": 1772258985000,
+          "valEnd": 1772696587500,
+          "oosEnd": 1773717660000
+        },
+        "train": {
+          "label": "SOLUSD_w2_train",
+          "rangeStart": 1770800310000,
+          "rangeEnd": 1772258985000,
+          "metrics": {
+            "startBalance": 100,
+            "endBalance": 100.065658,
+            "grossPnL": 0.480238,
+            "totalFees": 0.41458,
+            "netPnL": 0.065658,
+            "netPnLPct": 0.065658,
+            "tradesCount": 6,
+            "wins": 3,
+            "losses": 3,
+            "winRate": 50,
+            "profitFactor": 1.073103,
+            "maxDrawdown": 0.449938,
+            "maxDrawdownPct": 0.449938,
+            "totalVolume": 7.264753,
+            "totalNotional": 1184.513373,
+            "feesToVolumeRatio": 0.057067,
+            "netPnlToVolumeRatio": 0.009038,
+            "averageTradeDurationCandles": 2.166667,
+            "tradesPerDay": 0.355391,
+            "averagePnLPerTrade": 0.010943,
+            "averageFeePerTrade": 0.069097,
+            "biggestWin": 0.798369,
+            "biggestLoss": -0.451689
+          },
+          "monthly": [
+            {
+              "monthIndex": 1,
+              "monthKey": "2026-02",
+              "startTime": "2026-02-11T08:58:30.000Z",
+              "endTime": "2026-02-28T06:09:44.999Z",
+              "startBalance": 100,
+              "endBalance": 100.065658,
+              "netPnL": 0.065658,
+              "netPnLPct": 0.065658,
+              "grossPnL": 0.480238,
+              "fees": 0.41458,
+              "tradesCount": 6,
+              "winRate": 50,
+              "profitFactor": 1.073103,
+              "maxDrawdownPct": 0.449938,
+              "volume": 1184.513373,
+              "averageTradePnL": 0.010943,
+              "isFullMonth": false
+            }
+          ],
+          "averageMonthlyReturnPct": 0.065658,
+          "worstMonthReturnPct": 0.065658,
+          "bestMonthReturnPct": 0.065658,
+          "averageR": 0.033699,
+          "oneTradeDominancePct": 1215.950364,
+          "byRegime": [
+            {
+              "regime": "TREND_UP",
+              "trades": 2,
+              "netPnL": 0.904202,
+              "winRate": 100,
+              "profitFactor": 999,
+              "averageR": 1.296408
+            },
+            {
+              "regime": "TREND_DOWN",
+              "trades": 1,
+              "netPnL": -0.037164,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": -0.106073
+            },
+            {
+              "regime": "RANGE",
+              "trades": 3,
+              "netPnL": -0.80138,
+              "winRate": 33.333333,
+              "profitFactor": 0.069241,
+              "averageR": -0.761516
+            },
+            {
+              "regime": "HIGH_VOLATILITY",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "LOW_VOLATILITY_COMPRESSION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TRANSITION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            }
+          ]
+        },
+        "validation": {
+          "label": "SOLUSD_w2_val",
+          "rangeStart": 1772258985000,
+          "rangeEnd": 1772696587500,
+          "metrics": {
+            "startBalance": 100,
+            "endBalance": 99.664205,
+            "grossPnL": 0.180603,
+            "totalFees": 0.516398,
+            "netPnL": -0.335795,
+            "netPnLPct": -0.335795,
+            "tradesCount": 6,
+            "wins": 2,
+            "losses": 4,
+            "winRate": 33.333333,
+            "profitFactor": 0.721072,
+            "maxDrawdown": 0.848306,
+            "maxDrawdownPct": 0.848306,
+            "totalVolume": 8.761711,
+            "totalNotional": 1475.421465,
+            "feesToVolumeRatio": 0.058938,
+            "netPnlToVolumeRatio": -0.038325,
+            "averageTradeDurationCandles": 1.833333,
+            "tradesPerDay": 1.184637,
+            "averagePnLPerTrade": -0.055966,
+            "averageFeePerTrade": 0.086066,
+            "biggestWin": 0.681364,
+            "biggestLoss": -0.440477
+          },
+          "monthly": [
+            {
+              "monthIndex": 1,
+              "monthKey": "2026-02",
+              "startTime": "2026-02-28T06:09:45.000Z",
+              "endTime": "2026-02-28T23:59:59.999Z",
+              "startBalance": 100,
+              "endBalance": 100.186716,
+              "netPnL": 0.186716,
+              "netPnLPct": 0.186716,
+              "grossPnL": 0.35,
+              "fees": 0.163284,
+              "tradesCount": 1,
+              "winRate": 100,
+              "profitFactor": 999,
+              "maxDrawdownPct": 0,
+              "volume": 466.524706,
+              "averageTradePnL": 0.186716,
+              "isFullMonth": false
+            },
+            {
+              "monthIndex": 2,
+              "monthKey": "2026-03",
+              "startTime": "2026-03-01T00:00:00.000Z",
+              "endTime": "2026-03-05T07:43:07.499Z",
+              "startBalance": 100.186716,
+              "endBalance": 99.664205,
+              "netPnL": -0.522511,
+              "netPnLPct": -0.521537,
+              "grossPnL": -0.169397,
+              "fees": 0.353114,
+              "tradesCount": 5,
+              "winRate": 20,
+              "profitFactor": 0.565976,
+              "maxDrawdownPct": 0.848306,
+              "volume": 1008.89676,
+              "averageTradePnL": -0.104502,
+              "isFullMonth": false
+            }
+          ],
+          "averageMonthlyReturnPct": -0.167411,
+          "worstMonthReturnPct": -0.521537,
+          "bestMonthReturnPct": 0.186716,
+          "averageR": -0.15787,
+          "oneTradeDominancePct": 0,
+          "byRegime": [
+            {
+              "regime": "TREND_UP",
+              "trades": 2,
+              "netPnL": -0.353985,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": -0.50578
+            },
+            {
+              "regime": "TREND_DOWN",
+              "trades": 1,
+              "netPnL": -0.440477,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": -1.261314
+            },
+            {
+              "regime": "RANGE",
+              "trades": 3,
+              "netPnL": 0.458667,
+              "winRate": 66.666667,
+              "profitFactor": 2.120305,
+              "averageR": 0.441885
+            },
+            {
+              "regime": "HIGH_VOLATILITY",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "LOW_VOLATILITY_COMPRESSION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TRANSITION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            }
+          ]
+        },
+        "outOfSample": {
+          "label": "SOLUSD_w2_oos",
+          "rangeStart": 1772696587500,
+          "rangeEnd": 1773717660000,
+          "metrics": {
+            "startBalance": 100,
+            "endBalance": 99.682189,
+            "grossPnL": -0.115359,
+            "totalFees": 0.202451,
+            "netPnL": -0.317811,
+            "netPnLPct": -0.317811,
+            "tradesCount": 2,
+            "wins": 1,
+            "losses": 1,
+            "winRate": 50,
+            "profitFactor": 0.297465,
+            "maxDrawdown": 0.451769,
+            "maxDrawdownPct": 0.451769,
+            "totalVolume": 3.242187,
+            "totalNotional": 578.432553,
+            "feesToVolumeRatio": 0.062443,
+            "netPnlToVolumeRatio": -0.098024,
+            "averageTradeDurationCandles": 1,
+            "tradesPerDay": 0.169234,
+            "averagePnLPerTrade": -0.158905,
+            "averageFeePerTrade": 0.101226,
+            "biggestWin": 0.134566,
+            "biggestLoss": -0.452377
+          },
+          "monthly": [
+            {
+              "monthIndex": 1,
+              "monthKey": "2026-03",
+              "startTime": "2026-03-05T07:43:07.500Z",
+              "endTime": "2026-03-17T03:20:59.999Z",
+              "startBalance": 100,
+              "endBalance": 99.682189,
+              "netPnL": -0.317811,
+              "netPnLPct": -0.317811,
+              "grossPnL": -0.115359,
+              "fees": 0.202451,
+              "tradesCount": 2,
+              "winRate": 50,
+              "profitFactor": 0.297465,
+              "maxDrawdownPct": 0.451769,
+              "volume": 578.432553,
+              "averageTradePnL": -0.158905,
+              "isFullMonth": false
+            }
+          ],
+          "averageMonthlyReturnPct": -0.317811,
+          "worstMonthReturnPct": -0.317811,
+          "bestMonthReturnPct": -0.317811,
+          "averageR": -0.453147,
+          "oneTradeDominancePct": 0,
+          "byRegime": [
+            {
+              "regime": "TREND_UP",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TREND_DOWN",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "RANGE",
+              "trades": 2,
+              "netPnL": -0.317811,
+              "winRate": 50,
+              "profitFactor": 0.297465,
+              "averageR": -0.453147
+            },
+            {
+              "regime": "HIGH_VOLATILITY",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "LOW_VOLATILITY_COMPRESSION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TRANSITION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            }
+          ]
+        }
+      },
+      {
+        "slice": {
+          "windowIndex": 3,
+          "trainStart": 1773717660000,
+          "trainEnd": 1775176335000,
+          "valEnd": 1775613937500,
+          "oosEnd": 1776635010000
+        },
+        "train": {
+          "label": "SOLUSD_w3_train",
+          "rangeStart": 1773717660000,
+          "rangeEnd": 1775176335000,
+          "metrics": {
+            "startBalance": 100,
+            "endBalance": 99.910815,
+            "grossPnL": 0.171896,
+            "totalFees": 0.261082,
+            "netPnL": -0.089185,
+            "netPnLPct": -0.089185,
+            "tradesCount": 3,
+            "wins": 1,
+            "losses": 2,
+            "winRate": 33.333333,
+            "profitFactor": 0.799104,
+            "maxDrawdown": 0.442368,
+            "maxDrawdownPct": 0.442368,
+            "totalVolume": 4.393779,
+            "totalNotional": 745.947733,
+            "feesToVolumeRatio": 0.059421,
+            "netPnlToVolumeRatio": -0.020298,
+            "averageTradeDurationCandles": 2.666667,
+            "tradesPerDay": 0.177696,
+            "averagePnLPerTrade": -0.029728,
+            "averageFeePerTrade": 0.087027,
+            "biggestWin": 0.354752,
+            "biggestLoss": -0.42335
+          },
+          "monthly": [
+            {
+              "monthIndex": 1,
+              "monthKey": "2026-03",
+              "startTime": "2026-03-17T03:21:00.000Z",
+              "endTime": "2026-03-31T23:59:59.999Z",
+              "startBalance": 100,
+              "endBalance": 100.334164,
+              "netPnL": 0.334164,
+              "netPnLPct": 0.334164,
+              "grossPnL": 0.523066,
+              "fees": 0.188902,
+              "tradesCount": 2,
+              "winRate": 50,
+              "profitFactor": 17.231635,
+              "maxDrawdownPct": 0.020514,
+              "volume": 539.718775,
+              "averageTradePnL": 0.167082,
+              "isFullMonth": false
+            },
+            {
+              "monthIndex": 2,
+              "monthKey": "2026-04",
+              "startTime": "2026-04-01T00:00:00.000Z",
+              "endTime": "2026-04-03T00:32:14.999Z",
+              "startBalance": 100.334164,
+              "endBalance": 99.910815,
+              "netPnL": -0.42335,
+              "netPnLPct": -0.42194,
+              "grossPnL": -0.35117,
+              "fees": 0.07218,
+              "tradesCount": 1,
+              "winRate": 0,
+              "profitFactor": 0,
+              "maxDrawdownPct": 0.42194,
+              "volume": 206.228957,
+              "averageTradePnL": -0.42335,
+              "isFullMonth": false
+            }
+          ],
+          "averageMonthlyReturnPct": -0.043888,
+          "worstMonthReturnPct": -0.42194,
+          "bestMonthReturnPct": 0.334164,
+          "averageR": -0.083526,
+          "oneTradeDominancePct": 0,
+          "byRegime": [
+            {
+              "regime": "TREND_UP",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TREND_DOWN",
+              "trades": 2,
+              "netPnL": -0.068598,
+              "winRate": 50,
+              "profitFactor": 0.837964,
+              "averageR": -0.095983
+            },
+            {
+              "regime": "RANGE",
+              "trades": 1,
+              "netPnL": -0.020587,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": -0.058613
+            },
+            {
+              "regime": "HIGH_VOLATILITY",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "LOW_VOLATILITY_COMPRESSION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TRANSITION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            }
+          ]
+        },
+        "validation": {
+          "label": "SOLUSD_w3_val",
+          "rangeStart": 1775176335000,
+          "rangeEnd": 1775613937500,
+          "metrics": {
+            "startBalance": 100,
+            "endBalance": 100,
+            "grossPnL": 0,
+            "totalFees": 0,
+            "netPnL": 0,
+            "netPnLPct": 0,
+            "tradesCount": 0,
+            "wins": 0,
+            "losses": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "maxDrawdown": 0,
+            "maxDrawdownPct": 0,
+            "totalVolume": 0,
+            "totalNotional": 0,
+            "feesToVolumeRatio": 0,
+            "netPnlToVolumeRatio": 0,
+            "averageTradeDurationCandles": 0,
+            "tradesPerDay": 0,
+            "averagePnLPerTrade": 0,
+            "averageFeePerTrade": 0,
+            "biggestWin": 0,
+            "biggestLoss": 0
+          },
+          "monthly": [
+            {
+              "monthIndex": 1,
+              "monthKey": "2026-04",
+              "startTime": "2026-04-03T00:32:15.000Z",
+              "endTime": "2026-04-08T02:05:37.499Z",
+              "startBalance": 100,
+              "endBalance": 100,
+              "netPnL": 0,
+              "netPnLPct": 0,
+              "grossPnL": 0,
+              "fees": 0,
+              "tradesCount": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "maxDrawdownPct": 0,
+              "volume": 0,
+              "averageTradePnL": 0,
+              "isFullMonth": false
+            }
+          ],
+          "averageMonthlyReturnPct": 0,
+          "worstMonthReturnPct": 0,
+          "bestMonthReturnPct": 0,
+          "averageR": 0,
+          "oneTradeDominancePct": 0,
+          "byRegime": [
+            {
+              "regime": "TREND_UP",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TREND_DOWN",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "RANGE",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "HIGH_VOLATILITY",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "LOW_VOLATILITY_COMPRESSION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TRANSITION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            }
+          ]
+        },
+        "outOfSample": {
+          "label": "SOLUSD_w3_oos",
+          "rangeStart": 1775613937500,
+          "rangeEnd": 1776635010000,
+          "metrics": {
+            "startBalance": 100,
+            "endBalance": 100,
+            "grossPnL": 0,
+            "totalFees": 0,
+            "netPnL": 0,
+            "netPnLPct": 0,
+            "tradesCount": 0,
+            "wins": 0,
+            "losses": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "maxDrawdown": 0,
+            "maxDrawdownPct": 0,
+            "totalVolume": 0,
+            "totalNotional": 0,
+            "feesToVolumeRatio": 0,
+            "netPnlToVolumeRatio": 0,
+            "averageTradeDurationCandles": 0,
+            "tradesPerDay": 0,
+            "averagePnLPerTrade": 0,
+            "averageFeePerTrade": 0,
+            "biggestWin": 0,
+            "biggestLoss": 0
+          },
+          "monthly": [
+            {
+              "monthIndex": 1,
+              "monthKey": "2026-04",
+              "startTime": "2026-04-08T02:05:37.500Z",
+              "endTime": "2026-04-19T21:43:29.999Z",
+              "startBalance": 100,
+              "endBalance": 100,
+              "netPnL": 0,
+              "netPnLPct": 0,
+              "grossPnL": 0,
+              "fees": 0,
+              "tradesCount": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "maxDrawdownPct": 0,
+              "volume": 0,
+              "averageTradePnL": 0,
+              "isFullMonth": false
+            }
+          ],
+          "averageMonthlyReturnPct": 0,
+          "worstMonthReturnPct": 0,
+          "bestMonthReturnPct": 0,
+          "averageR": 0,
+          "oneTradeDominancePct": 0,
+          "byRegime": [
+            {
+              "regime": "TREND_UP",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TREND_DOWN",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "RANGE",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "HIGH_VOLATILITY",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "LOW_VOLATILITY_COMPRESSION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TRANSITION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            }
+          ]
+        }
+      },
+      {
+        "slice": {
+          "windowIndex": 4,
+          "trainStart": 1776635010000,
+          "trainEnd": 1778093685000,
+          "valEnd": 1778531287500,
+          "oosEnd": 1779552360000
+        },
+        "train": {
+          "label": "SOLUSD_w4_train",
+          "rangeStart": 1776635010000,
+          "rangeEnd": 1778093685000,
+          "metrics": {
+            "startBalance": 100,
+            "endBalance": 100,
+            "grossPnL": 0,
+            "totalFees": 0,
+            "netPnL": 0,
+            "netPnLPct": 0,
+            "tradesCount": 0,
+            "wins": 0,
+            "losses": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "maxDrawdown": 0,
+            "maxDrawdownPct": 0,
+            "totalVolume": 0,
+            "totalNotional": 0,
+            "feesToVolumeRatio": 0,
+            "netPnlToVolumeRatio": 0,
+            "averageTradeDurationCandles": 0,
+            "tradesPerDay": 0,
+            "averagePnLPerTrade": 0,
+            "averageFeePerTrade": 0,
+            "biggestWin": 0,
+            "biggestLoss": 0
+          },
+          "monthly": [
+            {
+              "monthIndex": 1,
+              "monthKey": "2026-04",
+              "startTime": "2026-04-19T21:43:30.000Z",
+              "endTime": "2026-04-30T23:59:59.999Z",
+              "startBalance": 100,
+              "endBalance": 100,
+              "netPnL": 0,
+              "netPnLPct": 0,
+              "grossPnL": 0,
+              "fees": 0,
+              "tradesCount": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "maxDrawdownPct": 0,
+              "volume": 0,
+              "averageTradePnL": 0,
+              "isFullMonth": false
+            },
+            {
+              "monthIndex": 2,
+              "monthKey": "2026-05",
+              "startTime": "2026-05-01T00:00:00.000Z",
+              "endTime": "2026-05-06T18:54:44.999Z",
+              "startBalance": 100,
+              "endBalance": 100,
+              "netPnL": 0,
+              "netPnLPct": 0,
+              "grossPnL": 0,
+              "fees": 0,
+              "tradesCount": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "maxDrawdownPct": 0,
+              "volume": 0,
+              "averageTradePnL": 0,
+              "isFullMonth": false
+            }
+          ],
+          "averageMonthlyReturnPct": 0,
+          "worstMonthReturnPct": 0,
+          "bestMonthReturnPct": 0,
+          "averageR": 0,
+          "oneTradeDominancePct": 0,
+          "byRegime": [
+            {
+              "regime": "TREND_UP",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TREND_DOWN",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "RANGE",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "HIGH_VOLATILITY",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "LOW_VOLATILITY_COMPRESSION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TRANSITION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            }
+          ]
+        },
+        "validation": {
+          "label": "SOLUSD_w4_val",
+          "rangeStart": 1778093685000,
+          "rangeEnd": 1778531287500,
+          "metrics": {
+            "startBalance": 100,
+            "endBalance": 100,
+            "grossPnL": 0,
+            "totalFees": 0,
+            "netPnL": 0,
+            "netPnLPct": 0,
+            "tradesCount": 0,
+            "wins": 0,
+            "losses": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "maxDrawdown": 0,
+            "maxDrawdownPct": 0,
+            "totalVolume": 0,
+            "totalNotional": 0,
+            "feesToVolumeRatio": 0,
+            "netPnlToVolumeRatio": 0,
+            "averageTradeDurationCandles": 0,
+            "tradesPerDay": 0,
+            "averagePnLPerTrade": 0,
+            "averageFeePerTrade": 0,
+            "biggestWin": 0,
+            "biggestLoss": 0
+          },
+          "monthly": [
+            {
+              "monthIndex": 1,
+              "monthKey": "2026-05",
+              "startTime": "2026-05-06T18:54:45.000Z",
+              "endTime": "2026-05-11T20:28:07.499Z",
+              "startBalance": 100,
+              "endBalance": 100,
+              "netPnL": 0,
+              "netPnLPct": 0,
+              "grossPnL": 0,
+              "fees": 0,
+              "tradesCount": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "maxDrawdownPct": 0,
+              "volume": 0,
+              "averageTradePnL": 0,
+              "isFullMonth": false
+            }
+          ],
+          "averageMonthlyReturnPct": 0,
+          "worstMonthReturnPct": 0,
+          "bestMonthReturnPct": 0,
+          "averageR": 0,
+          "oneTradeDominancePct": 0,
+          "byRegime": [
+            {
+              "regime": "TREND_UP",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TREND_DOWN",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "RANGE",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "HIGH_VOLATILITY",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "LOW_VOLATILITY_COMPRESSION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TRANSITION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            }
+          ]
+        },
+        "outOfSample": {
+          "label": "SOLUSD_w4_oos",
+          "rangeStart": 1778531287500,
+          "rangeEnd": 1779552360000,
+          "metrics": {
+            "startBalance": 100,
+            "endBalance": 100,
+            "grossPnL": 0,
+            "totalFees": 0,
+            "netPnL": 0,
+            "netPnLPct": 0,
+            "tradesCount": 0,
+            "wins": 0,
+            "losses": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "maxDrawdown": 0,
+            "maxDrawdownPct": 0,
+            "totalVolume": 0,
+            "totalNotional": 0,
+            "feesToVolumeRatio": 0,
+            "netPnlToVolumeRatio": 0,
+            "averageTradeDurationCandles": 0,
+            "tradesPerDay": 0,
+            "averagePnLPerTrade": 0,
+            "averageFeePerTrade": 0,
+            "biggestWin": 0,
+            "biggestLoss": 0
+          },
+          "monthly": [
+            {
+              "monthIndex": 1,
+              "monthKey": "2026-05",
+              "startTime": "2026-05-11T20:28:07.500Z",
+              "endTime": "2026-05-23T16:05:59.999Z",
+              "startBalance": 100,
+              "endBalance": 100,
+              "netPnL": 0,
+              "netPnLPct": 0,
+              "grossPnL": 0,
+              "fees": 0,
+              "tradesCount": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "maxDrawdownPct": 0,
+              "volume": 0,
+              "averageTradePnL": 0,
+              "isFullMonth": false
+            }
+          ],
+          "averageMonthlyReturnPct": 0,
+          "worstMonthReturnPct": 0,
+          "bestMonthReturnPct": 0,
+          "averageR": 0,
+          "oneTradeDominancePct": 0,
+          "byRegime": [
+            {
+              "regime": "TREND_UP",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TREND_DOWN",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "RANGE",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "HIGH_VOLATILITY",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "LOW_VOLATILITY_COMPRESSION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            },
+            {
+              "regime": "TRANSITION",
+              "trades": 0,
+              "netPnL": 0,
+              "winRate": 0,
+              "profitFactor": 0,
+              "averageR": 0
+            }
+          ]
+        }
+      }
+    ],
+    "fullPeriod": {
+      "label": "full",
+      "rangeStart": 1767882960000,
+      "rangeEnd": 1779552360000,
+      "metrics": {
+        "startBalance": 100,
+        "endBalance": 96.462034,
+        "grossPnL": -0.556014,
+        "totalFees": 2.981952,
+        "netPnL": -3.537966,
+        "netPnLPct": -3.537966,
+        "tradesCount": 45,
+        "wins": 16,
+        "losses": 29,
+        "winRate": 35.555556,
+        "profitFactor": 0.58199,
+        "maxDrawdown": 3.997753,
+        "maxDrawdownPct": 3.997753,
+        "totalVolume": 45.450882,
+        "totalNotional": 8519.863889,
+        "feesToVolumeRatio": 0.065608,
+        "netPnlToVolumeRatio": -0.077842,
+        "averageTradeDurationCandles": 2.911111,
+        "tradesPerDay": 0.333179,
+        "averagePnLPerTrade": -0.078621,
+        "averageFeePerTrade": 0.066266,
+        "biggestWin": 0.783807,
+        "biggestLoss": -0.443872
+      },
+      "monthly": [
+        {
+          "monthIndex": 1,
+          "monthKey": "2026-01",
+          "startTime": "2026-01-08T14:36:00.000Z",
+          "endTime": "2026-01-31T23:59:59.999Z",
+          "startBalance": 100,
+          "endBalance": 99.589728,
+          "netPnL": -0.410272,
+          "netPnLPct": -0.410272,
+          "grossPnL": 0.096151,
+          "fees": 0.506423,
+          "tradesCount": 8,
+          "winRate": 37.5,
+          "profitFactor": 0.593479,
+          "maxDrawdownPct": 1.004417,
+          "volume": 1446.923111,
+          "averageTradePnL": -0.051284,
+          "isFullMonth": false
+        },
+        {
+          "monthIndex": 2,
+          "monthKey": "2026-02",
+          "startTime": "2026-02-01T00:00:00.000Z",
+          "endTime": "2026-02-28T23:59:59.999Z",
+          "startBalance": 99.589728,
+          "endBalance": 97.769374,
+          "netPnL": -1.820354,
+          "netPnLPct": -1.827853,
+          "grossPnL": -0.168152,
+          "fees": 1.652202,
+          "tradesCount": 27,
+          "winRate": 37.037037,
+          "profitFactor": 0.657157,
+          "maxDrawdownPct": 2.641808,
+          "volume": 4720.577514,
+          "averageTradePnL": -0.067421,
+          "isFullMonth": true
+        },
+        {
+          "monthIndex": 3,
+          "monthKey": "2026-03",
+          "startTime": "2026-03-01T00:00:00.000Z",
+          "endTime": "2026-03-31T23:59:59.999Z",
+          "startBalance": 97.769374,
+          "endBalance": 96.87077,
+          "netPnL": -0.898604,
+          "netPnLPct": -0.919106,
+          "grossPnL": -0.144966,
+          "fees": 0.753639,
+          "tradesCount": 9,
+          "winRate": 33.333333,
+          "profitFactor": 0.482455,
+          "maxDrawdownPct": 1.23437,
+          "volume": 2153.25304,
+          "averageTradePnL": -0.099845,
+          "isFullMonth": true
+        },
+        {
+          "monthIndex": 4,
+          "monthKey": "2026-04",
+          "startTime": "2026-04-01T00:00:00.000Z",
+          "endTime": "2026-04-30T23:59:59.999Z",
+          "startBalance": 96.87077,
+          "endBalance": 96.462034,
+          "netPnL": -0.408736,
+          "netPnLPct": -0.42194,
+          "grossPnL": -0.339048,
+          "fees": 0.069689,
+          "tradesCount": 1,
+          "winRate": 0,
+          "profitFactor": 0,
+          "maxDrawdownPct": 0.42194,
+          "volume": 199.110224,
+          "averageTradePnL": -0.408736,
+          "isFullMonth": true
+        },
+        {
+          "monthIndex": 5,
+          "monthKey": "2026-05",
+          "startTime": "2026-05-01T00:00:00.000Z",
+          "endTime": "2026-05-23T16:05:59.999Z",
+          "startBalance": 96.462034,
+          "endBalance": 96.462034,
+          "netPnL": 0,
+          "netPnLPct": 0,
+          "grossPnL": 0,
+          "fees": 0,
+          "tradesCount": 0,
+          "winRate": 0,
+          "profitFactor": 0,
+          "maxDrawdownPct": 0,
+          "volume": 0,
+          "averageTradePnL": 0,
+          "isFullMonth": false
+        }
+      ],
+      "averageMonthlyReturnPct": -1.0563,
+      "worstMonthReturnPct": -1.827853,
+      "bestMonthReturnPct": -0.42194,
+      "averageR": -0.275949,
+      "oneTradeDominancePct": 0,
+      "byRegime": [
+        {
+          "regime": "TREND_UP",
+          "trades": 9,
+          "netPnL": -0.245458,
+          "winRate": 33.333333,
+          "profitFactor": 0.848227,
+          "averageR": -0.075412
+        },
+        {
+          "regime": "TREND_DOWN",
+          "trades": 15,
+          "netPnL": -1.55813,
+          "winRate": 26.666667,
+          "profitFactor": 0.373248,
+          "averageR": -0.299356
+        },
+        {
+          "regime": "RANGE",
+          "trades": 21,
+          "netPnL": -1.734379,
+          "winRate": 42.857143,
+          "profitFactor": 0.602255,
+          "averageR": -0.345173
+        },
+        {
+          "regime": "HIGH_VOLATILITY",
+          "trades": 0,
+          "netPnL": 0,
+          "winRate": 0,
+          "profitFactor": 0,
+          "averageR": 0
+        },
+        {
+          "regime": "LOW_VOLATILITY_COMPRESSION",
+          "trades": 0,
+          "netPnL": 0,
+          "winRate": 0,
+          "profitFactor": 0,
+          "averageR": 0
+        },
+        {
+          "regime": "TRANSITION",
+          "trades": 0,
+          "netPnL": 0,
+          "winRate": 0,
+          "profitFactor": 0,
+          "averageR": 0
+        }
+      ]
+    }
+  },
+  "walkForwardWindows": [
+    {
+      "slice": {
+        "windowIndex": 1,
+        "trainStart": 1767882960000,
+        "trainEnd": 1769341635000,
+        "valEnd": 1769779237500,
+        "oosEnd": 1770800310000
+      },
+      "train": {
+        "label": "SOLUSD_w1_train",
+        "rangeStart": 1767882960000,
+        "rangeEnd": 1769341635000,
+        "metrics": {
+          "startBalance": 100,
+          "endBalance": 100.093824,
+          "grossPnL": 0.24213,
+          "totalFees": 0.148306,
+          "netPnL": 0.093824,
+          "netPnLPct": 0.093824,
+          "tradesCount": 2,
+          "wins": 1,
+          "losses": 1,
+          "winRate": 50,
+          "profitFactor": 1.24363,
+          "maxDrawdown": 0.383274,
+          "maxDrawdownPct": 0.383274,
+          "totalVolume": 1.479137,
+          "totalNotional": 423.731829,
+          "feesToVolumeRatio": 0.100265,
+          "netPnlToVolumeRatio": 0.063432,
+          "averageTradeDurationCandles": 10,
+          "tradesPerDay": 0.118464,
+          "averagePnLPerTrade": 0.046912,
+          "averageFeePerTrade": 0.074153,
+          "biggestWin": 0.478933,
+          "biggestLoss": -0.385109
+        },
+        "monthly": [
+          {
+            "monthIndex": 1,
+            "monthKey": "2026-01",
+            "startTime": "2026-01-08T14:36:00.000Z",
+            "endTime": "2026-01-25T11:47:14.999Z",
+            "startBalance": 100,
+            "endBalance": 100.093824,
+            "netPnL": 0.093824,
+            "netPnLPct": 0.093824,
+            "grossPnL": 0.24213,
+            "fees": 0.148306,
+            "tradesCount": 2,
+            "winRate": 50,
+            "profitFactor": 1.24363,
+            "maxDrawdownPct": 0.383274,
+            "volume": 423.731829,
+            "averageTradePnL": 0.046912,
+            "isFullMonth": false
+          }
+        ],
+        "averageMonthlyReturnPct": 0.093824,
+        "worstMonthReturnPct": 0.093824,
+        "bestMonthReturnPct": 0.093824,
+        "averageR": 0.136657,
+        "oneTradeDominancePct": 510.459467,
+        "byRegime": [
+          {
+            "regime": "TREND_UP",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TREND_DOWN",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "RANGE",
+            "trades": 2,
+            "netPnL": 0.093824,
+            "winRate": 50,
+            "profitFactor": 1.24363,
+            "averageR": 0.136657
+          },
+          {
+            "regime": "HIGH_VOLATILITY",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "LOW_VOLATILITY_COMPRESSION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TRANSITION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          }
+        ]
+      },
+      "validation": {
+        "label": "SOLUSD_w1_val",
+        "rangeStart": 1769341635000,
+        "rangeEnd": 1769779237500,
+        "metrics": {
+          "startBalance": 100,
+          "endBalance": 99.380792,
+          "grossPnL": -0.269047,
+          "totalFees": 0.350162,
+          "netPnL": -0.619208,
+          "netPnLPct": -0.619208,
+          "tradesCount": 5,
+          "wins": 1,
+          "losses": 4,
+          "winRate": 20,
+          "profitFactor": 0.006935,
+          "maxDrawdown": 0.623533,
+          "maxDrawdownPct": 0.623533,
+          "totalVolume": 4.107694,
+          "totalNotional": 1000.461481,
+          "feesToVolumeRatio": 0.085245,
+          "netPnlToVolumeRatio": -0.150744,
+          "averageTradeDurationCandles": 1.4,
+          "tradesPerDay": 0.987197,
+          "averagePnLPerTrade": -0.123842,
+          "averageFeePerTrade": 0.070032,
+          "biggestWin": 0.004324,
+          "biggestLoss": -0.311089
+        },
+        "monthly": [
+          {
+            "monthIndex": 1,
+            "monthKey": "2026-01",
+            "startTime": "2026-01-25T11:47:15.000Z",
+            "endTime": "2026-01-30T13:20:37.499Z",
+            "startBalance": 100,
+            "endBalance": 99.380792,
+            "netPnL": -0.619208,
+            "netPnLPct": -0.619208,
+            "grossPnL": -0.269047,
+            "fees": 0.350162,
+            "tradesCount": 5,
+            "winRate": 20,
+            "profitFactor": 0.006935,
+            "maxDrawdownPct": 0.623533,
+            "volume": 1000.461481,
+            "averageTradePnL": -0.123842,
+            "isFullMonth": false
+          }
+        ],
+        "averageMonthlyReturnPct": -0.619208,
+        "worstMonthReturnPct": -0.619208,
+        "bestMonthReturnPct": -0.619208,
+        "averageR": -0.354532,
+        "oneTradeDominancePct": 0,
+        "byRegime": [
+          {
+            "regime": "TREND_UP",
+            "trades": 1,
+            "netPnL": -0.311089,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": -0.888826
+          },
+          {
+            "regime": "TREND_DOWN",
+            "trades": 3,
+            "netPnL": -0.312444,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": -0.298756
+          },
+          {
+            "regime": "RANGE",
+            "trades": 1,
+            "netPnL": 0.004324,
+            "winRate": 100,
+            "profitFactor": 999,
+            "averageR": 0.012433
+          },
+          {
+            "regime": "HIGH_VOLATILITY",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "LOW_VOLATILITY_COMPRESSION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TRANSITION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          }
+        ]
+      },
+      "outOfSample": {
+        "label": "SOLUSD_w1_oos",
+        "rangeStart": 1769779237500,
+        "rangeEnd": 1770800310000,
+        "metrics": {
+          "startBalance": 100,
+          "endBalance": 99.09602,
+          "grossPnL": 0.353789,
+          "totalFees": 1.257769,
+          "netPnL": -0.90398,
+          "netPnLPct": -0.90398,
+          "tradesCount": 22,
+          "wins": 10,
+          "losses": 12,
+          "winRate": 45.454545,
+          "profitFactor": 0.775036,
+          "maxDrawdown": 2.345692,
+          "maxDrawdownPct": 2.345692,
+          "totalVolume": 19.162768,
+          "totalNotional": 3593.625044,
+          "feesToVolumeRatio": 0.065636,
+          "netPnlToVolumeRatio": -0.047174,
+          "averageTradeDurationCandles": 3.772727,
+          "tradesPerDay": 1.861572,
+          "averagePnLPerTrade": -0.04109,
+          "averageFeePerTrade": 0.057171,
+          "biggestWin": 0.518633,
+          "biggestLoss": -0.448032
+        },
+        "monthly": [
+          {
+            "monthIndex": 1,
+            "monthKey": "2026-01",
+            "startTime": "2026-01-30T13:20:37.500Z",
+            "endTime": "2026-01-31T23:59:59.999Z",
+            "startBalance": 100,
+            "endBalance": 100.11078,
+            "netPnL": 0.11078,
+            "netPnLPct": 0.11078,
+            "grossPnL": 0.118445,
+            "fees": 0.007665,
+            "tradesCount": 1,
+            "winRate": 100,
+            "profitFactor": 999,
+            "maxDrawdownPct": 0,
+            "volume": 21.900822,
+            "averageTradePnL": 0.11078,
+            "isFullMonth": false
+          },
+          {
+            "monthIndex": 2,
+            "monthKey": "2026-02",
+            "startTime": "2026-02-01T00:00:00.000Z",
+            "endTime": "2026-02-11T08:58:29.999Z",
+            "startBalance": 100.11078,
+            "endBalance": 99.09602,
+            "netPnL": -1.01476,
+            "netPnLPct": -1.013637,
+            "grossPnL": 0.235344,
+            "fees": 1.250103,
+            "tradesCount": 21,
+            "winRate": 42.857143,
+            "profitFactor": 0.747467,
+            "maxDrawdownPct": 2.345692,
+            "volume": 3571.724222,
+            "averageTradePnL": -0.048322,
+            "isFullMonth": false
+          }
+        ],
+        "averageMonthlyReturnPct": -0.451428,
+        "worstMonthReturnPct": -1.013637,
+        "bestMonthReturnPct": 0.11078,
+        "averageR": -0.216375,
+        "oneTradeDominancePct": 0,
+        "byRegime": [
+          {
+            "regime": "TREND_UP",
+            "trades": 4,
+            "netPnL": -0.480143,
+            "winRate": 25,
+            "profitFactor": 0.504416,
+            "averageR": -0.342786
+          },
+          {
+            "regime": "TREND_DOWN",
+            "trades": 8,
+            "netPnL": -0.366939,
+            "winRate": 50,
+            "profitFactor": 0.712128,
+            "averageR": -0.129579
+          },
+          {
+            "regime": "RANGE",
+            "trades": 10,
+            "netPnL": -0.056898,
+            "winRate": 50,
+            "profitFactor": 0.967941,
+            "averageR": -0.235247
+          },
+          {
+            "regime": "HIGH_VOLATILITY",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "LOW_VOLATILITY_COMPRESSION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TRANSITION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          }
+        ]
+      }
+    },
+    {
+      "slice": {
+        "windowIndex": 2,
+        "trainStart": 1770800310000,
+        "trainEnd": 1772258985000,
+        "valEnd": 1772696587500,
+        "oosEnd": 1773717660000
+      },
+      "train": {
+        "label": "SOLUSD_w2_train",
+        "rangeStart": 1770800310000,
+        "rangeEnd": 1772258985000,
+        "metrics": {
+          "startBalance": 100,
+          "endBalance": 100.065658,
+          "grossPnL": 0.480238,
+          "totalFees": 0.41458,
+          "netPnL": 0.065658,
+          "netPnLPct": 0.065658,
+          "tradesCount": 6,
+          "wins": 3,
+          "losses": 3,
+          "winRate": 50,
+          "profitFactor": 1.073103,
+          "maxDrawdown": 0.449938,
+          "maxDrawdownPct": 0.449938,
+          "totalVolume": 7.264753,
+          "totalNotional": 1184.513373,
+          "feesToVolumeRatio": 0.057067,
+          "netPnlToVolumeRatio": 0.009038,
+          "averageTradeDurationCandles": 2.166667,
+          "tradesPerDay": 0.355391,
+          "averagePnLPerTrade": 0.010943,
+          "averageFeePerTrade": 0.069097,
+          "biggestWin": 0.798369,
+          "biggestLoss": -0.451689
+        },
+        "monthly": [
+          {
+            "monthIndex": 1,
+            "monthKey": "2026-02",
+            "startTime": "2026-02-11T08:58:30.000Z",
+            "endTime": "2026-02-28T06:09:44.999Z",
+            "startBalance": 100,
+            "endBalance": 100.065658,
+            "netPnL": 0.065658,
+            "netPnLPct": 0.065658,
+            "grossPnL": 0.480238,
+            "fees": 0.41458,
+            "tradesCount": 6,
+            "winRate": 50,
+            "profitFactor": 1.073103,
+            "maxDrawdownPct": 0.449938,
+            "volume": 1184.513373,
+            "averageTradePnL": 0.010943,
+            "isFullMonth": false
+          }
+        ],
+        "averageMonthlyReturnPct": 0.065658,
+        "worstMonthReturnPct": 0.065658,
+        "bestMonthReturnPct": 0.065658,
+        "averageR": 0.033699,
+        "oneTradeDominancePct": 1215.950364,
+        "byRegime": [
+          {
+            "regime": "TREND_UP",
+            "trades": 2,
+            "netPnL": 0.904202,
+            "winRate": 100,
+            "profitFactor": 999,
+            "averageR": 1.296408
+          },
+          {
+            "regime": "TREND_DOWN",
+            "trades": 1,
+            "netPnL": -0.037164,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": -0.106073
+          },
+          {
+            "regime": "RANGE",
+            "trades": 3,
+            "netPnL": -0.80138,
+            "winRate": 33.333333,
+            "profitFactor": 0.069241,
+            "averageR": -0.761516
+          },
+          {
+            "regime": "HIGH_VOLATILITY",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "LOW_VOLATILITY_COMPRESSION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TRANSITION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          }
+        ]
+      },
+      "validation": {
+        "label": "SOLUSD_w2_val",
+        "rangeStart": 1772258985000,
+        "rangeEnd": 1772696587500,
+        "metrics": {
+          "startBalance": 100,
+          "endBalance": 99.664205,
+          "grossPnL": 0.180603,
+          "totalFees": 0.516398,
+          "netPnL": -0.335795,
+          "netPnLPct": -0.335795,
+          "tradesCount": 6,
+          "wins": 2,
+          "losses": 4,
+          "winRate": 33.333333,
+          "profitFactor": 0.721072,
+          "maxDrawdown": 0.848306,
+          "maxDrawdownPct": 0.848306,
+          "totalVolume": 8.761711,
+          "totalNotional": 1475.421465,
+          "feesToVolumeRatio": 0.058938,
+          "netPnlToVolumeRatio": -0.038325,
+          "averageTradeDurationCandles": 1.833333,
+          "tradesPerDay": 1.184637,
+          "averagePnLPerTrade": -0.055966,
+          "averageFeePerTrade": 0.086066,
+          "biggestWin": 0.681364,
+          "biggestLoss": -0.440477
+        },
+        "monthly": [
+          {
+            "monthIndex": 1,
+            "monthKey": "2026-02",
+            "startTime": "2026-02-28T06:09:45.000Z",
+            "endTime": "2026-02-28T23:59:59.999Z",
+            "startBalance": 100,
+            "endBalance": 100.186716,
+            "netPnL": 0.186716,
+            "netPnLPct": 0.186716,
+            "grossPnL": 0.35,
+            "fees": 0.163284,
+            "tradesCount": 1,
+            "winRate": 100,
+            "profitFactor": 999,
+            "maxDrawdownPct": 0,
+            "volume": 466.524706,
+            "averageTradePnL": 0.186716,
+            "isFullMonth": false
+          },
+          {
+            "monthIndex": 2,
+            "monthKey": "2026-03",
+            "startTime": "2026-03-01T00:00:00.000Z",
+            "endTime": "2026-03-05T07:43:07.499Z",
+            "startBalance": 100.186716,
+            "endBalance": 99.664205,
+            "netPnL": -0.522511,
+            "netPnLPct": -0.521537,
+            "grossPnL": -0.169397,
+            "fees": 0.353114,
+            "tradesCount": 5,
+            "winRate": 20,
+            "profitFactor": 0.565976,
+            "maxDrawdownPct": 0.848306,
+            "volume": 1008.89676,
+            "averageTradePnL": -0.104502,
+            "isFullMonth": false
+          }
+        ],
+        "averageMonthlyReturnPct": -0.167411,
+        "worstMonthReturnPct": -0.521537,
+        "bestMonthReturnPct": 0.186716,
+        "averageR": -0.15787,
+        "oneTradeDominancePct": 0,
+        "byRegime": [
+          {
+            "regime": "TREND_UP",
+            "trades": 2,
+            "netPnL": -0.353985,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": -0.50578
+          },
+          {
+            "regime": "TREND_DOWN",
+            "trades": 1,
+            "netPnL": -0.440477,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": -1.261314
+          },
+          {
+            "regime": "RANGE",
+            "trades": 3,
+            "netPnL": 0.458667,
+            "winRate": 66.666667,
+            "profitFactor": 2.120305,
+            "averageR": 0.441885
+          },
+          {
+            "regime": "HIGH_VOLATILITY",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "LOW_VOLATILITY_COMPRESSION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TRANSITION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          }
+        ]
+      },
+      "outOfSample": {
+        "label": "SOLUSD_w2_oos",
+        "rangeStart": 1772696587500,
+        "rangeEnd": 1773717660000,
+        "metrics": {
+          "startBalance": 100,
+          "endBalance": 99.682189,
+          "grossPnL": -0.115359,
+          "totalFees": 0.202451,
+          "netPnL": -0.317811,
+          "netPnLPct": -0.317811,
+          "tradesCount": 2,
+          "wins": 1,
+          "losses": 1,
+          "winRate": 50,
+          "profitFactor": 0.297465,
+          "maxDrawdown": 0.451769,
+          "maxDrawdownPct": 0.451769,
+          "totalVolume": 3.242187,
+          "totalNotional": 578.432553,
+          "feesToVolumeRatio": 0.062443,
+          "netPnlToVolumeRatio": -0.098024,
+          "averageTradeDurationCandles": 1,
+          "tradesPerDay": 0.169234,
+          "averagePnLPerTrade": -0.158905,
+          "averageFeePerTrade": 0.101226,
+          "biggestWin": 0.134566,
+          "biggestLoss": -0.452377
+        },
+        "monthly": [
+          {
+            "monthIndex": 1,
+            "monthKey": "2026-03",
+            "startTime": "2026-03-05T07:43:07.500Z",
+            "endTime": "2026-03-17T03:20:59.999Z",
+            "startBalance": 100,
+            "endBalance": 99.682189,
+            "netPnL": -0.317811,
+            "netPnLPct": -0.317811,
+            "grossPnL": -0.115359,
+            "fees": 0.202451,
+            "tradesCount": 2,
+            "winRate": 50,
+            "profitFactor": 0.297465,
+            "maxDrawdownPct": 0.451769,
+            "volume": 578.432553,
+            "averageTradePnL": -0.158905,
+            "isFullMonth": false
+          }
+        ],
+        "averageMonthlyReturnPct": -0.317811,
+        "worstMonthReturnPct": -0.317811,
+        "bestMonthReturnPct": -0.317811,
+        "averageR": -0.453147,
+        "oneTradeDominancePct": 0,
+        "byRegime": [
+          {
+            "regime": "TREND_UP",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TREND_DOWN",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "RANGE",
+            "trades": 2,
+            "netPnL": -0.317811,
+            "winRate": 50,
+            "profitFactor": 0.297465,
+            "averageR": -0.453147
+          },
+          {
+            "regime": "HIGH_VOLATILITY",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "LOW_VOLATILITY_COMPRESSION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TRANSITION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          }
+        ]
+      }
+    },
+    {
+      "slice": {
+        "windowIndex": 3,
+        "trainStart": 1773717660000,
+        "trainEnd": 1775176335000,
+        "valEnd": 1775613937500,
+        "oosEnd": 1776635010000
+      },
+      "train": {
+        "label": "SOLUSD_w3_train",
+        "rangeStart": 1773717660000,
+        "rangeEnd": 1775176335000,
+        "metrics": {
+          "startBalance": 100,
+          "endBalance": 99.910815,
+          "grossPnL": 0.171896,
+          "totalFees": 0.261082,
+          "netPnL": -0.089185,
+          "netPnLPct": -0.089185,
+          "tradesCount": 3,
+          "wins": 1,
+          "losses": 2,
+          "winRate": 33.333333,
+          "profitFactor": 0.799104,
+          "maxDrawdown": 0.442368,
+          "maxDrawdownPct": 0.442368,
+          "totalVolume": 4.393779,
+          "totalNotional": 745.947733,
+          "feesToVolumeRatio": 0.059421,
+          "netPnlToVolumeRatio": -0.020298,
+          "averageTradeDurationCandles": 2.666667,
+          "tradesPerDay": 0.177696,
+          "averagePnLPerTrade": -0.029728,
+          "averageFeePerTrade": 0.087027,
+          "biggestWin": 0.354752,
+          "biggestLoss": -0.42335
+        },
+        "monthly": [
+          {
+            "monthIndex": 1,
+            "monthKey": "2026-03",
+            "startTime": "2026-03-17T03:21:00.000Z",
+            "endTime": "2026-03-31T23:59:59.999Z",
+            "startBalance": 100,
+            "endBalance": 100.334164,
+            "netPnL": 0.334164,
+            "netPnLPct": 0.334164,
+            "grossPnL": 0.523066,
+            "fees": 0.188902,
+            "tradesCount": 2,
+            "winRate": 50,
+            "profitFactor": 17.231635,
+            "maxDrawdownPct": 0.020514,
+            "volume": 539.718775,
+            "averageTradePnL": 0.167082,
+            "isFullMonth": false
+          },
+          {
+            "monthIndex": 2,
+            "monthKey": "2026-04",
+            "startTime": "2026-04-01T00:00:00.000Z",
+            "endTime": "2026-04-03T00:32:14.999Z",
+            "startBalance": 100.334164,
+            "endBalance": 99.910815,
+            "netPnL": -0.42335,
+            "netPnLPct": -0.42194,
+            "grossPnL": -0.35117,
+            "fees": 0.07218,
+            "tradesCount": 1,
+            "winRate": 0,
+            "profitFactor": 0,
+            "maxDrawdownPct": 0.42194,
+            "volume": 206.228957,
+            "averageTradePnL": -0.42335,
+            "isFullMonth": false
+          }
+        ],
+        "averageMonthlyReturnPct": -0.043888,
+        "worstMonthReturnPct": -0.42194,
+        "bestMonthReturnPct": 0.334164,
+        "averageR": -0.083526,
+        "oneTradeDominancePct": 0,
+        "byRegime": [
+          {
+            "regime": "TREND_UP",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TREND_DOWN",
+            "trades": 2,
+            "netPnL": -0.068598,
+            "winRate": 50,
+            "profitFactor": 0.837964,
+            "averageR": -0.095983
+          },
+          {
+            "regime": "RANGE",
+            "trades": 1,
+            "netPnL": -0.020587,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": -0.058613
+          },
+          {
+            "regime": "HIGH_VOLATILITY",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "LOW_VOLATILITY_COMPRESSION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TRANSITION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          }
+        ]
+      },
+      "validation": {
+        "label": "SOLUSD_w3_val",
+        "rangeStart": 1775176335000,
+        "rangeEnd": 1775613937500,
+        "metrics": {
+          "startBalance": 100,
+          "endBalance": 100,
+          "grossPnL": 0,
+          "totalFees": 0,
+          "netPnL": 0,
+          "netPnLPct": 0,
+          "tradesCount": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": 0,
+          "profitFactor": 0,
+          "maxDrawdown": 0,
+          "maxDrawdownPct": 0,
+          "totalVolume": 0,
+          "totalNotional": 0,
+          "feesToVolumeRatio": 0,
+          "netPnlToVolumeRatio": 0,
+          "averageTradeDurationCandles": 0,
+          "tradesPerDay": 0,
+          "averagePnLPerTrade": 0,
+          "averageFeePerTrade": 0,
+          "biggestWin": 0,
+          "biggestLoss": 0
+        },
+        "monthly": [
+          {
+            "monthIndex": 1,
+            "monthKey": "2026-04",
+            "startTime": "2026-04-03T00:32:15.000Z",
+            "endTime": "2026-04-08T02:05:37.499Z",
+            "startBalance": 100,
+            "endBalance": 100,
+            "netPnL": 0,
+            "netPnLPct": 0,
+            "grossPnL": 0,
+            "fees": 0,
+            "tradesCount": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "maxDrawdownPct": 0,
+            "volume": 0,
+            "averageTradePnL": 0,
+            "isFullMonth": false
+          }
+        ],
+        "averageMonthlyReturnPct": 0,
+        "worstMonthReturnPct": 0,
+        "bestMonthReturnPct": 0,
+        "averageR": 0,
+        "oneTradeDominancePct": 0,
+        "byRegime": [
+          {
+            "regime": "TREND_UP",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TREND_DOWN",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "RANGE",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "HIGH_VOLATILITY",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "LOW_VOLATILITY_COMPRESSION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TRANSITION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          }
+        ]
+      },
+      "outOfSample": {
+        "label": "SOLUSD_w3_oos",
+        "rangeStart": 1775613937500,
+        "rangeEnd": 1776635010000,
+        "metrics": {
+          "startBalance": 100,
+          "endBalance": 100,
+          "grossPnL": 0,
+          "totalFees": 0,
+          "netPnL": 0,
+          "netPnLPct": 0,
+          "tradesCount": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": 0,
+          "profitFactor": 0,
+          "maxDrawdown": 0,
+          "maxDrawdownPct": 0,
+          "totalVolume": 0,
+          "totalNotional": 0,
+          "feesToVolumeRatio": 0,
+          "netPnlToVolumeRatio": 0,
+          "averageTradeDurationCandles": 0,
+          "tradesPerDay": 0,
+          "averagePnLPerTrade": 0,
+          "averageFeePerTrade": 0,
+          "biggestWin": 0,
+          "biggestLoss": 0
+        },
+        "monthly": [
+          {
+            "monthIndex": 1,
+            "monthKey": "2026-04",
+            "startTime": "2026-04-08T02:05:37.500Z",
+            "endTime": "2026-04-19T21:43:29.999Z",
+            "startBalance": 100,
+            "endBalance": 100,
+            "netPnL": 0,
+            "netPnLPct": 0,
+            "grossPnL": 0,
+            "fees": 0,
+            "tradesCount": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "maxDrawdownPct": 0,
+            "volume": 0,
+            "averageTradePnL": 0,
+            "isFullMonth": false
+          }
+        ],
+        "averageMonthlyReturnPct": 0,
+        "worstMonthReturnPct": 0,
+        "bestMonthReturnPct": 0,
+        "averageR": 0,
+        "oneTradeDominancePct": 0,
+        "byRegime": [
+          {
+            "regime": "TREND_UP",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TREND_DOWN",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "RANGE",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "HIGH_VOLATILITY",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "LOW_VOLATILITY_COMPRESSION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TRANSITION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          }
+        ]
+      }
+    },
+    {
+      "slice": {
+        "windowIndex": 4,
+        "trainStart": 1776635010000,
+        "trainEnd": 1778093685000,
+        "valEnd": 1778531287500,
+        "oosEnd": 1779552360000
+      },
+      "train": {
+        "label": "SOLUSD_w4_train",
+        "rangeStart": 1776635010000,
+        "rangeEnd": 1778093685000,
+        "metrics": {
+          "startBalance": 100,
+          "endBalance": 100,
+          "grossPnL": 0,
+          "totalFees": 0,
+          "netPnL": 0,
+          "netPnLPct": 0,
+          "tradesCount": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": 0,
+          "profitFactor": 0,
+          "maxDrawdown": 0,
+          "maxDrawdownPct": 0,
+          "totalVolume": 0,
+          "totalNotional": 0,
+          "feesToVolumeRatio": 0,
+          "netPnlToVolumeRatio": 0,
+          "averageTradeDurationCandles": 0,
+          "tradesPerDay": 0,
+          "averagePnLPerTrade": 0,
+          "averageFeePerTrade": 0,
+          "biggestWin": 0,
+          "biggestLoss": 0
+        },
+        "monthly": [
+          {
+            "monthIndex": 1,
+            "monthKey": "2026-04",
+            "startTime": "2026-04-19T21:43:30.000Z",
+            "endTime": "2026-04-30T23:59:59.999Z",
+            "startBalance": 100,
+            "endBalance": 100,
+            "netPnL": 0,
+            "netPnLPct": 0,
+            "grossPnL": 0,
+            "fees": 0,
+            "tradesCount": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "maxDrawdownPct": 0,
+            "volume": 0,
+            "averageTradePnL": 0,
+            "isFullMonth": false
+          },
+          {
+            "monthIndex": 2,
+            "monthKey": "2026-05",
+            "startTime": "2026-05-01T00:00:00.000Z",
+            "endTime": "2026-05-06T18:54:44.999Z",
+            "startBalance": 100,
+            "endBalance": 100,
+            "netPnL": 0,
+            "netPnLPct": 0,
+            "grossPnL": 0,
+            "fees": 0,
+            "tradesCount": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "maxDrawdownPct": 0,
+            "volume": 0,
+            "averageTradePnL": 0,
+            "isFullMonth": false
+          }
+        ],
+        "averageMonthlyReturnPct": 0,
+        "worstMonthReturnPct": 0,
+        "bestMonthReturnPct": 0,
+        "averageR": 0,
+        "oneTradeDominancePct": 0,
+        "byRegime": [
+          {
+            "regime": "TREND_UP",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TREND_DOWN",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "RANGE",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "HIGH_VOLATILITY",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "LOW_VOLATILITY_COMPRESSION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TRANSITION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          }
+        ]
+      },
+      "validation": {
+        "label": "SOLUSD_w4_val",
+        "rangeStart": 1778093685000,
+        "rangeEnd": 1778531287500,
+        "metrics": {
+          "startBalance": 100,
+          "endBalance": 100,
+          "grossPnL": 0,
+          "totalFees": 0,
+          "netPnL": 0,
+          "netPnLPct": 0,
+          "tradesCount": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": 0,
+          "profitFactor": 0,
+          "maxDrawdown": 0,
+          "maxDrawdownPct": 0,
+          "totalVolume": 0,
+          "totalNotional": 0,
+          "feesToVolumeRatio": 0,
+          "netPnlToVolumeRatio": 0,
+          "averageTradeDurationCandles": 0,
+          "tradesPerDay": 0,
+          "averagePnLPerTrade": 0,
+          "averageFeePerTrade": 0,
+          "biggestWin": 0,
+          "biggestLoss": 0
+        },
+        "monthly": [
+          {
+            "monthIndex": 1,
+            "monthKey": "2026-05",
+            "startTime": "2026-05-06T18:54:45.000Z",
+            "endTime": "2026-05-11T20:28:07.499Z",
+            "startBalance": 100,
+            "endBalance": 100,
+            "netPnL": 0,
+            "netPnLPct": 0,
+            "grossPnL": 0,
+            "fees": 0,
+            "tradesCount": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "maxDrawdownPct": 0,
+            "volume": 0,
+            "averageTradePnL": 0,
+            "isFullMonth": false
+          }
+        ],
+        "averageMonthlyReturnPct": 0,
+        "worstMonthReturnPct": 0,
+        "bestMonthReturnPct": 0,
+        "averageR": 0,
+        "oneTradeDominancePct": 0,
+        "byRegime": [
+          {
+            "regime": "TREND_UP",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TREND_DOWN",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "RANGE",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "HIGH_VOLATILITY",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "LOW_VOLATILITY_COMPRESSION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TRANSITION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          }
+        ]
+      },
+      "outOfSample": {
+        "label": "SOLUSD_w4_oos",
+        "rangeStart": 1778531287500,
+        "rangeEnd": 1779552360000,
+        "metrics": {
+          "startBalance": 100,
+          "endBalance": 100,
+          "grossPnL": 0,
+          "totalFees": 0,
+          "netPnL": 0,
+          "netPnLPct": 0,
+          "tradesCount": 0,
+          "wins": 0,
+          "losses": 0,
+          "winRate": 0,
+          "profitFactor": 0,
+          "maxDrawdown": 0,
+          "maxDrawdownPct": 0,
+          "totalVolume": 0,
+          "totalNotional": 0,
+          "feesToVolumeRatio": 0,
+          "netPnlToVolumeRatio": 0,
+          "averageTradeDurationCandles": 0,
+          "tradesPerDay": 0,
+          "averagePnLPerTrade": 0,
+          "averageFeePerTrade": 0,
+          "biggestWin": 0,
+          "biggestLoss": 0
+        },
+        "monthly": [
+          {
+            "monthIndex": 1,
+            "monthKey": "2026-05",
+            "startTime": "2026-05-11T20:28:07.500Z",
+            "endTime": "2026-05-23T16:05:59.999Z",
+            "startBalance": 100,
+            "endBalance": 100,
+            "netPnL": 0,
+            "netPnLPct": 0,
+            "grossPnL": 0,
+            "fees": 0,
+            "tradesCount": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "maxDrawdownPct": 0,
+            "volume": 0,
+            "averageTradePnL": 0,
+            "isFullMonth": false
+          }
+        ],
+        "averageMonthlyReturnPct": 0,
+        "worstMonthReturnPct": 0,
+        "bestMonthReturnPct": 0,
+        "averageR": 0,
+        "oneTradeDominancePct": 0,
+        "byRegime": [
+          {
+            "regime": "TREND_UP",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TREND_DOWN",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "RANGE",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "HIGH_VOLATILITY",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "LOW_VOLATILITY_COMPRESSION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          },
+          {
+            "regime": "TRANSITION",
+            "trades": 0,
+            "netPnL": 0,
+            "winRate": 0,
+            "profitFactor": 0,
+            "averageR": 0
+          }
+        ]
+      }
+    }
+  ],
+  "tradeHistoryPath": "C:\\Users\\vygov\\OneDrive\\Desktop\\aiBacktesting\\data\\results\\trades\\ADAPTIVE_REGIME_4cc2dfbc1c7f.json",
+  "equityCurvePath": "C:\\Users\\vygov\\OneDrive\\Desktop\\aiBacktesting\\data\\results\\equity\\ADAPTIVE_REGIME_4cc2dfbc1c7f.csv"
+}

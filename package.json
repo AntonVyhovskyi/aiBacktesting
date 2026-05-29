@@ -1,0 +1,34 @@
+{
+  "name": "o1-backtesting",
+  "version": "1.0.0",
+  "private": true,
+  "description": "O1.xyz two-stage strategy discovery",
+  "scripts": {
+    "strategy-search": "tsx src/discovery/runTwoStageStrategySearch.ts",
+    "validate-best-strategy": "tsx src/discovery/validateBestStrategy.ts",
+    "atr-breakout-search": "tsx src/discovery/runAtrBreakoutDeepSearch.ts",
+    "autonomous-search": "tsx src/discovery/runAutonomousWeeklyVolumeSearch.ts",
+    "explain-autonomous-best": "tsx src/discovery/explainAutonomousBest.ts",
+    "bollinger-refine": "tsx src/discovery/runBollingerRefinement.ts",
+    "validate-bollinger-best": "tsx src/discovery/validateBollingerBest.ts",
+    "max-volume-10dd-search": "tsx src/discovery/runMaxVolume10DDSearch.ts",
+    "explain-ema-winner": "tsx src/discovery/explainEmaWinner.ts",
+    "stable-profit-search": "tsx src/discovery/runStableProfit6MSearch.ts",
+    "binance-refresh": "tsx src/discovery/runDataQualityRefresh.ts",
+    "data-quality-refresh": "tsx src/discovery/runDataQualityRefresh.ts",
+    "adaptive-regime-backtest": "tsx src/discovery/runAdaptiveRegimeBacktest.ts",
+    "binance-family-search": "tsx src/discovery/runBinanceFamilySearch.ts",
+    "ema-atr-winner-binance": "tsx src/discovery/runEmaAtrWinnerBinance.ts",
+    "explain-best-strategy": "node scripts/print-strategy-summary.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "technicalindicators": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.6",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

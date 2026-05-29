@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-05-23T13:58:58.155Z",
+  "target": {
+    "monthlyPct": 10,
+    "maxDdPct": 5
+  },
+  "results": [
+    {
+      "symbol": "SOLUSD",
+      "targetMet": false,
+      "full": {
+        "netPnLPct": 8.073773,
+        "avgMonthly": 3.158183,
+        "maxDd": 5.086408,
+        "pf": 1.197137,
+        "trades": 119
+      },
+      "oos": {
+        "netPnLPct": 1.849103,
+        "avgMonthly": 0.924552,
+        "maxDd": 5.415719
+      },
+      "params": {
+        "adxTrendMin": 22,
+        "adxRangeMax": 22,
+        "atrHighPct": 1.2,
+        "riskPct": 0.75,
+        "atrMult": 1.1,
+        "minRegimeConfidence": 0.5
+      },
+      "targetNotes": [
+        "validation_underperforms",
+        "oos_single_trade_dominance",
+        "full_period_dd_above_target",
+        "avg_monthly_below_target"
+      ]
+    }
+  ]
+}

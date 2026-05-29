@@ -1,0 +1,30 @@
+[
+  {
+    "direction": "long",
+    "entryTime": 1778774880000,
+    "entryPrice": 93.31,
+    "exitTime": 1778774880000,
+    "exitPrice": 93.31,
+    "qty": 53.58482478,
+    "grossPnL": 0,
+    "fees": 3.5,
+    "netPnL": -3.5,
+    "balanceAfter": 996.5,
+    "exitReason": "vwap_target",
+    "durationCandles": 1
+  },
+  {
+    "direction": "long",
+    "entryTime": 1778778000000,
+    "entryPrice": 93.27,
+    "exitTime": 1778778180000,
+    "exitPrice": 93.31,
+    "qty": 52.31703788,
+    "grossPnL": 2.09268152,
+    "fees": 3.41645952,
+    "netPnL": -1.323778,
+    "balanceAfter": 995.176222,
+    "exitReason": "vwap_target",
+    "durationCandles": 4
+  }
+]

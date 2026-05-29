@@ -1,0 +1,1 @@
+direction,entryTime,entryPrice,exitTime,exitPrice,qty,leverage,initialStopLoss,finalStopLoss,exitReason,grossPnL,fees,netPnL,balanceAfter,strengthPct,strengthCloses,highestClose,lowestClose,atrAtEntry,emaShortAtEntry,emaLongAtEntry

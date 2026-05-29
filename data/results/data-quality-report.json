@@ -1,0 +1,51 @@
+{
+  "generatedAt": "2026-05-23T18:21:37.333Z",
+  "reports": [
+    {
+      "symbol": "SOLUSD",
+      "cachePath": "C:\\Users\\vygov\\OneDrive\\Desktop\\aiBacktesting\\data\\cache\\SOLUSD_market2_1m_12m.json",
+      "count": 121929,
+      "spanDays": 171.58125,
+      "expectedCandles": 247078,
+      "coveragePct": 49.35,
+      "duplicateTimestamps": 0,
+      "gapCount": 31943,
+      "largestGapMinutes": 2233,
+      "missingEstimate": 125149,
+      "unordered": false,
+      "ok": true,
+      "reliable": false,
+      "warnings": [
+        "gaps=31943 largestGapMin=2233"
+      ],
+      "issues": [
+        "low_coverage=49.3% (need 85%)",
+        "too_many_gaps=31943",
+        "large_gap=2233min"
+      ]
+    },
+    {
+      "symbol": "ETHUSD",
+      "cachePath": "C:\\Users\\vygov\\OneDrive\\Desktop\\aiBacktesting\\data\\cache\\ETHUSD_market1_1m_12m.json",
+      "count": 162604,
+      "spanDays": 183.46041666666667,
+      "expectedCandles": 264184,
+      "coveragePct": 61.55,
+      "duplicateTimestamps": 0,
+      "gapCount": 18943,
+      "largestGapMinutes": 3936,
+      "missingEstimate": 101580,
+      "unordered": false,
+      "ok": true,
+      "reliable": false,
+      "warnings": [
+        "gaps=18943 largestGapMin=3936"
+      ],
+      "issues": [
+        "low_coverage=61.5% (need 85%)",
+        "too_many_gaps=18943",
+        "large_gap=3936min"
+      ]
+    }
+  ]
+}

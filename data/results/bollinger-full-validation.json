@@ -1,0 +1,406 @@
+{
+  "generatedAt": "2026-05-17T17:17:15.771Z",
+  "validationType": "bollinger_refinement_full_30d",
+  "strategyName": "BOLLINGER_MEAN_REVERSION",
+  "sourceRefinement": "C:\\Users\\vygov\\OneDrive\\Desktop\\aiBacktesting\\data\\results\\bollinger-refinement-final.json",
+  "params": {
+    "atrPeriod": 16,
+    "atrMult": 1.6,
+    "trailStart": 0.15,
+    "trailGap": 0.35,
+    "takeProfitPct": 0.25,
+    "breakEvenPct": 0,
+    "maxHoldCandles": 0,
+    "exitOnOppositeSignal": 1,
+    "cooldownCandles": 0,
+    "minAtrFilter": 0,
+    "minEmaDistancePct": 0,
+    "minMoveVsFeeMult": 0,
+    "minVolumeMult": 1,
+    "maxTradesPerDay": 30,
+    "bbPeriod": 20,
+    "bbStdDev": 1.8,
+    "riskPct": 1.5,
+    "leverage": 5,
+    "rsiConfirmPeriod": 0,
+    "rsiOversold": 30,
+    "rsiOverbought": 60,
+    "stopLossPct": 0
+  },
+  "paramDiffFromAutonomousBase": {
+    "atrPeriod": {
+      "from": 14,
+      "to": 16
+    },
+    "atrMult": {
+      "from": 1.2,
+      "to": 1.6
+    },
+    "trailStart": {
+      "from": 0.3,
+      "to": 0.15
+    },
+    "trailGap": {
+      "from": 0.4,
+      "to": 0.35
+    },
+    "takeProfitPct": {
+      "from": 0,
+      "to": 0.25
+    },
+    "minVolumeMult": {
+      "from": 1.2,
+      "to": 1
+    },
+    "bbStdDev": {
+      "from": 2,
+      "to": 1.8
+    },
+    "rsiOversold": {
+      "from": 35,
+      "to": 30
+    },
+    "rsiOverbought": {
+      "from": 65,
+      "to": 60
+    }
+  },
+  "execution": {
+    "symbol": "SOLUSD",
+    "marketId": 2,
+    "timeframe": "1m",
+    "backtestDays": 30,
+    "candleCount": 30236,
+    "initialBalance": 100,
+    "entryMode": "nextOpen",
+    "feeRate": 0.00035
+  },
+  "metrics": {
+    "averageWeeklyNotionalVolume": 12623.472243,
+    "totalNotionalVolume": 50493.88897,
+    "grossPnL": 15.183365,
+    "totalFees": 17.672861,
+    "netPnL": -2.489496,
+    "netPnLPct": -2.489496,
+    "tradesCount": 51,
+    "averageTradesPerDay": 1.715647,
+    "winRate": 49.019608,
+    "profitFactor": 0.8794,
+    "maxDrawdownPct": 7.739215,
+    "profitableWeeks": 0,
+    "losingWeeks": 1,
+    "nearBreakevenOrProfitableWeeks": 3
+  },
+  "targetCheck": {
+    "averageWeeklyNotionalVolume": {
+      "value": 12623.472243,
+      "required": 10000,
+      "passed": true
+    },
+    "averageTradesPerDay": {
+      "value": 1.715647,
+      "required": 2,
+      "passed": false
+    },
+    "stableWeeks": {
+      "value": "3/4",
+      "required": ">=3_of_4",
+      "passed": true
+    },
+    "netPnL": {
+      "value": -2.489496,
+      "required": 0,
+      "passed": false
+    },
+    "maxDrawdownPct": {
+      "value": 7.739215,
+      "required": 10,
+      "passed": true
+    },
+    "maxWeeklyDrawdownPct": {
+      "value": 7.739215,
+      "required": 25,
+      "passed": true
+    },
+    "profitFactor": {
+      "value": 0.8794,
+      "required": 0.9,
+      "passed": false
+    },
+    "feesVsGrossProfit": {
+      "value": "1.163962 (fees=17.672861 gross=15.183365)",
+      "required": "fees<=2x_gross",
+      "passed": true
+    },
+    "finalTargetAchieved": false,
+    "failedReasons": [
+      "averageTradesPerDay=1.715647 < 2",
+      "netPnL=-2.489496 < 0",
+      "profitFactor=0.8794 < 0.9"
+    ],
+    "refinementMaxDrawdownPct": {
+      "value": 7.739215,
+      "required": 10,
+      "passed": true
+    },
+    "refinementTargetAchieved": false
+  },
+  "weeklyConsistency": [
+    {
+      "weekIndex": 1,
+      "startTime": "2026-04-17T17:18:00.000Z",
+      "endTime": "2026-04-24T17:17:59.999Z",
+      "tradesCount": 51,
+      "notionalVolumeUsdc": 50493.88897,
+      "grossPnL": 15.183365,
+      "totalFees": 17.672861,
+      "netPnL": -2.489496,
+      "maxDrawdownPct": 7.739215,
+      "wins": 25,
+      "losses": 26,
+      "isFullWeek": true
+    },
+    {
+      "weekIndex": 2,
+      "startTime": "2026-04-24T17:18:00.000Z",
+      "endTime": "2026-05-01T17:17:59.999Z",
+      "tradesCount": 0,
+      "notionalVolumeUsdc": 0,
+      "grossPnL": 0,
+      "totalFees": 0,
+      "netPnL": 0,
+      "maxDrawdownPct": 0,
+      "wins": 0,
+      "losses": 0,
+      "isFullWeek": true
+    },
+    {
+      "weekIndex": 3,
+      "startTime": "2026-05-01T17:18:00.000Z",
+      "endTime": "2026-05-08T17:17:59.999Z",
+      "tradesCount": 0,
+      "notionalVolumeUsdc": 0,
+      "grossPnL": 0,
+      "totalFees": 0,
+      "netPnL": 0,
+      "maxDrawdownPct": 0,
+      "wins": 0,
+      "losses": 0,
+      "isFullWeek": true
+    },
+    {
+      "weekIndex": 4,
+      "startTime": "2026-05-08T17:18:00.000Z",
+      "endTime": "2026-05-15T17:17:59.999Z",
+      "tradesCount": 0,
+      "notionalVolumeUsdc": 0,
+      "grossPnL": 0,
+      "totalFees": 0,
+      "netPnL": 0,
+      "maxDrawdownPct": 0,
+      "wins": 0,
+      "losses": 0,
+      "isFullWeek": true
+    },
+    {
+      "weekIndex": 5,
+      "startTime": "2026-05-15T17:18:00.000Z",
+      "endTime": "2026-05-17T10:43:59.999Z",
+      "tradesCount": 0,
+      "notionalVolumeUsdc": 0,
+      "grossPnL": 0,
+      "totalFees": 0,
+      "netPnL": 0,
+      "maxDrawdownPct": 0,
+      "wins": 0,
+      "losses": 0,
+      "isFullWeek": false
+    }
+  ],
+  "dailySummary": [
+    {
+      "date": "2026-04-17",
+      "tradesCount": 21,
+      "notionalVolumeUsdc": 20832.661627899837,
+      "grossPnL": 7.18703107,
+      "totalFees": 7.291431540000001,
+      "netPnL": -0.1044004700000003,
+      "wins": 10,
+      "losses": 11
+    },
+    {
+      "date": "2026-04-18",
+      "tradesCount": 30,
+      "notionalVolumeUsdc": 29661.227341645834,
+      "grossPnL": 7.9963340999999994,
+      "totalFees": 10.38142961,
+      "netPnL": -2.3850955099999993,
+      "wins": 15,
+      "losses": 15
+    }
+  ],
+  "bestTrades": [
+    {
+      "direction": "short",
+      "entryTime": "2026-04-18T08:58:00.000Z",
+      "exitTime": "2026-04-18T09:09:00.000Z",
+      "entryPrice": 87.59,
+      "exitPrice": 87.25,
+      "qty": 5.41025522,
+      "notionalUsdc": 945.929023,
+      "grossPnL": 1.83948677,
+      "fees": 0.33107516,
+      "netPnL": 1.50841161,
+      "exitReason": "take_profit",
+      "durationCandles": 10
+    },
+    {
+      "direction": "long",
+      "entryTime": "2026-04-17T23:23:00.000Z",
+      "exitTime": "2026-04-17T23:31:00.000Z",
+      "entryPrice": 88.64,
+      "exitPrice": 88.95,
+      "qty": 5.55721346,
+      "notionalUsdc": 986.905538,
+      "grossPnL": 1.72273617,
+      "fees": 0.34541694,
+      "netPnL": 1.37731923,
+      "exitReason": "take_profit",
+      "durationCandles": 7
+    },
+    {
+      "direction": "short",
+      "entryTime": "2026-04-18T03:52:00.000Z",
+      "exitTime": "2026-04-18T03:53:00.000Z",
+      "entryPrice": 88.86,
+      "exitPrice": 88.57,
+      "qty": 5.67819769,
+      "notionalUsdc": 1007.482616,
+      "grossPnL": 1.64667733,
+      "fees": 0.35261892,
+      "netPnL": 1.29405841,
+      "exitReason": "take_profit",
+      "durationCandles": 2
+    },
+    {
+      "direction": "long",
+      "entryTime": "2026-04-17T20:32:00.000Z",
+      "exitTime": "2026-04-17T20:49:00.000Z",
+      "entryPrice": 88.64,
+      "exitPrice": 88.93,
+      "qty": 5.53776157,
+      "notionalUsdc": 983.340322,
+      "grossPnL": 1.60595086,
+      "fees": 0.34416911,
+      "netPnL": 1.26178175,
+      "exitReason": "take_profit",
+      "durationCandles": 13
+    },
+    {
+      "direction": "short",
+      "entryTime": "2026-04-18T00:57:00.000Z",
+      "exitTime": "2026-04-18T01:01:00.000Z",
+      "entryPrice": 89.12,
+      "exitPrice": 88.85,
+      "qty": 5.64420609,
+      "notionalUsdc": 1004.499358,
+      "grossPnL": 1.52393564,
+      "fees": 0.35157478,
+      "netPnL": 1.17236086,
+      "exitReason": "take_profit",
+      "durationCandles": 5
+    }
+  ],
+  "worstTrades": [
+    {
+      "direction": "long",
+      "entryTime": "2026-04-18T08:36:00.000Z",
+      "exitTime": "2026-04-18T08:37:00.000Z",
+      "entryPrice": 87.42,
+      "exitPrice": 87.24032814232534,
+      "qty": 5.46864769,
+      "notionalUsdc": 955.1558,
+      "grossPnL": -0.98256209,
+      "fees": 0.33430453,
+      "netPnL": -1.31686662,
+      "exitReason": "stop",
+      "durationCandles": 2
+    },
+    {
+      "direction": "long",
+      "entryTime": "2026-04-17T18:08:00.000Z",
+      "exitTime": "2026-04-17T18:09:00.000Z",
+      "entryPrice": 89.36,
+      "exitPrice": 89.19667376734911,
+      "qty": 5.57001797,
+      "notionalUsdc": 994.563882,
+      "grossPnL": -0.90973005,
+      "fees": 0.34809736,
+      "netPnL": -1.25782741,
+      "exitReason": "stop",
+      "durationCandles": 2
+    },
+    {
+      "direction": "long",
+      "entryTime": "2026-04-18T08:23:00.000Z",
+      "exitTime": "2026-04-18T08:34:00.000Z",
+      "entryPrice": 87.76,
+      "exitPrice": 87.60468758393661,
+      "qty": 5.51555389,
+      "notionalUsdc": 967.233385,
+      "grossPnL": -0.856634,
+      "fees": 0.33853168,
+      "netPnL": -1.19516568,
+      "exitReason": "stop",
+      "durationCandles": 10
+    },
+    {
+      "direction": "long",
+      "entryTime": "2026-04-17T21:38:00.000Z",
+      "exitTime": "2026-04-17T21:39:00.000Z",
+      "entryPrice": 89.02,
+      "exitPrice": 88.89251751479426,
+      "qty": 5.58423169,
+      "notionalUsdc": 993.504718,
+      "grossPnL": -0.71189173,
+      "fees": 0.34772665,
+      "netPnL": -1.05961838,
+      "exitReason": "stop",
+      "durationCandles": 2
+    },
+    {
+      "direction": "long",
+      "entryTime": "2026-04-17T20:28:00.000Z",
+      "exitTime": "2026-04-17T20:30:00.000Z",
+      "entryPrice": 89.17,
+      "exitPrice": 89.04495099437835,
+      "qty": 5.6168922,
+      "notionalUsdc": 1001.014168,
+      "grossPnL": -0.70238678,
+      "fees": 0.35035496,
+      "netPnL": -1.05274174,
+      "exitReason": "stop",
+      "durationCandles": 3
+    }
+  ],
+  "diagnostics": {
+    "signalCount": 2264,
+    "crossoverCount": 0,
+    "entriesAllowed": 2264,
+    "tradesOpened": 51,
+    "skippedByFilter": 2213,
+    "skippedByRisk": 0,
+    "skippedByMargin": 0,
+    "skippedInvalidStop": 0,
+    "exitsByStopLoss": 22,
+    "exitsByTrailing": 1,
+    "exitsBySignal": 19,
+    "exitsByEndOfData": 0,
+    "exitsByTakeProfit": 9,
+    "exitsByMaxHold": 0
+  },
+  "verdict": "LOW_SIGNAL_FREQUENCY",
+  "verdictReasons": [
+    "100% of trades in week 1; avg trades/day=1.72."
+  ]
+}
