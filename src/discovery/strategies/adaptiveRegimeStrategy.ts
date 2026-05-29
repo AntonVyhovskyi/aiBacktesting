@@ -145,6 +145,26 @@ const tryRegimeEntry = (
   const minVolRatio = num(p, "minVolumeMult", 0);
   if (minVolRatio > 0 && snap.diagnostics.volumeRatio < minVolRatio) return;
 
+  const body = Math.abs(c.close - c.open);
+  const candleRange = Math.max(c.high - c.low, 1e-9);
+  const bodyToRange = body / candleRange;
+  const bodyAtrPct = atr > 0 ? body / atr : 0;
+  const bullishBody = c.close > c.open;
+  const bearishBody = c.close < c.open;
+  const minBodyToRange = num(p, "minTrendBodyToRange", 0.45);
+  const minBodyAtrPct = num(p, "minTrendBodyAtrPct", 0.15);
+  const minImpulseVolumeRatio = num(p, "minImpulseVolumeRatio", 1.2);
+  const candleQualityLong =
+    bullishBody &&
+    bodyToRange >= minBodyToRange &&
+    bodyAtrPct >= minBodyAtrPct &&
+    snap.diagnostics.volumeRatio >= minImpulseVolumeRatio;
+  const candleQualityShort =
+    bearishBody &&
+    bodyToRange >= minBodyToRange &&
+    bodyAtrPct >= minBodyAtrPct &&
+    snap.diagnostics.volumeRatio >= minImpulseVolumeRatio;
+
   const risk = baseRisk * regimeRiskMultiplier(regime, p, snap.diagnostics);
   if (risk <= 0.05) return;
 
@@ -166,7 +186,7 @@ const tryRegimeEntry = (
     const recentHigh = Math.max(...ctx.cache.highs.slice(Math.max(0, i - lookback), i));
     const earlyPullback = close <= emaF * (1 + pull) && close >= emaF * (1 - pull * 2);
     const earlyBreakout = close > recentHigh + atr * breakoutAtr;
-    if ((earlyPullback || earlyBreakout) && close > emaS && rsi > 40 && rsi < 72) {
+    if ((earlyPullback || earlyBreakout) && candleQualityLong && close > emaS && rsi > 40 && rsi < 72) {
       dir = "long";
       stop = close - atr * num(p, "trendStopMult", atrM);
     }
@@ -183,7 +203,7 @@ const tryRegimeEntry = (
     const recentLow = Math.min(...ctx.cache.lows.slice(Math.max(0, i - lookback), i));
     const earlyPullback = close >= emaF * (1 - pull) && close <= emaF * (1 + pull * 2);
     const earlyBreakout = close < recentLow - atr * breakoutAtr;
-    if ((earlyPullback || earlyBreakout) && close < emaS && rsi < 60 && rsi > 28) {
+    if ((earlyPullback || earlyBreakout) && candleQualityShort && close < emaS && rsi < 60 && rsi > 28) {
       dir = "short";
       stop = close + atr * num(p, "trendStopMult", atrM);
     }
