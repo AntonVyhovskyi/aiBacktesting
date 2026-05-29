@@ -11,7 +11,6 @@
     "explain-autonomous-best": "tsx src/discovery/explainAutonomousBest.ts",
     "bollinger-refine": "tsx src/discovery/runBollingerRefinement.ts",
     "validate-bollinger-best": "tsx src/discovery/validateBollingerBest.ts",
-    "validate-bollinger-no-loss-6m": "tsx src/discovery/validateBollingerNoLoss6M.ts",
     "max-volume-10dd-search": "tsx src/discovery/runMaxVolume10DDSearch.ts",
     "explain-ema-winner": "tsx src/discovery/explainEmaWinner.ts",
     "stable-profit-search": "tsx src/discovery/runStableProfit6MSearch.ts",
@@ -19,6 +18,7 @@
     "data-quality-refresh": "tsx src/discovery/runDataQualityRefresh.ts",
     "adaptive-regime-backtest": "tsx src/discovery/runAdaptiveRegimeBacktest.ts",
     "binance-family-search": "tsx src/discovery/runBinanceFamilySearch.ts",
+    "binance-no-loss-volume-search": "tsx src/discovery/runBinanceNoLossVolumeSearch.ts",
     "ema-atr-winner-binance": "tsx src/discovery/runEmaAtrWinnerBinance.ts",
     "explain-best-strategy": "node scripts/print-strategy-summary.js",
     "typecheck": "tsc --noEmit"
