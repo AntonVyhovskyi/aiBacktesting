@@ -29,8 +29,6 @@ const DEFAULTS: Record<string, number | string> = {
   riskPct: 0.5,
   leverage: 3,
   riskMultTrend: 1,
-  riskMultTrendMax: 1.8,
-  trendStrengthRiskBoost: 0.8,
   riskMultRange: 0.7,
   riskMultHighVol: 0,
   riskMultCompression: 0,
@@ -49,10 +47,6 @@ const DEFAULTS: Record<string, number | string> = {
   trendTrailStart: 0.2,
   trendTrailGap: 0.35,
   trendBreakEvenPct: 0.2,
-  trendLookback: 8,
-  trendBreakoutMult: 1.2,
-  trendStopMult: 0.6,
-  minTrendStrengthToTrade: 0.25,
   maxPortfolioDrawdownPct: 5,
   maxDailyLossPct: 2,
   maxTradesPerDay: 20,
@@ -160,30 +154,36 @@ const tryRegimeEntry = (
   if (regime === "HIGH_VOLATILITY") return;
 
   if (regime === "TREND_UP") {
-    if (snap.diagnostics.trendStrength < num(p, "minTrendStrengthToTrade", 0.25)) return;
+    if (snap.diagnostics.trendStrength < num(p, "minTrendStrengthToTrade", 0.2)) return;
+    const pull = num(p, "earlyTrendPullbackPct", num(p, "pullbackPct", 0.35)) / 100;
     const ext = num(p, "maxTrendExtensionPct", 1.5) / 100;
     if (emaS > 0 && (close - emaS) / emaS > ext) return;
     const adxNow = snap.diagnostics.adx;
     const adxPrev = ctx.cache.adx.get(num(p, "adxPeriod", 14))?.[i - 5];
     if (fin(adxPrev) && adxNow < adxPrev!) return;
-    const lookback = num(p, "trendLookback", 8);
-    const breakoutMult = num(p, "trendBreakoutMult", 1.2);
+    const lookback = num(p, "earlyTrendBreakoutLookback", 3);
+    const breakoutAtr = num(p, "earlyTrendBreakoutAtrMult", 0.25);
     const recentHigh = Math.max(...ctx.cache.highs.slice(Math.max(0, i - lookback), i));
-    if (close > recentHigh + atr * breakoutMult && close > emaF && rsi > 45 && rsi < 75) {
+    const earlyPullback = close <= emaF * (1 + pull) && close >= emaF * (1 - pull * 2);
+    const earlyBreakout = close > recentHigh + atr * breakoutAtr;
+    if ((earlyPullback || earlyBreakout) && close > emaS && rsi > 40 && rsi < 72) {
       dir = "long";
       stop = close - atr * num(p, "trendStopMult", atrM);
     }
   } else if (regime === "TREND_DOWN") {
-    if (snap.diagnostics.trendStrength < num(p, "minTrendStrengthToTrade", 0.25)) return;
+    if (snap.diagnostics.trendStrength < num(p, "minTrendStrengthToTrade", 0.2)) return;
+    const pull = num(p, "earlyTrendPullbackPct", num(p, "pullbackPct", 0.35)) / 100;
     const ext = num(p, "maxTrendExtensionPct", 1.5) / 100;
     if (emaS > 0 && (emaS - close) / emaS > ext) return;
     const adxNow = snap.diagnostics.adx;
     const adxPrev = ctx.cache.adx.get(num(p, "adxPeriod", 14))?.[i - 5];
     if (fin(adxPrev) && adxNow < adxPrev!) return;
-    const lookback = num(p, "trendLookback", 8);
-    const breakoutMult = num(p, "trendBreakoutMult", 1.2);
+    const lookback = num(p, "earlyTrendBreakoutLookback", 3);
+    const breakoutAtr = num(p, "earlyTrendBreakoutAtrMult", 0.25);
     const recentLow = Math.min(...ctx.cache.lows.slice(Math.max(0, i - lookback), i));
-    if (close < recentLow - atr * breakoutMult && close < emaF && rsi < 55 && rsi > 25) {
+    const earlyPullback = close >= emaF * (1 - pull) && close <= emaF * (1 + pull * 2);
+    const earlyBreakout = close < recentLow - atr * breakoutAtr;
+    if ((earlyPullback || earlyBreakout) && close < emaS && rsi < 60 && rsi > 28) {
       dir = "short";
       stop = close + atr * num(p, "trendStopMult", atrM);
     }
@@ -192,10 +192,11 @@ const tryRegimeEntry = (
     const vwapDist = num(p, "rangeVwapDistPct", 0.15) / 100;
     const os = num(p, "rsiOversold", 30);
     const ob = num(p, "rsiOverbought", 70);
-    if (rsi <= os && close <= bbL * 1.001 && close < vwap! * (1 - vwapDist)) {
+    const bandBuffer = num(p, "rangeBandBufferPct", 0.15) / 100;
+    if (rsi <= os + 5 && close <= bbL * (1 + bandBuffer) && close < vwap! * (1 - vwapDist * 0.5)) {
       dir = "long";
       stop = close - atr * atrM;
-    } else if (rsi >= ob && close >= bbU * 0.999 && close > vwap! * (1 + vwapDist)) {
+    } else if (rsi >= ob - 5 && close >= bbU * (1 - bandBuffer) && close > vwap! * (1 + vwapDist * 0.5)) {
       dir = "short";
       stop = close + atr * atrM;
     }
