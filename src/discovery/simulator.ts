@@ -64,13 +64,14 @@ export const createSim = (balance: number, params: Record<string, number | strin
 
 const dayKey = (t: number) => new Date(t).toISOString().slice(0, 10);
 
-const canEnter = (state: SimState, index: number): boolean => {
+const canEnter = (state: SimState, index: number, openTime: number): boolean => {
   if (index < state.cooldownUntil) {
     state.diagnostics.skippedByFilter += 1;
     return false;
   }
   const maxPerDay = num(state.activeParams, "maxTradesPerDay", 999);
-  if (maxPerDay < 999 && (state.tradesToday.get(state.lastDayKey) ?? 0) >= maxPerDay) {
+  const currentDayKey = dayKey(openTime);
+  if (maxPerDay < 999 && (state.tradesToday.get(currentDayKey) ?? 0) >= maxPerDay) {
     state.diagnostics.skippedByFilter += 1;
     return false;
   }
@@ -141,7 +142,7 @@ export const tryOpen = (
   feeRate: number,
   meta?: { entryRegime?: string }
 ): boolean => {
-  if (!canEnter(state, index)) return false;
+  if (!canEnter(state, index, candle.openTime)) return false;
   if (Math.abs(entry - stop) <= 0) {
     state.diagnostics.skippedInvalidStop += 1;
     return false;
