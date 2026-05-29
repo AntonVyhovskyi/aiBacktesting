@@ -1,6 +1,6 @@
 # No-Loss Volume Strategy Report
 
-Generated: 2026-05-29T10:31:08.802Z
+Generated from source artifact: 2026-05-17T16:47:17.615Z
 
 ## Recommendation
 

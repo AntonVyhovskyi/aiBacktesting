@@ -8,6 +8,7 @@ const sourceFiles = [
   "data/results/autonomous-weekly-volume-search-final.json",
   "data/results/max-monthly-volume-10dd-search-final.json",
 ];
+const sourceGeneratedAt = new Map();
 
 const round = (value, digits = 6) => {
   if (typeof value !== "number" || !Number.isFinite(value)) return value;
@@ -97,6 +98,7 @@ const loadRows = () => {
     const abs = path.join(root, rel);
     if (!fs.existsSync(abs)) continue;
     const data = JSON.parse(fs.readFileSync(abs, "utf8"));
+    if (typeof data.generatedAt === "string") sourceGeneratedAt.set(rel, data.generatedAt);
     collectCandidates(data, rel, [], rows);
   }
   return rows;
@@ -169,9 +171,11 @@ const leaderboard = top
   )
   .join("\n");
 
+const reportGeneratedAt = sourceGeneratedAt.get(best.sourceFile) ?? "unknown";
+
 const report = `# No-Loss Volume Strategy Report
 
-Generated: ${new Date().toISOString()}
+Generated from source artifact: ${reportGeneratedAt}
 
 ## Recommendation
 
