@@ -301,7 +301,7 @@ const main = async () => {
     "# Adaptive Regime — Walk-Forward Report",
     "",
     `Source: **${BINANCE_FUTURES_SOURCE}**`,
-    `Generated: ${new Date().toISOString()}`,
+    `Generated: ${new Date(endTimeMs).toISOString()}`,
     "",
     "## Data quality",
     "",
@@ -378,7 +378,7 @@ const main = async () => {
   fs.writeFileSync(reportPath, reportMd);
   writeJson(candidatesPath, {
     source: BINANCE_FUTURES_SOURCE,
-    generatedAt: new Date().toISOString(),
+    generatedAt: new Date(endTimeMs).toISOString(),
     dataReliable,
     targetMonthly: TARGET_MONTHLY,
     targetMaxDd: TARGET_DD,
@@ -387,7 +387,7 @@ const main = async () => {
   });
   writeJson(finalPath, {
     source: BINANCE_FUTURES_SOURCE,
-    generatedAt: new Date().toISOString(),
+    generatedAt: new Date(endTimeMs).toISOString(),
     dataReliable,
     recommendation: rec,
     targetMet: targetHit,

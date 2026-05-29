@@ -11,7 +11,7 @@ Best candidate: **ATR_VOLATILITY_BREAKOUT 15m** with **15.732320 USDC** net PnL 
 - Source: **BINANCE_FUTURES**
 - Hard pass: netPnL >= 0, profitFactor >= 1, maxDrawdown <= 20%, trades >= 10
 - Fee gate profiles: minMoveVsFeeMult 4-12, volume filters 1.0-2.0, cooldown and daily caps to avoid fee death
-- Tested variants: 9792
+- Tested variants: 9816
 
 ## Best no-loss candidate
 

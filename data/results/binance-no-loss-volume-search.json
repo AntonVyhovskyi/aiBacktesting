@@ -27,7 +27,7 @@
     "warnings": [],
     "issues": []
   },
-  "testedVariants": 9792,
+  "testedVariants": 9816,
   "constraints": {
     "netPnL": ">=0",
     "profitFactor": ">=1",
