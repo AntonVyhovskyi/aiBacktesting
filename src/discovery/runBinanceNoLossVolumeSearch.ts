@@ -409,7 +409,7 @@ const main = async () => {
       : undefined;
 
   const payload = {
-    generatedAt: new Date().toISOString(),
+    generatedAt: new Date(endTimeMs).toISOString(),
     source: BINANCE_FUTURES_SOURCE,
     symbol,
     months,
