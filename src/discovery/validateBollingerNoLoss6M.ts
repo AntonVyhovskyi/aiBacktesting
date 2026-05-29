@@ -1,6 +1,7 @@
 import "dotenv/config";
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 import {
   BINANCE_FUTURES_SOURCE,
   BinanceCacheMissingError,
@@ -9,7 +10,7 @@ import {
 } from "../backtest/fetchBinanceFuturesCandles.js";
 import { resolveStrategyCandles } from "../backtest/candleTimeframe.js";
 import { buildDiscoveryIndicatorCache } from "./indicatorCache.js";
-import { writeJson, exportArtifacts } from "./progressive/output.js";
+import { writeJson } from "./progressive/output.js";
 import { mergeParams } from "./grids.js";
 import { bollingerMeanReversion } from "./strategies/bollingerMeanReversion.js";
 import { COMMON_DEFAULTS } from "./strategies/phasedGrids.js";
@@ -64,6 +65,28 @@ const tradeSummary = (t: DiscoveryTrade) => ({
   exitReason: t.exitReason,
   durationCandles: t.durationCandles,
 });
+
+const artifactId = (result: StrategyBacktestResult): string =>
+  crypto
+    .createHash("md5")
+    .update(`binance-6m:${result.strategyName}:${JSON.stringify(result.params)}`)
+    .digest("hex")
+    .slice(0, 12);
+
+const exportBinanceArtifacts = (result: StrategyBacktestResult, outputDir: string) => {
+  const tradesDir = path.join(outputDir, "trades");
+  const equityDir = path.join(outputDir, "equity");
+  fs.mkdirSync(tradesDir, { recursive: true });
+  fs.mkdirSync(equityDir, { recursive: true });
+  const id = artifactId(result);
+  const tradeHistoryPath = path.join(tradesDir, `BINANCE_${result.strategyName}_6M_${id}.json`);
+  const equityCurvePath = path.join(equityDir, `BINANCE_${result.strategyName}_6M_${id}.csv`);
+  fs.writeFileSync(tradeHistoryPath, JSON.stringify(result.trades, null, 2));
+  const lines = ["time,balance", `${result.metrics.startBalance},${result.metrics.startBalance}`];
+  for (const t of result.trades) lines.push(`${t.exitTime},${t.balanceAfter}`);
+  fs.writeFileSync(equityCurvePath, lines.join("\n"));
+  return { tradeHistoryPath, equityCurvePath };
+};
 
 const buildDailyMetrics = (trades: DiscoveryTrade[]) => {
   const byDay = new Map<
@@ -149,7 +172,7 @@ const buildMarkdownReport = (payload: {
   symbol: string;
   timeframe: string;
   cachePath: string;
-  quality: { coveragePct: number; reliable: boolean; gaps: number; largestGapMinutes: number };
+  quality: { coveragePct: number; reliable: boolean; gapCount: number; largestGapMinutes: number };
   candleCount: number;
   candleRange: { start: string; end: string };
   params: Record<string, number | string>;
@@ -204,7 +227,7 @@ This validates the fixed **BOLLINGER_MEAN_REVERSION** candidate from \`no-loss-v
 | Cache | \`${payload.cachePath}\` |
 | Coverage | ${payload.quality.coveragePct}% |
 | Reliable data | ${payload.quality.reliable ? "yes" : "no"} |
-| Gaps | ${payload.quality.gaps} |
+| Gaps | ${payload.quality.gapCount} |
 | Largest gap | ${payload.quality.largestGapMinutes} min |
 | Start balance | ${m.startBalance.toFixed(2)} USDC |
 | Fee rate | ${(envNum(process.env.BACKTEST_FEE_RATE, 0.00035) * 100).toFixed(4)}% per side |
@@ -286,7 +309,7 @@ const main = async () => {
   });
   if (!load.quality.reliable) {
     console.warn(
-      `[BINANCE] data quality warning: coverage=${load.quality.coveragePct}% gaps=${load.quality.gaps}`
+      `[BINANCE] data quality warning: coverage=${load.quality.coveragePct}% gaps=${load.quality.gapCount}`
     );
   }
 
@@ -308,7 +331,7 @@ const main = async () => {
   });
   const weekly = evaluateAutonomousVariant(result, rangeStart, rangeEnd, initialBalance);
   const stable = evaluateStableProfit(result, rangeStart, rangeEnd, initialBalance);
-  const paths = exportArtifacts(result, outputDir);
+  const paths = exportBinanceArtifacts(result, outputDir);
   const sorted = [...result.trades].sort((a, b) => b.netPnL - a.netPnL);
 
   const payload = {
@@ -355,7 +378,7 @@ const main = async () => {
       quality: {
         coveragePct: load.quality.coveragePct,
         reliable: load.quality.reliable,
-        gaps: load.quality.gaps,
+        gapCount: load.quality.gapCount,
         largestGapMinutes: load.quality.largestGapMinutes,
       },
       candleCount: candles.length,
