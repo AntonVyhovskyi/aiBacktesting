@@ -20,6 +20,7 @@
     "binance-family-search": "tsx src/discovery/runBinanceFamilySearch.ts",
     "ema-atr-winner-binance": "tsx src/discovery/runEmaAtrWinnerBinance.ts",
     "explain-best-strategy": "node scripts/print-strategy-summary.js",
+    "no-loss-volume-report": "node scripts/print-no-loss-volume-summary.js",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
