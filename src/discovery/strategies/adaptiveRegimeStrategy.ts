@@ -49,6 +49,9 @@ const DEFAULTS: Record<string, number | string> = {
   trendTrailStart: 0.2,
   trendTrailGap: 0.35,
   trendBreakEvenPct: 0.2,
+  trendLookback: 8,
+  trendBreakoutMult: 1.2,
+  trendStopMult: 0.6,
   minTrendStrengthToTrade: 0.25,
   maxPortfolioDrawdownPct: 5,
   maxDailyLossPct: 2,
@@ -158,27 +161,31 @@ const tryRegimeEntry = (
 
   if (regime === "TREND_UP") {
     if (snap.diagnostics.trendStrength < num(p, "minTrendStrengthToTrade", 0.25)) return;
-    const pull = num(p, "pullbackPct", 0.2) / 100;
     const ext = num(p, "maxTrendExtensionPct", 1.5) / 100;
     if (emaS > 0 && (close - emaS) / emaS > ext) return;
     const adxNow = snap.diagnostics.adx;
     const adxPrev = ctx.cache.adx.get(num(p, "adxPeriod", 14))?.[i - 5];
     if (fin(adxPrev) && adxNow < adxPrev!) return;
-    if (close <= emaF * (1 + pull) && close >= emaF * (1 - pull * 2) && rsi > 42 && rsi < 58) {
+    const lookback = num(p, "trendLookback", 8);
+    const breakoutMult = num(p, "trendBreakoutMult", 1.2);
+    const recentHigh = Math.max(...ctx.cache.highs.slice(Math.max(0, i - lookback), i));
+    if (close > recentHigh + atr * breakoutMult && close > emaF && rsi > 45 && rsi < 75) {
       dir = "long";
-      stop = close - atr * atrM;
+      stop = close - atr * num(p, "trendStopMult", atrM);
     }
   } else if (regime === "TREND_DOWN") {
     if (snap.diagnostics.trendStrength < num(p, "minTrendStrengthToTrade", 0.25)) return;
-    const pull = num(p, "pullbackPct", 0.2) / 100;
     const ext = num(p, "maxTrendExtensionPct", 1.5) / 100;
     if (emaS > 0 && (emaS - close) / emaS > ext) return;
     const adxNow = snap.diagnostics.adx;
     const adxPrev = ctx.cache.adx.get(num(p, "adxPeriod", 14))?.[i - 5];
     if (fin(adxPrev) && adxNow < adxPrev!) return;
-    if (close >= emaF * (1 - pull) && close <= emaF * (1 + pull * 2) && rsi < 58 && rsi > 42) {
+    const lookback = num(p, "trendLookback", 8);
+    const breakoutMult = num(p, "trendBreakoutMult", 1.2);
+    const recentLow = Math.min(...ctx.cache.lows.slice(Math.max(0, i - lookback), i));
+    if (close < recentLow - atr * breakoutMult && close < emaF && rsi < 55 && rsi > 25) {
       dir = "short";
-      stop = close + atr * atrM;
+      stop = close + atr * num(p, "trendStopMult", atrM);
     }
   } else if (regime === "RANGE") {
     if (!fin(vwap)) return;
