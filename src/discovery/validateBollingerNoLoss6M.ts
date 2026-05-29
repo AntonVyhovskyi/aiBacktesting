@@ -42,7 +42,7 @@ const BOLLINGER_NO_LOSS_PARAMS: Record<string, number | string> = {
   minEmaDistancePct: 0,
   minMoveVsFeeMult: 0,
   minVolumeMult: 1.2,
-  maxTradesPerDay: 30,
+  maxTradesPerDay: 999,
   bbPeriod: 20,
   riskPct: 1.5,
   leverage: 5,
