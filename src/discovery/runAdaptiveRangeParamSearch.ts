@@ -1,10 +1,13 @@
 import "dotenv/config";
+import { execFileSync } from "node:child_process";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import {
   BINANCE_FUTURES_SOURCE,
   BinanceCacheMissingError,
   downloadBinanceFuturesCandles,
+  getBinanceCachePath,
   loadBinanceFuturesCandles,
 } from "../backtest/fetchBinanceFuturesCandles.js";
 import { resolveStrategyCandles } from "../backtest/candleTimeframe.js";
@@ -22,6 +25,7 @@ const TIMEFRAME = "15m";
 const MONTHS = 6;
 const DEFAULT_END_TIME_MS = 1777593600000;
 const TOP_N = 30;
+const BINANCE_ARCHIVE_MONTHLY_BASE_URL = "https://data.binance.vision/data/futures/um/monthly/klines";
 
 type ParamSet = Record<string, number>;
 
@@ -191,6 +195,92 @@ const baseRunParams = (): ParamSet => ({
   maxDailyLossPct: num(process.env.ADAPTIVE_RANGE_MAX_DAILY_LOSS_PCT, 2),
 });
 
+const archiveMonthKeys = (startTimeMs: number, endTimeMs: number): string[] => {
+  const start = new Date(startTimeMs);
+  const end = new Date(endTimeMs - 1);
+  const cursor = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth(), 1));
+  const last = Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), 1);
+  const out: string[] = [];
+  while (cursor.getTime() <= last) {
+    out.push(`${cursor.getUTCFullYear()}-${String(cursor.getUTCMonth() + 1).padStart(2, "0")}`);
+    cursor.setUTCMonth(cursor.getUTCMonth() + 1);
+  }
+  return out;
+};
+
+const parseArchiveCsv = (csv: string, startTimeMs: number, endTimeMs: number): NormalizedCandle[] => {
+  const candles: NormalizedCandle[] = [];
+  for (const line of csv.split(/\r?\n/)) {
+    if (!line) continue;
+    const cols = line.split(",");
+    const openTime = Number(cols[0]);
+    if (!Number.isFinite(openTime) || openTime < startTimeMs || openTime >= endTimeMs) continue;
+    candles.push({
+      openTime,
+      open: Number(cols[1]),
+      high: Number(cols[2]),
+      low: Number(cols[3]),
+      close: Number(cols[4]),
+      volume: Number(cols[5]),
+      closeTime: Number(cols[6]),
+    });
+  }
+  return candles;
+};
+
+const downloadBinanceArchiveCache = async (
+  symbol: string,
+  interval: string,
+  cacheDir: string,
+  months: number,
+  startTimeMs: number,
+  endTimeMs: number
+): Promise<string> => {
+  const cachePath = getBinanceCachePath(cacheDir, symbol, interval, months);
+  const byOpenTime = new Map<number, NormalizedCandle>();
+
+  for (const monthKey of archiveMonthKeys(startTimeMs, endTimeMs)) {
+    const url = `${BINANCE_ARCHIVE_MONTHLY_BASE_URL}/${symbol}/${interval}/${symbol}-${interval}-${monthKey}.zip`;
+    console.log(`[BINANCE_ARCHIVE] ${url}`);
+    const res = await fetch(url, { signal: AbortSignal.timeout(num(process.env.BINANCE_ARCHIVE_TIMEOUT_MS, 60_000)) });
+    if (!res.ok) {
+      throw new Error(`Binance archive download failed: ${url} HTTP ${res.status}`);
+    }
+
+    const zipPath = path.join(os.tmpdir(), `${symbol}-${interval}-${monthKey}-${Date.now()}.zip`);
+    try {
+      fs.writeFileSync(zipPath, Buffer.from(await res.arrayBuffer()));
+      const csv = execFileSync("unzip", ["-p", zipPath], { maxBuffer: 100 * 1024 * 1024 }).toString("utf8");
+      const candles = parseArchiveCsv(csv, startTimeMs, endTimeMs);
+      for (const candle of candles) byOpenTime.set(candle.openTime, candle);
+      console.log(`[BINANCE_ARCHIVE] ${monthKey}: kept ${candles.length.toLocaleString()} candles`);
+    } finally {
+      if (fs.existsSync(zipPath)) fs.unlinkSync(zipPath);
+    }
+  }
+
+  const candles = [...byOpenTime.values()].sort((a, b) => a.openTime - b.openTime);
+  if (!candles.length) throw new Error(`Binance archive returned no ${symbol} ${interval} candles`);
+
+  fs.mkdirSync(path.dirname(cachePath), { recursive: true });
+  fs.writeFileSync(
+    cachePath,
+    JSON.stringify({
+      source: BINANCE_FUTURES_SOURCE,
+      symbol,
+      interval,
+      months,
+      startTimeMs,
+      endTimeMs,
+      downloadedAt: new Date().toISOString(),
+      complete: true,
+      candles,
+    })
+  );
+  console.log(`[BINANCE_ARCHIVE] wrote ${candles.length.toLocaleString()} candles → ${cachePath}`);
+  return cachePath;
+};
+
 const buildStage1Params = (): ParamSet[] => {
   const entryGrid = cartesian({
     adxRangeMax: [14, 16, 18, 20, 22],
@@ -239,6 +329,7 @@ const buildStage2Params = (stage1Top: RangeSearchResult[]): ParamSet[] => {
 const loadMarketData = async (): Promise<RunConfig> => {
   const outputCacheDir = path.resolve(process.env.BACKTEST_CACHE_DIR ?? "data/cache");
   const endTimeMs = num(process.env.BACKTEST_END_TIME_MS, DEFAULT_END_TIME_MS);
+  const startTimeMs = endTimeMs - MONTHS * 30 * 86400000;
   const minCoveragePct = num(process.env.BINANCE_MIN_COVERAGE_PCT, 90);
   const startBalance = num(process.env.BACKTEST_INITIAL_BALANCE, 100);
   const feeRate = num(process.env.BACKTEST_FEE_RATE, 0.00035);
@@ -253,17 +344,37 @@ const loadMarketData = async (): Promise<RunConfig> => {
       minCoveragePct,
     });
   } catch (e) {
-    if (!(e instanceof BinanceCacheMissingError) || !bool(process.env.ADAPTIVE_RANGE_ALLOW_DOWNLOAD, false)) throw e;
-    console.warn(`[BINANCE_CACHE] Missing cache for ${SYMBOL} ${MONTHS}m; attempting Binance Futures download.`);
-    load = await downloadBinanceFuturesCandles(SYMBOL, "1m", {
-      cacheDir: outputCacheDir,
-      months: MONTHS,
-      endTimeMs,
-      minCoveragePct,
-      requestDelayMs: num(process.env.BINANCE_REQUEST_DELAY_MS, 250),
-      maxRetries: num(process.env.BINANCE_MAX_RETRIES, 8),
-      retryDelayMs: num(process.env.BINANCE_RETRY_DELAY_MS, 2000),
-    });
+    if (!(e instanceof BinanceCacheMissingError)) throw e;
+
+    if (!bool(process.env.ADAPTIVE_RANGE_DISABLE_ARCHIVE, false)) {
+      console.warn(`[BINANCE_CACHE] Missing cache for ${SYMBOL} ${MONTHS}m; attempting Binance public archive.`);
+      try {
+        await downloadBinanceArchiveCache(SYMBOL, "1m", outputCacheDir, MONTHS, startTimeMs, endTimeMs);
+        load = await loadBinanceFuturesCandles(SYMBOL, {
+          cacheDir: outputCacheDir,
+          months: MONTHS,
+          endTimeMs,
+          minCoveragePct,
+        });
+      } catch (archiveError) {
+        console.warn(`[BINANCE_ARCHIVE] failed: ${archiveError}`);
+        if (!bool(process.env.ADAPTIVE_RANGE_ALLOW_DOWNLOAD, false)) throw archiveError;
+      }
+    }
+
+    if (!load) {
+      if (!bool(process.env.ADAPTIVE_RANGE_ALLOW_DOWNLOAD, false)) throw e;
+      console.warn(`[BINANCE_CACHE] Missing cache for ${SYMBOL} ${MONTHS}m; attempting Binance Futures REST.`);
+      load = await downloadBinanceFuturesCandles(SYMBOL, "1m", {
+        cacheDir: outputCacheDir,
+        months: MONTHS,
+        endTimeMs,
+        minCoveragePct,
+        requestDelayMs: num(process.env.BINANCE_REQUEST_DELAY_MS, 250),
+        maxRetries: num(process.env.BINANCE_MAX_RETRIES, 8),
+        retryDelayMs: num(process.env.BINANCE_RETRY_DELAY_MS, 2000),
+      });
+    }
   }
 
   if (!load.quality.reliable) {
