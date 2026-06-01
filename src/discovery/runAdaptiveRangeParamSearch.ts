@@ -775,9 +775,10 @@ const main = async () => {
       uniqueCount: ranked.length,
       topCount: TOP_N,
       ranking: "stability_score",
+      omittedResultsCount: Math.max(0, ranked.length - top.length),
     },
     top,
-    results: ranked,
+    results: top,
     conclusion: recommendation(top),
   });
   fs.writeFileSync(mdPath, buildMarkdown(cfg, ranked, stage1Run.length, stage2Params.length));
