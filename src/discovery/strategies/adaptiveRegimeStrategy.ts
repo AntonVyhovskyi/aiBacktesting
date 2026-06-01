@@ -3,7 +3,7 @@ import { bbCacheKey, fin } from "../indicatorCache.js";
 import { num } from "../grids.js";
 import { buildResult } from "../resultBuilder.js";
 import { closePos, createSim, finalize, runBar, signal, type SimState } from "../simulator.js";
-import { passMinMoveVsFee } from "./strategyCommon.js";
+import { passMinMoveVsFee, passVolumeMult } from "./strategyCommon.js";
 import { detectMarketRegime, regimeRiskMultiplier } from "../regime/marketRegimeDetector.js";
 import { isRegimeTradingEnabled } from "../regime/regimeConfig.js";
 import type { MarketRegime } from "../regime/types.js";
@@ -33,6 +33,7 @@ const DEFAULTS: Record<string, number | string> = {
   riskMultHighVol: 0,
   riskMultCompression: 0,
   riskMultTransition: 0,
+  minVolumeMult: 0,
   tradeTrend: 1,
   tradeRange: 1,
   tradeHighVol: 0,
@@ -44,6 +45,7 @@ const DEFAULTS: Record<string, number | string> = {
   maxTrendExtensionPct: 1.5,
   rangeVwapDistPct: 0.15,
   rangeTpPct: 0.35,
+  rangeBandBufferPct: 0.1,
   trendTrailStart: 0.2,
   trendTrailGap: 0.35,
   trendBreakEvenPct: 0.2,
@@ -174,13 +176,15 @@ const tryRegimeEntry = (
     }
   } else if (regime === "RANGE") {
     if (!fin(vwap)) return;
+    if (!passVolumeMult(ctx.cache, i, p)) return;
     const vwapDist = num(p, "rangeVwapDistPct", 0.15) / 100;
+    const bandBuffer = num(p, "rangeBandBufferPct", 0.1) / 100;
     const os = num(p, "rsiOversold", 30);
     const ob = num(p, "rsiOverbought", 70);
-    if (rsi <= os && close <= bbL * 1.001 && close < vwap! * (1 - vwapDist)) {
+    if (rsi <= os && close <= bbL * (1 + bandBuffer) && close < vwap! * (1 - vwapDist)) {
       dir = "long";
       stop = close - atr * atrM;
-    } else if (rsi >= ob && close >= bbU * 0.999 && close > vwap! * (1 + vwapDist)) {
+    } else if (rsi >= ob && close >= bbU * (1 - bandBuffer) && close > vwap! * (1 + vwapDist)) {
       dir = "short";
       stop = close + atr * atrM;
     }
