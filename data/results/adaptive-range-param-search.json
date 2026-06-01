@@ -1,0 +1,31 @@
+{
+  "source": "BINANCE_FUTURES",
+  "generatedAt": "2026-06-01T02:58:41.337Z",
+  "symbol": "SOLUSDT",
+  "timeframe": "15m",
+  "periodMonths": 6,
+  "rangeStart": 1762041600000,
+  "rangeEnd": 1777593600000,
+  "rangeStartIso": "2025-11-02T00:00:00.000Z",
+  "rangeEndIso": "2026-05-01T00:00:00.000Z",
+  "dataReliable": false,
+  "skipped": true,
+  "skipReason": "Binance cache missing: /workspace/data/cache/binance_futures/SOLUSDT_1m_6m.json\nRun: npm run binance-refresh",
+  "rangeOnly": {
+    "tradeTrend": 0,
+    "tradeRange": 1,
+    "tradeHighVol": 0,
+    "tradeCompression": 0,
+    "tradeTransition": 0
+  },
+  "search": {
+    "stage1Count": 0,
+    "stage2Count": 0,
+    "uniqueCount": 0,
+    "topCount": 30,
+    "ranking": "stability_score"
+  },
+  "top": [],
+  "results": [],
+  "conclusion": "No range-only candidates were evaluated because Binance Futures cache/data is unavailable in this environment."
+}
