@@ -253,7 +253,7 @@ const loadMarketData = async (): Promise<RunConfig> => {
       minCoveragePct,
     });
   } catch (e) {
-    if (!(e instanceof BinanceCacheMissingError) || bool(process.env.ADAPTIVE_RANGE_CACHE_ONLY, false)) throw e;
+    if (!(e instanceof BinanceCacheMissingError) || !bool(process.env.ADAPTIVE_RANGE_ALLOW_DOWNLOAD, false)) throw e;
     console.warn(`[BINANCE_CACHE] Missing cache for ${SYMBOL} ${MONTHS}m; attempting Binance Futures download.`);
     load = await downloadBinanceFuturesCandles(SYMBOL, "1m", {
       cacheDir: outputCacheDir,
@@ -534,6 +534,79 @@ const buildMarkdown = (cfg: RunConfig, ranked: RangeSearchResult[], stage1Count:
   ].join("\n");
 };
 
+const writeDataUnavailableArtifacts = (outputDir: string, error: unknown): void => {
+  const endTimeMs = num(process.env.BACKTEST_END_TIME_MS, DEFAULT_END_TIME_MS);
+  const rangeStart = endTimeMs - MONTHS * 30 * 86400000;
+  const message = error instanceof Error ? error.message : String(error);
+  const jsonPath = path.join(outputDir, "adaptive-range-param-search.json");
+  const mdPath = path.join(outputDir, "adaptive-range-param-search.md");
+  const conclusion =
+    "No range-only candidates were evaluated because Binance Futures cache/data is unavailable in this environment.";
+
+  writeJson(jsonPath, {
+    source: BINANCE_FUTURES_SOURCE,
+    generatedAt: new Date().toISOString(),
+    symbol: SYMBOL,
+    timeframe: TIMEFRAME,
+    periodMonths: MONTHS,
+    rangeStart,
+    rangeEnd: endTimeMs,
+    rangeStartIso: new Date(rangeStart).toISOString(),
+    rangeEndIso: new Date(endTimeMs).toISOString(),
+    dataReliable: false,
+    skipped: true,
+    skipReason: message,
+    rangeOnly: RANGE_ONLY_PARAMS,
+    search: {
+      stage1Count: 0,
+      stage2Count: 0,
+      uniqueCount: 0,
+      topCount: TOP_N,
+      ranking: "stability_score",
+    },
+    top: [],
+    results: [],
+    conclusion,
+  });
+
+  fs.writeFileSync(
+    mdPath,
+    [
+      "# Adaptive Regime RANGE Param Search",
+      "",
+      `Generated: ${new Date().toISOString()}`,
+      `Source: **${BINANCE_FUTURES_SOURCE}**`,
+      `Symbol/timeframe: **${SYMBOL} ${TIMEFRAME}**`,
+      `Period: ${new Date(rangeStart).toISOString()} -> ${new Date(endTimeMs).toISOString()}`,
+      "",
+      "## Data unavailable",
+      "",
+      conclusion,
+      "",
+      "Reason:",
+      "",
+      "```",
+      message,
+      "```",
+      "",
+      "This runner is cache-only by default for optimization runs to avoid slow Binance REST retries from restricted cloud locations. Provide `data/cache/binance_futures/SOLUSDT_1m_6m.json` for the requested fixed end time, or run with `ADAPTIVE_RANGE_ALLOW_DOWNLOAD=1` in an environment where Binance Futures REST is available.",
+      "",
+      "## Top 30 results",
+      "",
+      "_No results: market data was unavailable._",
+      "",
+      "## Conclusion",
+      "",
+      "The RANGE mode cannot be recommended or rejected from this run because no valid SOLUSDT 15m candles were available.",
+      "",
+    ].join("\n")
+  );
+
+  console.error(`[DATA_UNAVAILABLE] ${message}`);
+  console.error(`JSON: ${jsonPath}`);
+  console.error(`MD: ${mdPath}`);
+};
+
 const main = async () => {
   const outputDir = path.resolve(process.env.BACKTEST_OUTPUT_DIR ?? "data/results");
   fs.mkdirSync(outputDir, { recursive: true });
@@ -543,7 +616,13 @@ const main = async () => {
   console.log(`endTimeMs=${num(process.env.BACKTEST_END_TIME_MS, DEFAULT_END_TIME_MS)}`);
   console.log(`source=${BINANCE_FUTURES_SOURCE}\n`);
 
-  const cfg = await loadMarketData();
+  let cfg: RunConfig;
+  try {
+    cfg = await loadMarketData();
+  } catch (e) {
+    writeDataUnavailableArtifacts(outputDir, e);
+    return;
+  }
   console.log(formatQualityReport(cfg.quality));
   console.log(`Resampled candles: ${cfg.candles.length}`);
 
