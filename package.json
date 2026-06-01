@@ -17,6 +17,7 @@
     "binance-refresh": "tsx src/discovery/runDataQualityRefresh.ts",
     "data-quality-refresh": "tsx src/discovery/runDataQualityRefresh.ts",
     "adaptive-regime-backtest": "tsx src/discovery/runAdaptiveRegimeBacktest.ts",
+    "adaptive-range-search": "tsx src/discovery/runAdaptiveRangeParamSearch.ts",
     "binance-family-search": "tsx src/discovery/runBinanceFamilySearch.ts",
     "ema-atr-winner-binance": "tsx src/discovery/runEmaAtrWinnerBinance.ts",
     "explain-best-strategy": "node scripts/print-strategy-summary.js",
