@@ -54,9 +54,9 @@ Best target candidate: **ATR_VOLATILITY_BREAKOUT 15m**, avg monthly notional **5
 | Full max DD | 4.424832% |
 | Max monthly DD | 4.424832% |
 | Trades | 247 |
-| Trades/day | 1.372143 |
-| Trades artifact | `data/results/trades/BINANCE_500_TARGET_ATR_VOLATILITY_BREAKOUT_bb714bae868f.json` |
-| Equity artifact | `data/results/equity/BINANCE_500_TARGET_ATR_VOLATILITY_BREAKOUT_bb714bae868f.csv` |
+| Trades/day | 1.372222 |
+| Trades artifact | `/workspace/data/results/trades/BINANCE_500_TARGET_ATR_VOLATILITY_BREAKOUT_bb714bae868f.json` |
+| Equity artifact | `/workspace/data/results/equity/BINANCE_500_TARGET_ATR_VOLATILITY_BREAKOUT_bb714bae868f.csv` |
 
 ### Monthly breakdown
 

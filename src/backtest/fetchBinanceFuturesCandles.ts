@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import zlib from "node:zlib";
 import {
   validateCandlesForRange,
   type CandleQualityReport,
@@ -8,6 +9,7 @@ import type { NormalizedCandle } from "./types.js";
 
 export const BINANCE_FUTURES_SOURCE = "BINANCE_FUTURES" as const;
 export const BINANCE_FUTURES_BASE_URL = "https://fapi.binance.com/fapi/v1/klines";
+export const BINANCE_VISION_BASE_URL = "https://data.binance.vision/data/futures/um";
 
 export class BinanceCacheMissingError extends Error {
   constructor(message: string) {
@@ -76,6 +78,147 @@ const parseKline = (row: unknown[]): NormalizedCandle => ({
   volume: Number(row[5]),
   closeTime: Number(row[6]),
 });
+
+const isRestGeoBlocked = (err: unknown): boolean => {
+  const msg = String(err);
+  return /HTTP 451|HTTP 403|unavailable for legal reasons|restricted location|cloudflare/i.test(msg);
+};
+
+const monthKeysInclusive = (startTimeMs: number, endTimeMs: number): string[] => {
+  const keys: string[] = [];
+  const d = new Date(Date.UTC(new Date(startTimeMs).getUTCFullYear(), new Date(startTimeMs).getUTCMonth(), 1));
+  const end = new Date(endTimeMs);
+  while (d.getTime() < end.getTime()) {
+    keys.push(`${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`);
+    d.setUTCMonth(d.getUTCMonth() + 1);
+  }
+  return keys;
+};
+
+const daysInMonth = (yearMonth: string): string[] => {
+  const [y, m] = yearMonth.split("-").map(Number);
+  const start = Date.UTC(y!, m! - 1, 1);
+  const end = Date.UTC(y!, m!, 1);
+  const out: string[] = [];
+  for (let t = start; t < end; t += 86400000) {
+    const d = new Date(t);
+    out.push(`${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}-${String(d.getUTCDate()).padStart(2, "0")}`);
+  }
+  return out;
+};
+
+const parseCsvKlines = (text: string): NormalizedCandle[] => {
+  const out: NormalizedCandle[] = [];
+  for (const line of text.split(/\r?\n/)) {
+    if (!line || /open.?time/i.test(line)) continue;
+    const cols = line.split(",");
+    const openTime = Number(cols[0]);
+    if (!Number.isFinite(openTime) || cols.length < 7) continue;
+    out.push({
+      openTime,
+      open: Number(cols[1]),
+      high: Number(cols[2]),
+      low: Number(cols[3]),
+      close: Number(cols[4]),
+      volume: Number(cols[5]),
+      closeTime: Number(cols[6]),
+    });
+  }
+  return out;
+};
+
+const inflateZipPayload = (method: number, data: Buffer): string => {
+  if (method === 0) return data.toString("utf8");
+  if (method === 8) return zlib.inflateRawSync(data).toString("utf8");
+  throw new Error(`Unsupported ZIP compression method ${method}`);
+};
+
+/** Minimal ZIP reader for Binance Vision monthly/daily kline archives (single CSV). */
+export const extractCsvFromZip = (buf: Buffer): string => {
+  let offset = 0;
+  while (offset + 30 <= buf.length) {
+    if (buf.readUInt32LE(offset) !== 0x04034b50) {
+      offset += 1;
+      continue;
+    }
+    const flags = buf.readUInt16LE(offset + 6);
+    const method = buf.readUInt16LE(offset + 8);
+    const nameLen = buf.readUInt16LE(offset + 26);
+    const extraLen = buf.readUInt16LE(offset + 28);
+    const name = buf.subarray(offset + 30, offset + 30 + nameLen).toString("utf8");
+    const dataStart = offset + 30 + nameLen + extraLen;
+    let compSize = buf.readUInt32LE(offset + 18);
+    let dataEnd = dataStart + compSize;
+    if (flags & 0x8) {
+      const desc = buf.indexOf(Buffer.from([0x50, 0x4b, 0x07, 0x08]), dataStart);
+      if (desc < 0) throw new Error(`ZIP data descriptor missing for ${name}`);
+      compSize = desc - dataStart;
+      dataEnd = desc;
+    }
+    const data = buf.subarray(dataStart, dataStart + compSize);
+    if (name.toLowerCase().endsWith(".csv")) return inflateZipPayload(method, data);
+    offset = dataEnd;
+  }
+  throw new Error("ZIP archive contains no CSV entry");
+};
+
+const fetchVisionZip = async (url: string, maxRetries: number, retryDelayMs: number): Promise<Buffer | null> => {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const res = await fetch(url, {
+        signal: AbortSignal.timeout(60_000),
+        headers: { "User-Agent": "aiBacktesting/1.0 (local research; data.binance.vision)" },
+      });
+      if (res.status === 404) return null;
+      if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+      return Buffer.from(await res.arrayBuffer());
+    } catch (e) {
+      if (attempt === maxRetries) throw e;
+      await sleep(retryDelayMs * attempt);
+    }
+  }
+  return null;
+};
+
+const downloadVisionMonth = async (
+  symbol: string,
+  interval: string,
+  yearMonth: string,
+  maxRetries: number,
+  retryDelayMs: number
+): Promise<NormalizedCandle[]> => {
+  const monthlyUrl = `${BINANCE_VISION_BASE_URL}/monthly/klines/${symbol}/${interval}/${symbol}-${interval}-${yearMonth}.zip`;
+  console.log(`[BINANCE_VISION] ${symbol} ${interval} ${yearMonth} monthly zip`);
+  const monthly = await fetchVisionZip(monthlyUrl, maxRetries, retryDelayMs);
+  if (monthly) return parseCsvKlines(extractCsvFromZip(monthly));
+
+  console.warn(`[BINANCE_VISION] monthly zip missing for ${yearMonth} — trying daily zips`);
+  const all: NormalizedCandle[] = [];
+  for (const day of daysInMonth(yearMonth)) {
+    const dailyUrl = `${BINANCE_VISION_BASE_URL}/daily/klines/${symbol}/${interval}/${symbol}-${interval}-${day}.zip`;
+    const daily = await fetchVisionZip(dailyUrl, maxRetries, retryDelayMs);
+    if (!daily) continue;
+    all.push(...parseCsvKlines(extractCsvFromZip(daily)));
+  }
+  return all;
+};
+
+export const downloadBinanceVisionCandles = async (
+  symbol: string,
+  interval: string,
+  startTimeMs: number,
+  endTimeMs: number,
+  maxRetries: number,
+  retryDelayMs: number
+): Promise<NormalizedCandle[]> => {
+  const months = monthKeysInclusive(startTimeMs, endTimeMs);
+  const all: NormalizedCandle[] = [];
+  for (const month of months) {
+    const rows = await downloadVisionMonth(symbol, interval, month, maxRetries, retryDelayMs);
+    all.push(...rows);
+  }
+  return dedupeSortCandles(filterRange(all, startTimeMs, endTimeMs));
+};
 
 const loadCacheFile = (cachePath: string): BinanceCacheFile | null => {
   if (!fs.existsSync(cachePath)) return null;
@@ -198,6 +341,40 @@ export const downloadBinanceFuturesCandles = async (
     `[BINANCE_DOWNLOAD] source=${BINANCE_FUTURES_SOURCE} ${symbol} ${interval} ~${months}m → ${cachePath}${resume ? ` (resume ${all.length})` : ""}`
   );
 
+  let useVision = false;
+  try {
+    await fetchKlinesPage(symbol, interval, cursor, Math.min(endTimeMs, cursor + stepMs * limit), 1, 2, retryDelayMs);
+  } catch (e) {
+    if (isRestGeoBlocked(e)) {
+      console.warn(`[BINANCE_DOWNLOAD] REST blocked (${e}) — falling back to data.binance.vision`);
+      useVision = true;
+    }
+  }
+
+  if (useVision) {
+    const vision = await downloadBinanceVisionCandles(symbol, interval, startTimeMs, endTimeMs, maxRetries, retryDelayMs);
+    const candles = dedupeSortCandles(filterRange([...all, ...vision], startTimeMs, endTimeMs));
+    const complete = candles.length >= targetMinCandles;
+    const meta: BinanceCacheFile = {
+      source: BINANCE_FUTURES_SOURCE,
+      symbol,
+      interval,
+      months,
+      startTimeMs,
+      endTimeMs,
+      downloadedAt: new Date().toISOString(),
+      complete,
+      candles,
+    };
+    saveCacheFile(cachePath, meta);
+    const quality = buildQualityReport(symbol, cachePath, candles, startTimeMs, endTimeMs, stepMs, minCoveragePct, months);
+    const spanDays = (endTimeMs - startTimeMs) / 86400000;
+    console.log(
+      `[BINANCE_VISION] saved ${candles.length} candles (~${spanDays.toFixed(0)}d span) complete=${complete} coverage=${quality.coveragePct}%`
+    );
+    return { source: BINANCE_FUTURES_SOURCE, cachePath, meta, candles, quality };
+  }
+
   let pages = 0;
   let failStreak = 0;
 
@@ -247,14 +424,27 @@ export const downloadBinanceFuturesCandles = async (
       if (page.length < limit) break;
       await sleep(requestDelayMs);
     } catch (e) {
+      if (isRestGeoBlocked(e)) {
+        console.warn(`[BINANCE_DOWNLOAD] REST blocked mid-download (${e}) — falling back to data.binance.vision`);
+        const vision = await downloadBinanceVisionCandles(symbol, interval, startTimeMs, endTimeMs, maxRetries, retryDelayMs);
+        all.push(...vision);
+        break;
+      }
       failStreak += 1;
       console.warn(`[BINANCE_DOWNLOAD] error: ${e}`);
       await sleep(retryDelayMs * failStreak);
     }
   }
 
-  const candles = dedupeSortCandles(filterRange(all, startTimeMs, endTimeMs));
-  const complete = candles.length >= targetMinCandles && cursor >= endTimeMs - stepMs * 2;
+  let candles = dedupeSortCandles(filterRange(all, startTimeMs, endTimeMs));
+  if (candles.length < targetMinCandles) {
+    console.warn(
+      `[BINANCE_DOWNLOAD] REST coverage short (${candles.length} < ${targetMinCandles}) — trying data.binance.vision`
+    );
+    const vision = await downloadBinanceVisionCandles(symbol, interval, startTimeMs, endTimeMs, maxRetries, retryDelayMs);
+    candles = dedupeSortCandles(filterRange([...candles, ...vision], startTimeMs, endTimeMs));
+  }
+  const complete = candles.length >= targetMinCandles;
 
   const meta: BinanceCacheFile = {
     source: BINANCE_FUTURES_SOURCE,
@@ -330,9 +520,8 @@ export const loadBinanceFuturesCandles = async (
   const cachePath = getBinanceCachePath(options.cacheDir, symbol, "1m", months);
   const file = loadCacheFile(cachePath);
   if (!file?.candles.length) {
-    throw new BinanceCacheMissingError(
-      `Binance cache missing: ${cachePath}\nRun: npm run binance-refresh`
-    );
+    console.warn(`[BINANCE_CACHE] missing ${cachePath} — downloading`);
+    return downloadBinanceFuturesCandles(symbol, "1m", options);
   }
   const endTimeMs = options.endTimeMs ?? Date.now();
   const startTimeMs = endTimeMs - months * 30 * 86400000;

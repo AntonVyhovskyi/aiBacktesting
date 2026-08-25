@@ -103,9 +103,16 @@ const evaluate = (
   };
 };
 
-const failReasons = (c: Omit<Candidate, "source" | "symbol" | "timeframe" | "strategyName" | "params" | "score" | "passedTarget" | "failReasons">): string[] => {
+const failReasons = (
+  c: Omit<Candidate, "source" | "symbol" | "timeframe" | "strategyName" | "params" | "score" | "passedTarget" | "failReasons">,
+  requireMinMonthly = false
+): string[] => {
   const out: string[] = [];
-  if (c.avgMonthlyNotional < TARGET_MONTHLY_NOTIONAL) out.push("avgMonthlyNotional<50k");
+  if (requireMinMonthly) {
+    if (c.minMonthlyNotional < TARGET_MONTHLY_NOTIONAL) out.push("minMonthlyNotional<50k");
+  } else if (c.avgMonthlyNotional < TARGET_MONTHLY_NOTIONAL) {
+    out.push("avgMonthlyNotional<50k");
+  }
   if (c.maxMonthlyDrawdownPct > TARGET_MAX_DD) out.push("monthlyDD>5");
   if (c.metrics.maxDrawdownPct > TARGET_MAX_DD) out.push("fullDD>5");
   if (c.metrics.netPnL < 0) out.push("netPnL<0");
@@ -113,17 +120,22 @@ const failReasons = (c: Omit<Candidate, "source" | "symbol" | "timeframe" | "str
   return out;
 };
 
-const score = (c: Omit<Candidate, "source" | "symbol" | "timeframe" | "strategyName" | "params" | "score" | "passedTarget" | "failReasons">): number =>
-  r(
-    c.avgMonthlyNotional * 0.1 +
-      Math.min(c.avgMonthlyNotional, TARGET_MONTHLY_NOTIONAL) * 0.2 +
+const score = (
+  c: Omit<Candidate, "source" | "symbol" | "timeframe" | "strategyName" | "params" | "score" | "passedTarget" | "failReasons">,
+  requireMinMonthly = false
+): number => {
+  const volumeTerm = requireMinMonthly ? c.minMonthlyNotional : c.avgMonthlyNotional;
+  return r(
+    volumeTerm * 0.1 +
+      Math.min(volumeTerm, TARGET_MONTHLY_NOTIONAL) * 0.2 +
       c.metrics.netPnL * 1000 +
       c.metrics.profitFactor * 500 -
       Math.max(0, c.maxMonthlyDrawdownPct - TARGET_MAX_DD) * 5000 -
       Math.max(0, c.metrics.maxDrawdownPct - TARGET_MAX_DD) * 5000 -
-      Math.max(0, TARGET_MONTHLY_NOTIONAL - c.avgMonthlyNotional) * 0.4 -
+      Math.max(0, TARGET_MONTHLY_NOTIONAL - volumeTerm) * 0.4 -
       c.losingMonths * 500
   );
+};
 
 const keepTop = (items: Candidate[], item: Candidate, limit: number) => {
   items.push(item);
@@ -150,7 +162,8 @@ const exportArtifacts = (candidate: Candidate, result: StrategyBacktestResult, o
   const lines = ["time,balance", `${result.metrics.startBalance},${result.metrics.startBalance}`];
   for (const t of result.trades) lines.push(`${t.exitTime},${t.balanceAfter}`);
   fs.writeFileSync(equityCurvePath, lines.join("\n"));
-  return { tradeHistoryPath, equityCurvePath };
+  const rel = (p: string) => path.relative(process.cwd(), p).replace(/\\/g, "/");
+  return { tradeHistoryPath: rel(tradeHistoryPath), equityCurvePath: rel(equityCurvePath) };
 };
 
 const report = (payload: {
@@ -160,18 +173,22 @@ const report = (payload: {
   topPassed: Candidate[];
   topOverall: Candidate[];
   artifacts?: { tradeHistoryPath: string; equityCurvePath: string };
+  title?: string;
+  volumeRule?: string;
 }) => {
   const row = (c: Candidate, i: number) =>
     `| ${i + 1} | ${c.timeframe} | ${c.avgMonthlyNotional.toFixed(2)} | ${c.minMonthlyNotional.toFixed(2)} | ${c.metrics.totalNotional.toFixed(2)} | ${c.metrics.netPnL.toFixed(6)} | ${c.maxMonthlyDrawdownPct.toFixed(4)}% | ${c.metrics.maxDrawdownPct.toFixed(4)}% | ${c.metrics.profitFactor.toFixed(4)} | ${c.metrics.tradesCount} | ${c.failReasons.join(", ") || "PASS"} |`;
   const best = payload.best;
-  return `# Binance 500 Balance / 50k Monthly Volume Target Search
+  const title = payload.title ?? "Binance 500 Balance / 50k Monthly Volume Target Search";
+  const volumeRule = payload.volumeRule ?? "Average monthly notional: **>= 50,000 USDC**";
+  return `# ${title}
 
 Generated: ${payload.generatedAt}
 
 ## Target
 
 - Start balance: **500 USDC**
-- Average monthly notional: **>= 50,000 USDC**
+- ${volumeRule}
 - Max monthly drawdown: **<= 5%**
 - Full-period max drawdown: **<= 5%**
 - Net PnL >= 0 and PF >= 1
@@ -244,8 +261,12 @@ const main = async () => {
 
   const topPassed: Candidate[] = [];
   const topOverall: Candidate[] = [];
+  const topPassedMinMonthly: Candidate[] = [];
+  const topOverallMinMonthly: Candidate[] = [];
   let bestResult: StrategyBacktestResult | null = null;
   let best: Candidate | null = null;
+  let bestMinMonthly: Candidate | null = null;
+  let bestMinMonthlyResult: StrategyBacktestResult | null = null;
   let tested = 0;
 
   const entryCombos = cartesian(ENTRY_GRID);
@@ -272,7 +293,8 @@ const main = async () => {
           backtestMsSpan: rangeEnd - rangeStart,
         });
         const ev = evaluate(result, rangeStart, rangeEnd, initialBalance);
-        const fails = failReasons(ev);
+        const fails = failReasons(ev, false);
+        const failsMin = failReasons(ev, true);
         const candidate: Candidate = {
           source: BINANCE_FUTURES_SOURCE,
           symbol,
@@ -281,10 +303,17 @@ const main = async () => {
           params: result.params,
           passedTarget: fails.length === 0,
           failReasons: fails,
-          score: score(ev),
+          score: score(ev, false),
           ...ev,
         };
+        const minCandidate: Candidate = {
+          ...candidate,
+          passedTarget: failsMin.length === 0,
+          failReasons: failsMin,
+          score: score(ev, true),
+        };
         keepTop(topOverall, candidate, 30);
+        keepTop(topOverallMinMonthly, minCandidate, 30);
         if (candidate.passedTarget) {
           keepTop(topPassed, candidate, 30);
           if (!best || candidate.score > best.score) {
@@ -292,13 +321,22 @@ const main = async () => {
             bestResult = result;
           }
         }
+        if (minCandidate.passedTarget) {
+          keepTop(topPassedMinMonthly, minCandidate, 30);
+          if (!bestMinMonthly || minCandidate.score > bestMinMonthly.score) {
+            bestMinMonthly = minCandidate;
+            bestMinMonthlyResult = result;
+          }
+        }
       }
       if (tested >= maxVariants) break;
     }
-    console.log(`[500_TARGET] ${tf} tested=${tested} passed=${topPassed.length} best=${best ? `${best.timeframe} ${best.avgMonthlyNotional.toFixed(0)} DD=${best.maxMonthlyDrawdownPct.toFixed(2)}` : "none"}`);
+    console.log(`[500_TARGET] ${tf} tested=${tested} passedAvg=${topPassed.length} passedMin=${topPassedMinMonthly.length} best=${best ? `${best.timeframe} ${best.avgMonthlyNotional.toFixed(0)} DD=${best.maxMonthlyDrawdownPct.toFixed(2)}` : "none"}`);
   }
 
   const artifacts = best && bestResult ? exportArtifacts(best, bestResult, outputDir) : undefined;
+  const minArtifacts =
+    bestMinMonthly && bestMinMonthlyResult ? exportArtifacts(bestMinMonthly, bestMinMonthlyResult, outputDir) : undefined;
   const payload = {
     generatedAt: new Date(endTimeMs).toISOString(),
     source: BINANCE_FUTURES_SOURCE,
@@ -317,20 +355,77 @@ const main = async () => {
   };
   const jsonPath = path.join(outputDir, "binance-500-volume-target-search.json");
   const reportPath = path.join(outputDir, "binance-500-volume-target-search.md");
+  const cloudMd = path.join(outputDir, "binance-500-volume-target-search.cloud.md");
+  const cloudJson = path.join(outputDir, "binance-500-volume-target-search.cloud.json");
+  if (fs.existsSync(reportPath) && !fs.existsSync(cloudMd)) fs.copyFileSync(reportPath, cloudMd);
+  if (fs.existsSync(jsonPath) && !fs.existsSync(cloudJson)) fs.copyFileSync(jsonPath, cloudJson);
   writeJson(jsonPath, payload);
-  fs.writeFileSync(reportPath, report({ generatedAt: payload.generatedAt, testedVariants: tested, best, topPassed, topOverall, artifacts }));
+  fs.writeFileSync(
+    reportPath,
+    report({
+      generatedAt: payload.generatedAt,
+      testedVariants: tested,
+      best,
+      topPassed,
+      topOverall,
+      artifacts,
+      title: "Binance 500 Balance / 50k Monthly Volume Target Search",
+      volumeRule: "Average monthly notional: **>= 50,000 USDC**",
+    })
+  );
+
+  const minPayload = {
+    generatedAt: new Date(endTimeMs).toISOString(),
+    source: BINANCE_FUTURES_SOURCE,
+    symbol,
+    months,
+    initialBalance,
+    target: {
+      minMonthlyNotional: TARGET_MONTHLY_NOTIONAL,
+      maxMonthlyDrawdownPct: TARGET_MAX_DD,
+      maxFullDrawdownPct: TARGET_MAX_DD,
+    },
+    testedVariants: tested,
+    best: bestMinMonthly ? { ...bestMinMonthly, artifacts: minArtifacts } : null,
+    topPassed: topPassedMinMonthly.map((c, i) => ({ ...c, rank: i + 1 })),
+    topOverall: topOverallMinMonthly.map((c, i) => ({ ...c, rank: i + 1 })),
+  };
+  const minJsonPath = path.join(outputDir, "binance-500-min-monthly-50k-search.json");
+  const minReportPath = path.join(outputDir, "binance-500-min-monthly-50k-search.md");
+  writeJson(minJsonPath, minPayload);
+  fs.writeFileSync(
+    minReportPath,
+    report({
+      generatedAt: minPayload.generatedAt,
+      testedVariants: tested,
+      best: bestMinMonthly,
+      topPassed: topPassedMinMonthly,
+      topOverall: topOverallMinMonthly,
+      artifacts: minArtifacts,
+      title: "Binance 500 Balance / Min Monthly 50k Notional Search",
+      volumeRule: "Every full month notional: **>= 50,000 USDC** (not only average)",
+    })
+  );
 
   console.log("\n=== BINANCE 500 / 50K MONTHLY TARGET SEARCH COMPLETE ===\n");
   console.log(`Tested: ${tested}`);
   if (best) {
-    console.log(`Best: ${best.strategyName} ${best.timeframe}`);
-    console.log(`  avgMonthlyNotional=${best.avgMonthlyNotional.toFixed(2)} maxMonthlyDD=${best.maxMonthlyDrawdownPct.toFixed(4)} fullDD=${best.metrics.maxDrawdownPct.toFixed(4)}`);
+    console.log(`Best avg-monthly: ${best.strategyName} ${best.timeframe}`);
+    console.log(`  avgMonthlyNotional=${best.avgMonthlyNotional.toFixed(2)} minMonthly=${best.minMonthlyNotional.toFixed(2)} maxMonthlyDD=${best.maxMonthlyDrawdownPct.toFixed(4)} fullDD=${best.metrics.maxDrawdownPct.toFixed(4)}`);
     console.log(`  net=${best.metrics.netPnL.toFixed(6)} PF=${best.metrics.profitFactor.toFixed(6)} trades=${best.metrics.tradesCount}`);
   } else {
-    console.log("No candidate passed all target filters.");
+    console.log("No candidate passed average-monthly target filters.");
+  }
+  if (bestMinMonthly) {
+    console.log(`Best min-monthly: ${bestMinMonthly.strategyName} ${bestMinMonthly.timeframe}`);
+    console.log(`  minMonthlyNotional=${bestMinMonthly.minMonthlyNotional.toFixed(2)} avgMonthly=${bestMinMonthly.avgMonthlyNotional.toFixed(2)} net=${bestMinMonthly.metrics.netPnL.toFixed(6)}`);
+  } else {
+    console.log("No candidate passed min-monthly >=50k on every full month.");
   }
   console.log(`JSON: ${jsonPath}`);
-  console.log(`Report: ${reportPath}\n`);
+  console.log(`Report: ${reportPath}`);
+  console.log(`Min-monthly JSON: ${minJsonPath}`);
+  console.log(`Min-monthly Report: ${minReportPath}\n`);
 };
 
 main().catch((e) => {

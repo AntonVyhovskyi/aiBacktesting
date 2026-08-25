@@ -20,6 +20,7 @@
     "binance-family-search": "tsx src/discovery/runBinanceFamilySearch.ts",
     "binance-no-loss-volume-search": "tsx src/discovery/runBinanceNoLossVolumeSearch.ts",
     "binance-500-volume-target-search": "tsx src/discovery/runBinanceVolume50kTargetSearch.ts",
+    "binance-500-volume-hardening": "tsx src/discovery/runAtrBreakoutLocalHardening.ts",
     "ema-atr-winner-binance": "tsx src/discovery/runEmaAtrWinnerBinance.ts",
     "explain-best-strategy": "node scripts/print-strategy-summary.js",
     "typecheck": "tsc --noEmit"

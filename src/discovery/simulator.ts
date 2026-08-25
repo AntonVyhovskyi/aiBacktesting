@@ -16,6 +16,7 @@ export type SimState = {
     breakEvenActive: boolean;
     entryRegime?: string;
     entryStop?: number;
+    fundingFee: number;
   } | null;
   pending: {
     direction: "long" | "short";
@@ -29,9 +30,18 @@ export type SimState = {
   tradesToday: Map<string, number>;
   lastDayKey: string;
   activeParams: Record<string, number | string>;
+  costs: { slippageBps: number; fundingRatePer8h: number };
 };
 
 const round = (v: number, d = 8) => Math.round(v * 10 ** d) / 10 ** d;
+
+const FUNDING_INTERVAL_MS = 8 * 60 * 60 * 1000;
+
+const applySlippage = (price: number, side: "buy" | "sell", bps: number): number => {
+  if (bps <= 0) return price;
+  const m = bps / 10_000;
+  return round(side === "buy" ? price * (1 + m) : price * (1 - m), 8);
+};
 
 export const emptyDiag = (): StrategyDiagnostics => ({
   signalCount: 0,
@@ -60,6 +70,10 @@ export const createSim = (balance: number, params: Record<string, number | strin
   tradesToday: new Map(),
   lastDayKey: "",
   activeParams: params,
+  costs: {
+    slippageBps: num(params, "slippageBps", 0),
+    fundingRatePer8h: num(params, "fundingRatePer8h", 0),
+  },
 });
 
 const dayKey = (t: number) => new Date(t).toISOString().slice(0, 10);
@@ -89,12 +103,14 @@ export const closePos = (
 ): void => {
   const pos = state.position;
   if (!pos) return;
-  const exitFee = round(exitPrice * pos.qty * feeRate);
+  const slipSide = pos.direction === "long" ? "sell" : "buy";
+  const fill = applySlippage(exitPrice, slipSide, state.costs.slippageBps);
+  const exitFee = round(fill * pos.qty * feeRate);
   const gross =
     pos.direction === "long"
-      ? (exitPrice - pos.entryPrice) * pos.qty
-      : (pos.entryPrice - exitPrice) * pos.qty;
-  const fees = pos.entryFee + exitFee;
+      ? (fill - pos.entryPrice) * pos.qty
+      : (pos.entryPrice - fill) * pos.qty;
+  const fees = pos.entryFee + exitFee + pos.fundingFee;
   const net = gross - fees;
   state.balance += net;
   const initialRisk = Math.abs(pos.entryPrice - (pos.entryStop ?? pos.stopLoss)) * pos.qty;
@@ -103,7 +119,7 @@ export const closePos = (
     entryTime: pos.entryTime,
     entryPrice: pos.entryPrice,
     exitTime: candle.openTime,
-    exitPrice,
+    exitPrice: fill,
     qty: pos.qty,
     grossPnL: round(gross),
     fees: round(fees),
@@ -152,6 +168,8 @@ export const tryOpen = (
     state.diagnostics.skippedByMargin += 1;
     return false;
   }
+  const slipSide = dir === "long" ? "buy" : "sell";
+  const fill = applySlippage(entry, slipSide, state.costs.slippageBps);
   state.diagnostics.tradesOpened += 1;
   const dk = dayKey(candle.openTime);
   state.lastDayKey = dk;
@@ -159,15 +177,16 @@ export const tryOpen = (
   state.position = {
     direction: dir,
     entryTime: candle.openTime,
-    entryPrice: entry,
+    entryPrice: fill,
     entryIndex: index,
     qty,
     stopLoss: stop,
     trailingActive: false,
-    entryFee: round(entry * qty * feeRate),
+    entryFee: round(fill * qty * feeRate),
     breakEvenActive: false,
     entryRegime: meta?.entryRegime,
     entryStop: stop,
+    fundingFee: 0,
   };
   return true;
 };
@@ -180,6 +199,12 @@ export const manageExits = (
 ): void => {
   const pos = state.position;
   if (!pos) return;
+  const rate = state.costs.fundingRatePer8h;
+  if (rate !== 0 && candle.openTime % FUNDING_INTERVAL_MS === 0 && index > pos.entryIndex) {
+    const notional = pos.qty * candle.open;
+    const signed = pos.direction === "long" ? rate : -rate;
+    pos.fundingFee = round(pos.fundingFee + notional * signed);
+  }
   const p = state.activeParams;
 
   const maxHold = num(p, "maxHoldCandles", 0);
