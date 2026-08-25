@@ -26,6 +26,7 @@ export const refreshBinanceSymbolData = async (
   const result = await downloadBinanceFuturesCandles(symbol, "1m", {
     cacheDir,
     months,
+    endTimeMs: num(process.env.BACKTEST_END_TIME_MS, Date.now()),
     forceRefresh,
     minCoveragePct,
     requestDelayMs: num(process.env.BINANCE_REQUEST_DELAY_MS, 250),

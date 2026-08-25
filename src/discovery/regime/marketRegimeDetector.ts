@@ -64,6 +64,13 @@ export const detectMarketRegime = (
   const bbCompressPct = num(params, "bbCompressPct", 1.8);
   const slopeMinPct = num(params, "emaSlopeMinPct", 0.02);
 
+  const trendStrength = clamp01(
+    Math.max(0, (adx! - adxTrendMin) / 35) * 0.45 +
+      Math.min(Math.abs(emaSlopePct) / Math.max(slopeMinPct * 5, 0.001), 1) * 0.25 +
+      Math.min(atrPct / Math.max(atrHighPct, 0.001), 1) * 0.15 +
+      Math.min(volumeRatio / 2, 1) * 0.15
+  );
+
   const diagnostics = {
     adx: adx!,
     atrPct,
@@ -71,6 +78,7 @@ export const detectMarketRegime = (
     emaFast: emaF!,
     emaSlow: emaS!,
     emaSlopePct,
+    trendStrength,
     rsi: rsi!,
     volumeRatio,
     close,
@@ -115,12 +123,17 @@ export const detectMarketRegime = (
 
 export const regimeRiskMultiplier = (
   regime: MarketRegime,
-  params: Record<string, number | string>
+  params: Record<string, number | string>,
+  diagnostics?: { trendStrength?: number }
 ): number => {
   switch (regime) {
     case "TREND_UP":
     case "TREND_DOWN":
-      return num(params, "riskMultTrend", 1);
+      return Math.min(
+        num(params, "riskMultTrendMax", 1.8),
+        num(params, "riskMultTrend", 1) *
+          (1 + num(params, "trendStrengthRiskBoost", 0.8) * (diagnostics?.trendStrength ?? 0))
+      );
     case "RANGE":
       return num(params, "riskMultRange", 0.75);
     case "HIGH_VOLATILITY":

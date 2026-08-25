@@ -142,7 +142,30 @@ const tryRegimeEntry = (
   const bbU = bb.upper[i]!;
   const bbL = bb.lower[i]!;
 
-  const risk = baseRisk * regimeRiskMultiplier(regime, p);
+  const minVolRatio = num(p, "minVolumeMult", 0);
+  if (minVolRatio > 0 && snap.diagnostics.volumeRatio < minVolRatio) return;
+
+  const body = Math.abs(c.close - c.open);
+  const candleRange = Math.max(c.high - c.low, 1e-9);
+  const bodyToRange = body / candleRange;
+  const bodyAtrPct = atr > 0 ? body / atr : 0;
+  const bullishBody = c.close > c.open;
+  const bearishBody = c.close < c.open;
+  const minBodyToRange = num(p, "minTrendBodyToRange", 0.45);
+  const minBodyAtrPct = num(p, "minTrendBodyAtrPct", 0.15);
+  const minImpulseVolumeRatio = num(p, "minImpulseVolumeRatio", 1.2);
+  const candleQualityLong =
+    bullishBody &&
+    bodyToRange >= minBodyToRange &&
+    bodyAtrPct >= minBodyAtrPct &&
+    snap.diagnostics.volumeRatio >= minImpulseVolumeRatio;
+  const candleQualityShort =
+    bearishBody &&
+    bodyToRange >= minBodyToRange &&
+    bodyAtrPct >= minBodyAtrPct &&
+    snap.diagnostics.volumeRatio >= minImpulseVolumeRatio;
+
+  const risk = baseRisk * regimeRiskMultiplier(regime, p, snap.diagnostics);
   if (risk <= 0.05) return;
 
   let dir: "long" | "short" | null = null;
@@ -151,36 +174,49 @@ const tryRegimeEntry = (
   if (regime === "HIGH_VOLATILITY") return;
 
   if (regime === "TREND_UP") {
-    const pull = num(p, "pullbackPct", 0.2) / 100;
+    if (snap.diagnostics.trendStrength < num(p, "minTrendStrengthToTrade", 0.2)) return;
+    const pull = num(p, "earlyTrendPullbackPct", num(p, "pullbackPct", 0.35)) / 100;
     const ext = num(p, "maxTrendExtensionPct", 1.5) / 100;
     if (emaS > 0 && (close - emaS) / emaS > ext) return;
     const adxNow = snap.diagnostics.adx;
     const adxPrev = ctx.cache.adx.get(num(p, "adxPeriod", 14))?.[i - 5];
     if (fin(adxPrev) && adxNow < adxPrev!) return;
-    if (close <= emaF * (1 + pull) && close >= emaF * (1 - pull * 2) && rsi > 42 && rsi < 58) {
+    const lookback = num(p, "earlyTrendBreakoutLookback", 3);
+    const breakoutAtr = num(p, "earlyTrendBreakoutAtrMult", 0.25);
+    const recentHigh = Math.max(...ctx.cache.highs.slice(Math.max(0, i - lookback), i));
+    const earlyPullback = close <= emaF * (1 + pull) && close >= emaF * (1 - pull * 2);
+    const earlyBreakout = close > recentHigh + atr * breakoutAtr;
+    if ((earlyPullback || earlyBreakout) && candleQualityLong && close > emaS && rsi > 40 && rsi < 72) {
       dir = "long";
-      stop = close - atr * atrM;
+      stop = close - atr * num(p, "trendStopMult", atrM);
     }
   } else if (regime === "TREND_DOWN") {
-    const pull = num(p, "pullbackPct", 0.2) / 100;
+    if (snap.diagnostics.trendStrength < num(p, "minTrendStrengthToTrade", 0.2)) return;
+    const pull = num(p, "earlyTrendPullbackPct", num(p, "pullbackPct", 0.35)) / 100;
     const ext = num(p, "maxTrendExtensionPct", 1.5) / 100;
     if (emaS > 0 && (emaS - close) / emaS > ext) return;
     const adxNow = snap.diagnostics.adx;
     const adxPrev = ctx.cache.adx.get(num(p, "adxPeriod", 14))?.[i - 5];
     if (fin(adxPrev) && adxNow < adxPrev!) return;
-    if (close >= emaF * (1 - pull) && close <= emaF * (1 + pull * 2) && rsi < 58 && rsi > 42) {
+    const lookback = num(p, "earlyTrendBreakoutLookback", 3);
+    const breakoutAtr = num(p, "earlyTrendBreakoutAtrMult", 0.25);
+    const recentLow = Math.min(...ctx.cache.lows.slice(Math.max(0, i - lookback), i));
+    const earlyPullback = close >= emaF * (1 - pull) && close <= emaF * (1 + pull * 2);
+    const earlyBreakout = close < recentLow - atr * breakoutAtr;
+    if ((earlyPullback || earlyBreakout) && candleQualityShort && close < emaS && rsi < 60 && rsi > 28) {
       dir = "short";
-      stop = close + atr * atrM;
+      stop = close + atr * num(p, "trendStopMult", atrM);
     }
   } else if (regime === "RANGE") {
     if (!fin(vwap)) return;
     const vwapDist = num(p, "rangeVwapDistPct", 0.15) / 100;
     const os = num(p, "rsiOversold", 30);
     const ob = num(p, "rsiOverbought", 70);
-    if (rsi <= os && close <= bbL * 1.001 && close < vwap! * (1 - vwapDist)) {
+    const bandBuffer = num(p, "rangeBandBufferPct", 0.15) / 100;
+    if (rsi <= os + 5 && close <= bbL * (1 + bandBuffer) && close < vwap! * (1 - vwapDist * 0.5)) {
       dir = "long";
       stop = close - atr * atrM;
-    } else if (rsi >= ob && close >= bbU * 0.999 && close > vwap! * (1 + vwapDist)) {
+    } else if (rsi >= ob - 5 && close >= bbU * (1 - bandBuffer) && close > vwap! * (1 + vwapDist * 0.5)) {
       dir = "short";
       stop = close + atr * atrM;
     }

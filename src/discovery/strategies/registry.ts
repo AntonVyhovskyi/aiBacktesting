@@ -12,6 +12,7 @@ import { atrVolatilityBreakout } from "./atrVolatilityBreakout.js";
 import { emaVolumeSpike } from "./emaVolumeSpike.js";
 import { vwapBounce } from "./vwapBounce.js";
 import { rangeBreakoutRetest } from "./rangeBreakoutRetest.js";
+import { adaptiveRegimeStrategy } from "./adaptiveRegimeStrategy.js";
 
 export const ALL_STRATEGIES: PhasedStrategyDefinition[] = [
   emaCrossoverAtr,
@@ -24,6 +25,7 @@ export const ALL_STRATEGIES: PhasedStrategyDefinition[] = [
   emaVolumeSpike,
   vwapBounce,
   rangeBreakoutRetest,
+  adaptiveRegimeStrategy,
 ];
 
 export const resolveStrategyGrids = (s: PhasedStrategyDefinition, mode: DiscoveryMode) => ({
